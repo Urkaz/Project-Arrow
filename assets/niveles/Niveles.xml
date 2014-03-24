@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Level>
+	<caract nivel="1" puntos="123" muertes="2" />
+	
+	<arrow type="fire"/>
+	<arrow type="ice"/>
+	<arrow type="plant"/>
+	<arrow type="fast"/>
+	<arrow type="elec"/>
+	
+	<panel type="water" act="true"/>
+	<panel type="grass" cant="2"/>
+	
+	<req type="normal" cant="2">
+	<req type="fire" cant="2">
+		
+	<sol id="1" x="22" y="333" arm="3"/>
+</Level>

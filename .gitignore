@@ -1,0 +1,11 @@
+/bat
+/AIR_Android_readme.txt
+/AIR_iOS_readme.txt
+/PackageApp.bat
+/Run.bat
+/cert
+*.as3proj
+/bin
+/dist
+/obj
+/application.xml
