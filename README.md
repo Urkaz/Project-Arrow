@@ -8,7 +8,6 @@
 4. Seguir [este tutorial][6] hasta el punto 12.
     - En el punto 8:
     - `(línea 2) <application xmlns="http://ns.adobe.com/air/application/4.0">`
-    - `(línea 8) <name>Arrow</name>`
     - `(línea 40~) <initialWindow>`
     - `<fullScreen>true</fullScreen>`
     - `<visible>true</visible>`

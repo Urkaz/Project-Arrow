@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract nivel="1" puntos="123" muertes="2" />
+	<caract nivel="0" puntos="123" muertes="2" />
 	
 	<arrow type="fire"/>
 	<arrow type="ice"/>
@@ -23,6 +23,8 @@
 	
 	<victory type="normal" num="2"/>
 	<victory type="fire" num="2"/>
+	<victory type="time" min="2"/>
+	<victory type="health" num="200"/>
 		
 	<soldier x="22" y="333" arm="3" platf="34" />
 	<soldier x="5" y="342" arm="1" platf="83" />
