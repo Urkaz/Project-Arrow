@@ -7,10 +7,16 @@ package
 	import flash.display.StageScaleMode;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
+	import net.hires.debug.Stats;
 	import otros.DatosNivel;
+	import starling.core.Starling;
 	
 	public class Main extends Sprite
 	{
+		private var stats:Stats;
+		private var myStarling:Starling;
+		
+		
 		public function Main():void 
 		{
 			stage.scaleMode = StageScaleMode.SHOW_ALL;
@@ -21,6 +27,10 @@ package
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
 			// Codigo a partir de aqui
+			
+			myStarling = new Starling(Home, stage);
+			myStarling.antiAliasing = 1;
+			myStarling.start();
 			
 		}
 		

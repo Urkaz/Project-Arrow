@@ -3,6 +3,7 @@ package
 	import starling.display.Sprite;
 	import events.NavigationEvent;
 	import screens.Home; 
+	import starling.events.Event;
 	
 	public class Game extends Sprite 
 	{
@@ -15,8 +16,20 @@ package
 		public function Game() 
 		{
 			super();
-			//this.addEventListener()
+			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
+			
 		}
+		
+		public function onAddedToStage(event:Event):void
+		{
+			trace("inicializado!")
+			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
+
+			HomeScreen = new Home();
+			HomeScreen.disposeTemporarily();
+			this.addChild(HomeScreen);
+		}
+		
 		
 	}
 
