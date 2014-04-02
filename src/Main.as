@@ -7,10 +7,10 @@ package
 	import flash.display.StageScaleMode;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
+	import otros.Nivel;
 	
 	public class Main extends Sprite 
 	{
-		
 		public function Main():void 
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -20,8 +20,10 @@ package
 			// touch or gesture?
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
-			// entry pointds
+			// Codigo a partir de aqui
 			
+			//Prueba de la clase Nivel
+			var nv:Nivel = new Nivel(0);
 			 
 		}
 		

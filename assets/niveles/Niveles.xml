@@ -8,11 +8,22 @@
 	<arrow type="fast"/>
 	<arrow type="elec"/>
 	
-	<panel type="water" act="true"/>
-	<panel type="grass" cant="2"/>
+	<panel type="water">
+		<status>true</status>
+	</panel>
+	<panel type="fog">
+		<status>false</status>
+	</panel>
+	<panel type="night">
+		<status>false</status>
+	</panel>
+	<panel type="grass">
+		<status>2</status>
+	</panel>
 	
-	<req type="normal" cant="2">
-	<req type="fire" cant="2">
+	<victory type="normal" num="2"/>
+	<victory type="fire" num="2"/>
 		
-	<sol id="1" x="22" y="333" arm="3"/>
+	<soldier x="22" y="333" arm="3" platf="34" />
+	<soldier x="5" y="342" arm="1" platf="83" />
 </Level>

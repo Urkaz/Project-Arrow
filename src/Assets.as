@@ -1,12 +1,26 @@
 package  
 {
+	import flash.display.Bitmap;
+	import flash.text.Font;
+	import flash.utils.Dictionary;
+	import starling.extensions.PDParticleSystem;
+	
+	import starling.text.BitmapFont;
+	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
+	
+	import starling.text.TextField;
+	
 	public class Assets 
 	{
-		[Embed(source="../media/Niveles.xml", mimeType="application/octet-stream")]
+		[Embed(source="../assets/niveles/Niveles.xml", mimeType="application/octet-stream")]
 		public static const nivelDePrueba:Class;
-			
-			
-			
+		
+		
+		
+		/*
+		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
+		 *
 		public static function getFont():BitmapFont
 		{
 			var fontTexture:Texture = Texture.fromBitmap(new FontTexture());
@@ -44,7 +58,7 @@ package
 			}
 			return gameTextures[name];
 		}
-		}
+		*/
 	}
 
 }

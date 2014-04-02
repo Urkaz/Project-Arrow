@@ -7,16 +7,15 @@
 3. Instalar [AIR SDK][5].
 4. Seguir [este tutorial][6] hasta el punto 12.
     - En el punto 8:
-    - `(línea 2)
-    <application xmlns="http://ns.adobe.com/air/application/4.0">
-(línea 40~)
-<initialWindow>
-<fullScreen>true</fullScreen>
-<visible>true</visible>
-<renderMode>direct</renderMode>
-<aspectRatio>portrait</aspectRatio>
-<autoOrients>false</autoOrients>
-</initialWindow>`
+    - `(línea 2) <application xmlns="http://ns.adobe.com/air/application/4.0">`
+    - `(línea 8) <name>Arrow</name>`
+    - `(línea 40~) <initialWindow>`
+    - `<fullScreen>true</fullScreen>`
+    - `<visible>true</visible>`
+    - `<renderMode>direct</renderMode>`
+    - `<aspectRatio>portrait</aspectRatio>`
+    - `<autoOrients>false</autoOrients>`
+    - `</initialWindow>`
 5. Instalar [Git][1].
 6. Instalar [TortoiseGit][2].
 
@@ -74,8 +73,8 @@ Cuando ya se hayan hecho commits, se tendrán que enviar al repositorio remoto co
 1. Instalar [Bluestacks][7].
 2. Abrir Bluestacks (recomiendo buscar algún launcher mínimamente decente e instalarlo)
 3. Editar el archivo "PackageApp.bat" con FlashDevelop y cambiar la línea 74 por:
-    - `adb -s localhost:5555 install "%OUTPUT%"
-    REM adb -d install -r "%OUTPUT%"` ("REM" hace que la línea se a un comentario)
+    - `adb -s localhost:5555 install "%OUTPUT%"`
+    - `REM adb -d install -r "%OUTPUT%"` ("REM" hace que la línea se a un comentario)
 4. Compilar el proyecto y ejecutar el mismo archivo.
     - [ 1 ]: Crea .apk sin AIR incorporado (necesita la app de AIR instalada a parte).
     - [ 2 ]: Lo mismo que [ 1 ], pero en modo debug.
