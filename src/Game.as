@@ -4,10 +4,6 @@ package
 	import events.NavigationEvent;
 	import screens.Home; 
 	
-	/**
-	 * ...
-	 * @author alvaro33bcp
-	 */
 	public class Game extends Sprite 
 	{
 		

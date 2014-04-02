@@ -9,7 +9,7 @@ package
 	import flash.ui.MultitouchInputMode;
 	import otros.DatosNivel;
 	
-	public class Main extends Sprite 
+	public class Main extends Sprite
 	{
 		public function Main():void 
 		{
@@ -21,9 +21,6 @@ package
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
 			// Codigo a partir de aqui
-			
-			//Prueba de la clase Nivel
-			var nv:DatosNivel = new DatosNivel(0);
 			
 		}
 		

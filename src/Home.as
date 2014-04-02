@@ -4,10 +4,6 @@ package
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
-	/**
-	 * ...
-	 * @author alvaro33bcp
-	 */
 	public class Home extends Sprite 
 	{
 		

@@ -1,7 +1,6 @@
 package otros 
 {
 	import flash.geom.Point;
-	import flash.geom.Vector3D;
 	
 	/**
 	 * Esta clase cargará el XML del nivel y almacenará todos sus datos.
@@ -28,7 +27,7 @@ package otros
 		
 		private var arrayVictoria:Array = new Array(); //Array de Array(String tipo_flecha, int cantidad)
 		
-		private var arraySoldados:Array = new Array(); //Array de Vector3D(int x,int y,int armadura,int ancho_plataforma)
+		private var arraySoldados:Array = new Array(); //Array de Array(int x,int y,int armadura,int ancho_plataforma)
 		
 		/*******************
 		 * Constructor
