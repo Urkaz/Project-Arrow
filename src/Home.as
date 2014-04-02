@@ -1,5 +1,6 @@
 package  
 {
+	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -10,11 +11,12 @@ package
 	 */
 	public class Home extends Sprite 
 	{
+		private var fondo_hierba:Image;
 		
 		public function Home() 
 		{
 			super();
-			this.hasEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
 			
 		}
@@ -25,9 +27,9 @@ package
 			drawScreen();
 		}
 		
-		private function drawScreen():void;
+		private function drawScreen():void
 		{
-			fondo_hierba = new Image(Assets.getTexture("FondoHierba");
+			fondo_hierba = new Image(Assets.getTexture("MurallaHierba"));
 			this.addChild(fondo_hierba);
 		}
 		
