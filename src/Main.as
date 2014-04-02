@@ -7,13 +7,13 @@ package
 	import flash.display.StageScaleMode;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
-	import otros.Nivel;
+	import otros.DatosNivel;
 	
 	public class Main extends Sprite 
 	{
 		public function Main():void 
 		{
-			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.scaleMode = StageScaleMode.SHOW_ALL;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.addEventListener(Event.DEACTIVATE, deactivate);
 			
@@ -23,8 +23,8 @@ package
 			// Codigo a partir de aqui
 			
 			//Prueba de la clase Nivel
-			var nv:Nivel = new Nivel(0);
-			 
+			var nv:DatosNivel = new DatosNivel(0);
+			
 		}
 		
 		private function deactivate(e:Event):void 

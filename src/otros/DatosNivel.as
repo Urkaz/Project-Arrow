@@ -7,7 +7,7 @@ package otros
 	 * Esta clase cargará el XML del nivel y almacenará todos sus datos.
 	 * Mediante funciones se leerán desde otros sitios estos datos.
 	 */
-	public class Nivel 
+	public class DatosNivel 
 	{
 		/*******************
 		 * Atributos
@@ -33,7 +33,7 @@ package otros
 		/*******************
 		 * Constructor
 		 *******************/
-		public function Nivel(level:int = 0)
+		public function DatosNivel(level:int = 0)
 		{
 			loadLevel(level);
 		}
@@ -41,8 +41,63 @@ package otros
 		/*******************
 		 * GETTERS
 		 *******************/
+		public function get Nivel():int
+		{
+			return numeroNivel;
+		}
 		
+		public function get PuntosMin():int
+		{
+			return puntosMin;
+		}
 		
+		public function get MuertesMin():int
+		{
+			return muertesMin;
+		}
+			
+		public function get Flechas():Array
+		{
+			return arrayFlechas;
+		}
+			
+		public function get Victoria():Array
+		{
+			return arrayVictoria;
+		}
+			
+		public function get Soldados():Array
+		{
+			return arraySoldados;
+		}
+		
+		public function get isWaterPanel():Boolean
+		{
+			return waterPanel;
+		}
+		
+		public function get isFogPanel():Boolean
+		{
+			return fogPanel;
+		}
+		
+		public function get isNightPanel():Boolean
+		{
+			return nightPanel;
+		}
+		
+		public function get isGrassPanel():Boolean
+		{
+			if (grassPanel == 0)
+				return false;
+			else
+				return true;
+		}
+		
+		public function get countGrass():int
+		{
+			return grassPanel;
+		}
 		
 		/*******************
 		 * Funciones
@@ -106,7 +161,7 @@ package otros
 			attr = xmlLevel.soldier.attributes();
 			for (var s:int = 0; s < attr.length(); s = s+4)
 			{
-				var soldado:Vector3D = new Vector3D(attr[s], attr[s + 1], attr[s + 2], attr[s + 3]);
+				var soldado:Array = new Array(attr[s], attr[s + 1], attr[s + 2], attr[s + 3]);
 				arraySoldados.push(soldado);
 			}
 			
@@ -140,7 +195,7 @@ package otros
 				trace("SOLDADOS");
 				for (var i:int = 0; i < arraySoldados.length; i++)
 				{
-					trace("\t x:"+arraySoldados[i].x + ", y:" + arraySoldados[i].y + ", a:" + arraySoldados[i].z + ", p:" + arraySoldados[i].w);
+					trace("\t x:"+arraySoldados[i][0] + ", y:" + arraySoldados[i][1] + ", a:" + arraySoldados[i][2] + ", p:" + arraySoldados[i][3]);
 				}
 			}
 		}
