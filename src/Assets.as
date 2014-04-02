@@ -3,7 +3,7 @@ package
 	import flash.display.Bitmap;
 	import flash.text.Font;
 	import flash.utils.Dictionary;
-	import starling.extensions.PDParticleSystem;
+	//import starling.extensions.PDParticleSystem;
 	
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
@@ -13,9 +13,19 @@ package
 	
 	public class Assets 
 	{
+		private static var gameTextures:Dictionary = new Dictionary();
+		private static var gameTextureAtlas:TextureAtlas;
+		
+		//Añadir imágenes
+		//[Embed(source="")]
+		//public static const (nombre):Class;
+		
+
 		[Embed(source="../assets/niveles/Niveles.xml", mimeType="application/octet-stream")]
 		public static const nivelDePrueba:Class;
 		
+		[Embed(source="../assets/Muralla_Hierba.png")]
+		public static const MurallaHierba:Class;
 		
 		
 		/*
@@ -38,6 +48,8 @@ package
 			return ps;
 		}
 		
+		*/
+		/*
 		public static function getAtlas():TextureAtlas
 		{
 			if (gameTextureAtlas == null)
@@ -48,7 +60,7 @@ package
 			}
 			return gameTextureAtlas;
 		}
-
+		*/
 		public static function getTexture(name:String):Texture
 		{
 			if (gameTextures[name] == undefined)
@@ -58,7 +70,7 @@ package
 			}
 			return gameTextures[name];
 		}
-		*/
+		
 	}
 
 }
