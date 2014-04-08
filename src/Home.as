@@ -4,10 +4,11 @@ package
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import flash.system.Capabilities;
 	
 	public class Home extends Sprite 
 	{
-		private var fondo_hierba:Image;
+		private var fondo_hierba:Image;		
 		
 		public function Home() 
 		{
@@ -25,7 +26,13 @@ package
 		
 		private function drawScreen():void
 		{
+			var ancho:int = stage.stageWidth;
+			var alto:int = stage.stageHeight;
+
 			fondo_hierba = new Image(Assets.getTexture("MurallaHierba"));
+			fondo_hierba.scaleX = ancho / fondo_hierba.width;
+			fondo_hierba.scaleY = alto / fondo_hierba.height;
+			
 			this.addChild(fondo_hierba);
 		}
 		
