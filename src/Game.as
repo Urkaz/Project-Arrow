@@ -2,7 +2,6 @@ package
 {
 	import starling.display.Sprite;
 	import events.NavigationEvent;
-	import screens.Home; 
 	import starling.events.Event;
 	
 	public class Game extends Sprite 
@@ -24,13 +23,28 @@ package
 		{
 			trace("inicializado!")
 			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
-
+			
+			//screenZone = new ZoneSelector();
+			//screenZone.disposeTemporarily();
+			//this.addChild(screenZone);
+			
 			HomeScreen = new Home();
-			HomeScreen.disposeTemporarily();
 			this.addChild(HomeScreen);
+			HomeScreen.initialize();
 		}
 		
 		
+		private function onChangeScreen(event:NavigationEvent):void
+		{
+			switch (event.params.id)
+			{
+				case "play":
+					//Ir a la seleccion de ZONAS
+					//screenWelcome.disposeTemporarily();
+					//screenInGame.initialize();
+					break;
+			}
+		}
 	}
 
 }

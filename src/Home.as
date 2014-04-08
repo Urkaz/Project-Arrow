@@ -5,6 +5,7 @@ package
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import flash.system.Capabilities;
+	import utils.Assets;
 	
 	public class Home extends Sprite 
 	{
@@ -14,8 +15,6 @@ package
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			
-			
 		}
 		
 		private function onAddedToStage(event:Event):void
@@ -36,6 +35,15 @@ package
 			this.addChild(fondo_hierba);
 		}
 		
+		public function disposeTemporarily():void
+		{
+			this.visible = false;
+		}
+		
+		public function initialize():void
+		{
+			this.visible = true;
+		}
 	}
 
 }

@@ -1,4 +1,4 @@
-package objetos 
+package objects 
 {
 	import starling.display.Sprite;
 	
