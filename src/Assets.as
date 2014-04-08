@@ -24,8 +24,18 @@ package
 		[Embed(source="../assets/niveles/Niveles.xml", mimeType="application/octet-stream")]
 		public static const nivelDePrueba:Class;
 		
+		[Embed(source="../assets/Welcomenotitle.png")]
+		public static const FondoWelcome:Class;
+		
+		[Embed(source="../assets/titulo_welcome.png")]
+		public static const TituloWelcome:Class;
+		
+		[Embed(source="../assets/Welcome_boton.png")]
+		public static const BotonWelcome:Class;
+		
 		[Embed(source="../assets/Muralla_Hierba.png")]
 		public static const MurallaHierba:Class;
+	
 		
 		
 		/*

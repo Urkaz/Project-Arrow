@@ -12,7 +12,7 @@ package
 	import otros.DatosNivel;
 	import starling.core.Starling;
 	
-	[SWF(frameRate="60", width="600", height="600", backgroundColor="0x333333")]
+	[SWF(frameRate="60", width="1920", height="1080", backgroundColor="0x333333")]
 	public class Main extends Sprite
 	{
 		private var stats:Stats;
