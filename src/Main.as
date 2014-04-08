@@ -1,6 +1,7 @@
 package 
 {
 	import flash.desktop.NativeApplication;
+	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -11,15 +12,15 @@ package
 	import otros.DatosNivel;
 	import starling.core.Starling;
 	
+	[SWF(frameRate="60", width="600", height="600", backgroundColor="0x333333")]
 	public class Main extends Sprite
 	{
 		private var stats:Stats;
 		private var myStarling:Starling;
 		
-		
 		public function Main():void 
 		{
-			stage.scaleMode = StageScaleMode.SHOW_ALL;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.addEventListener(Event.DEACTIVATE, deactivate);
 			
@@ -31,6 +32,10 @@ package
 			myStarling = new Starling(Home, stage);
 			myStarling.antiAliasing = 1;
 			myStarling.start();
+			stage.quality = StageQuality.LOW;
+			
+			//var ancho:int = stage.stageWidth;
+			//trace(ancho);
 			
 		}
 		
