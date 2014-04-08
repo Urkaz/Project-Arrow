@@ -1,6 +1,7 @@
 package 
 {
 	import flash.display.StageQuality;
+	import flash.events.Event;
 	import flash.display.Sprite;
 	import net.hires.debug.Stats;
 	import starling.core.Starling;
@@ -12,7 +13,7 @@ package
 		private var stats:Stats;
 		private var myStarling:Starling;
 		
-		public function Main()
+		public function Main():void 
 		{
 			stats = new Stats();
 			this.addChild(stats);

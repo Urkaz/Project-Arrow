@@ -24,8 +24,18 @@ package utils
 		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
 		public static const nivelDePrueba:Class;
 		
+		[Embed(source="../../assets/images/Welcomenotitle.png")]
+		public static const FondoWelcome:Class;
+		
+		[Embed(source="../../assets/images/titulo_welcome.png")]
+		public static const TituloWelcome:Class;
+		
+		[Embed(source="../../assets/images/Welcome_boton.png")]
+		public static const BotonWelcome:Class;
+		
 		[Embed(source="../../assets/images/Muralla_Hierba.png")]
 		public static const MurallaHierba:Class;
+	
 		
 		
 		/*
