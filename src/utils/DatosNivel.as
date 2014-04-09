@@ -34,7 +34,6 @@ package utils
 		 *******************/
 		public function DatosNivel(level:int = 0)
 		{
-			loadLevel(level);
 		}
 		
 		/*******************
@@ -106,7 +105,7 @@ package utils
 		 * Esta función hará que se lea y se cargue un XML u otro.
 		 * Según se vayan añadiendo niveles, esta será la función dónde "registrarlos".
 		 */
-		private function loadLevel(level:int):void
+		public function loadLevel(level:int):void
 		{
 			switch(level)
 			{

@@ -44,7 +44,14 @@ package
 					//screenWelcome.disposeTemporarily();
 					//screenInGame.initialize();
 					break;
+				case "level":
+					//Los params del evento CHANGE_SCREEN DE los niveles: {id: "level", lvl: x}
+					
+					trace("Nivel " + event.params.lvl);
+					//Nivel.loadLevel(event.params.lvl);
+					break;
 			}
+
 		}
 	}
 
