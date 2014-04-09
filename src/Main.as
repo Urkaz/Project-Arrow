@@ -1,5 +1,7 @@
 package 
 {
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.display.Sprite;
@@ -8,6 +10,7 @@ package
 	
 	[SWF(frameRate="60", width="360", height="640", backgroundColor="0x333333")]
 	//[SWF(frameRate="60", width="540", height="960", backgroundColor="0x333333")]
+	//[SWF(frameRate="60", width="1080", height="1920", backgroundColor="0x333333")]
 	public class Main extends Sprite
 	{
 		private var stats:Stats;
@@ -15,6 +18,9 @@ package
 		
 		public function Main():void 
 		{
+			stage.scaleMode = StageScaleMode.EXACT_FIT;
+			stage.align = StageAlign.TOP_LEFT;
+			
 			stats = new Stats();
 			this.addChild(stats);
 			
