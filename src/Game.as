@@ -3,6 +3,7 @@ package
 	import starling.display.Sprite;
 	import events.NavigationEvent;
 	import starling.events.Event;
+	import screens.Home;
 	
 	public class Game extends Sprite 
 	{
@@ -21,7 +22,7 @@ package
 		
 		public function onAddedToStage(event:Event):void
 		{
-			trace("inicializado!")
+			trace("Juego inicializado!")
 			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
 			
 			//screenZone = new ZoneSelector();
@@ -33,12 +34,12 @@ package
 			HomeScreen.initialize();
 		}
 		
-		
 		private function onChangeScreen(event:NavigationEvent):void
 		{
 			switch (event.params.id)
 			{
 				case "play":
+					trace("Pulsado botón PLAY");
 					//Ir a la seleccion de ZONAS
 					//screenWelcome.disposeTemporarily();
 					//screenInGame.initialize();

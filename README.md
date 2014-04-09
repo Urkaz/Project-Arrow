@@ -2,8 +2,8 @@
 
 ----------
 
-Autors:
+Autores:
 
-	Alvaro Delgado Ramos
+	Álvaro Delgado Ramos
 	Jaime Lara Mora
 	Francesc Sánchez Rodrigo
