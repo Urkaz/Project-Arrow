@@ -9,7 +9,6 @@ package
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
 	import net.hires.debug.Stats;
-	import otros.DatosNivel;
 	import starling.core.Starling;
 	
 	[SWF(frameRate="60", width="1920", height="1080", backgroundColor="0x333333")]

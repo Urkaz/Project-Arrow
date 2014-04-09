@@ -1,4 +1,4 @@
-package  
+package utils 
 {
 	import flash.display.Bitmap;
 	import flash.text.Font;
@@ -20,20 +20,20 @@ package
 		//[Embed(source="")]
 		//public static const (nombre):Class;
 		
-
-		[Embed(source="../assets/niveles/Niveles.xml", mimeType="application/octet-stream")]
+	
+		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
 		public static const nivelDePrueba:Class;
 		
-		[Embed(source="../assets/Welcomenotitle.png")]
+		[Embed(source="../../assets/images/Welcomenotitle.png")]
 		public static const FondoWelcome:Class;
 		
-		[Embed(source="../assets/titulo_welcome.png")]
+		[Embed(source="../../assets/images/titulo_welcome.png")]
 		public static const TituloWelcome:Class;
 		
-		[Embed(source="../assets/Welcome_boton.png")]
+		[Embed(source="../../assets/images/Welcome_boton.png")]
 		public static const BotonWelcome:Class;
 		
-		[Embed(source="../assets/Muralla_Hierba.png")]
+		[Embed(source="../../assets/images/Muralla_Hierba.png")]
 		public static const MurallaHierba:Class;
 	
 		
@@ -58,8 +58,6 @@ package
 			return ps;
 		}
 		
-		*/
-		/*
 		public static function getAtlas():TextureAtlas
 		{
 			if (gameTextureAtlas == null)

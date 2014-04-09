@@ -1,14 +1,15 @@
 package  
 {
-	
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import flash.system.Capabilities;
+	import utils.Assets;
 	
 	public class Home extends Sprite 
 	{
-		private var fondo_hierba:Image;
+		private var fondo_hierba:Image;		
 		private var boton_home:Button;
 		private var titulo_home:Image;
 		private var fondo_home:Image;
@@ -19,8 +20,6 @@ package
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			
-			
 		}
 		
 		private function onAddedToStage(event:Event):void
@@ -70,8 +69,18 @@ package
 			boton_home.scaleX = boton_home.scaleY = scale;
 			boton_home.x *= scale;
 			boton_home.y *= scale;
+			
 		}
 		
+		public function disposeTemporarily():void
+		{
+			this.visible = false;
+		}
+		
+		public function initialize():void
+		{
+			this.visible = true;
+		}
 	}
 
 }
