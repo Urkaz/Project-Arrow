@@ -48,22 +48,28 @@ package
 			
 			var scale:Number = stage.stageWidth / fondo_home.width;
 			
-			boton_home.x = 160;
-			boton_home.y = 540;
-			boton_home.scaleX = boton_home.scaleX / 2;
-			boton_home.scaleY = boton_home.scaleY / 2;
-			
+			//Poner las coordenadas de la resolución original, todos los escalados se harán luego
 			titulo_home.x = 50;
 			titulo_home.y = 200;
-			titulo_home.scaleX = titulo_home.scaleX / 2;
-			titulo_home.scaleY = titulo_home.scaleY / 2;
+			
+			boton_home.x = 250;
+			boton_home.y = 1050;
 			
 			if(fondo_home.height * scale > stage.stageHeight){
 				scale = stage.stageHeight / fondo_home.height;
-			}   
+			}
+			//Escalado del fondo
 			fondo_home.scaleX = fondo_home.scaleY = scale;
-							
 			
+			//Escalado del título
+			titulo_home.scaleX = titulo_home.scaleY = scale;
+			titulo_home.x *= scale;
+			titulo_home.y *= scale;
+			
+			//Escalado del botón
+			boton_home.scaleX = boton_home.scaleY = scale;
+			boton_home.x *= scale;
+			boton_home.y *= scale;
 		}
 		
 	}

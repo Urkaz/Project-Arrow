@@ -28,15 +28,13 @@ package
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
 			// Codigo a partir de aqui
+			stats = new Stats();
+			this.addChild(stats);
 			
 			myStarling = new Starling(Home, stage);
 			myStarling.antiAliasing = 1;
 			myStarling.start();
 			stage.quality = StageQuality.LOW;
-			
-			//var ancho:int = stage.stageWidth;
-			//trace(ancho);
-			
 		}
 		
 		private function deactivate(e:Event):void 
