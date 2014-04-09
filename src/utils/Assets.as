@@ -35,6 +35,9 @@ package utils
 		
 		[Embed(source="../../assets/images/Muralla_Hierba.png")]
 		public static const MurallaHierba:Class;
+		
+		[Embed(source="../../assets/images/Pantalla_niveles.png")]
+		public static const NivelesPrueba:Class;
 	
 		
 		

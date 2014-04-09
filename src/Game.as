@@ -4,12 +4,13 @@ package
 	import events.NavigationEvent;
 	import starling.events.Event;
 	import screens.Home;
+	import screens.LevelSelection;
 	
 	public class Game extends Sprite 
 	{
 		
 		private var HomeScreen:Home;
-		//private var LevelsScreen:Levels;
+		private var LevelsScreen:LevelSelection;
 		//private var GameScreen:InGame;
 		
 		
@@ -28,6 +29,10 @@ package
 			//screenZone = new ZoneSelector();
 			//screenZone.disposeTemporarily();
 			//this.addChild(screenZone);
+			LevelsScreen = new LevelSelection();
+			LevelsScreen.disposeTemporarily();
+			
+			this.addChild(LevelsScreen);
 			
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);
@@ -41,6 +46,9 @@ package
 				case "play":
 					trace("Pulsado botón PLAY");
 					//Ir a la seleccion de ZONAS
+					HomeScreen.disposeTemporarily();
+					LevelsScreen.initialize();
+					
 					//screenWelcome.disposeTemporarily();
 					//screenInGame.initialize();
 					break;
