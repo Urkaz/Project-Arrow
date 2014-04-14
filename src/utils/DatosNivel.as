@@ -12,7 +12,7 @@ package utils
 		 * Atributos
 		 *******************/
 		
-		private var DEBUG:Boolean = true; //ELIMINAR DE LA VERSIÓN FINAL JUNTO A TODO SU CODIGO
+		private var DEBUG:Boolean = false; //ELIMINAR DE LA VERSIÓN FINAL JUNTO A TODO SU CODIGO
 		 
 		private var numeroNivel:int = 0;
 		private var puntosMin:int = 0;

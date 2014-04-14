@@ -31,9 +31,14 @@ package
 			GameScreen.disposeTemporarily();
 			this.addChild(GameScreen);
 			
+			
 			LevelsScreen = new LevelSelection();
 			LevelsScreen.disposeTemporarily();
 			this.addChild(LevelsScreen);
+			
+			GameScreen = new Nivel();
+			GameScreen.disposeTemporarily();
+			this.addChild(GameScreen);
 			
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);
@@ -52,9 +57,11 @@ package
 				case "level":
 					//Los params del evento CHANGE_SCREEN DE los niveles: {id: "level", lvl: x}
 					LevelsScreen.disposeTemporarily();
-					GameScreen.initialize();
 					GameScreen.loadLevel(event.params.lvl);
+					GameScreen.initialize();
 					break;
+					
+			
 			}
 		}
 	}

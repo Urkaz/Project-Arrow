@@ -1,5 +1,6 @@
 package screens 
 {
+	import objects.Flecha;
 	import starling.display.Image;
 	import flash.utils.getTimer;
 	import starling.display.Sprite;
@@ -25,9 +26,11 @@ package screens
 		private var timeCurrent:Number;
 		private var elapsed:Number;
 		
-		private var touch:Touch;
-		private var touchX:Number;
-		private var touchY:Number;
+		//private var touch:Touch;
+		//private var touchX:Number;
+		//private var touchY:Number;
+		
+		var flecha:Flecha = new Flecha(1, true, 2);
 		
 		/*******************
 		 * Constructor
@@ -66,8 +69,12 @@ package screens
 			//Escalado del fondo
 			fondo_hierba.scaleX = fondo_hierba.scaleY = scale;
 			
-			
 			this.addChild(fondo_hierba);
+			
+			
+			flecha.x = 200;
+			flecha.y = 200;
+			this.addChild(flecha);
 		}
 		
 		public function disposeTemporarily():void
@@ -79,18 +86,21 @@ package screens
 		{
 			this.visible = true;
 			
-			this.addEventListener(Event.ENTER_FRAME, checkElapsed);
+			//this.addEventListener(Event.ENTER_FRAME, checkElapsed);
 			
 			//Después de 3 segundos, empezar juego
 			empezar();
+			
+			flecha.x = 200;
+			flecha.y = 200;
 		}
 		
-		private function checkElapsed(e:Event):void 
+		/*private function checkElapsed(e:Event):void 
 		{
 			timePrevious = timeCurrent;
 			timeCurrent = getTimer();
 			elapsed = (timeCurrent - timePrevious) * 0.001;
-		}
+		}*/
 		
 		public function empezar():void 
 		{
@@ -101,15 +111,17 @@ package screens
 		//No se si esto nos servirá para lo que nosotros queremos
 		private function onTouch(event:TouchEvent):void
 		{
-			touch = event.getTouch(stage);
+			/*touch = event.getTouch(stage);
 			
 			touchX = touch.globalX;
-			touchY = touch.globalY;
+			touchY = touch.globalY;*/
 		}
 		
 		private function onGameTick(e:Event):void 
 		{
 			//Toda la lógica aquí
+			
+			flecha.y += flecha.Velocidad;
 		}
 	}
 

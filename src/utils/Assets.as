@@ -30,6 +30,10 @@ package utils
 		[Embed(source="../../assets/images/titulo_welcome.png")]
 		public static const TituloWelcome:Class;
 		
+		[Embed(source="../../assets/images/arrow.png")]
+		public static const Arrow:Class;
+		
+		
 		[Embed(source="../../assets/images/Welcome_boton.png")]
 		public static const BotonWelcome:Class;
 		
