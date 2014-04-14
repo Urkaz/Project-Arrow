@@ -34,6 +34,7 @@ package utils
 		 *******************/
 		public function DatosNivel(level:int = 0)
 		{
+			loadLevel(level);
 		}
 		
 		/*******************
@@ -185,15 +186,15 @@ package utils
 				trace("\t grassPanel: " + grassPanel);
 				
 				trace("VICTORIA");
-				for (var i:int = 0; i < arrayVictoria.length; i++)
+				for (var i1:int = 0; i1 < arrayVictoria.length; i1++)
 				{
-					trace("\t t:"+arrayVictoria[i][0] + ", c:" + arrayVictoria[i][1]);
+					trace("\t t:"+arrayVictoria[i1][0] + ", c:" + arrayVictoria[i1][1]);
 				}
 				
 				trace("SOLDADOS");
-				for (var i:int = 0; i < arraySoldados.length; i++)
+				for (var i2:int = 0; i2 < arraySoldados.length; i2++)
 				{
-					trace("\t x:"+arraySoldados[i][0] + ", y:" + arraySoldados[i][1] + ", a:" + arraySoldados[i][2] + ", p:" + arraySoldados[i][3]);
+					trace("\t x:"+arraySoldados[i2][0] + ", y:" + arraySoldados[i2][1] + ", a:" + arraySoldados[i2] + ", p:" + arraySoldados[i2][3]);
 				}
 			}
 		}

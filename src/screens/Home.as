@@ -10,7 +10,7 @@ package screens
 	
 	public class Home extends Sprite 
 	{
-		private var fondo_hierba:Image;		
+		
 		private var boton_playHome:Button;
 		private var titulo_home:Image;
 		private var fondo_home:Image;
@@ -31,9 +31,6 @@ package screens
 		
 		private function drawScreen():void
 		{
-			//fondo_hierba = new Image(Assets.getTexture("MurallaHierba"));
-			//this.addChild(fondo_hierba);
-			
 			fondo_home = new Image(Assets.getTexture("FondoWelcome"));
 			this.addChild(fondo_home)
 			
@@ -44,14 +41,14 @@ package screens
 			this.addChild(titulo_home);
 			
 			
-			var scale:Number = stage.stageWidth / fondo_home.width;
-			
 			//Poner las coordenadas de la resolución original, todos los escalados se harán luego
 			titulo_home.x = 50;
 			titulo_home.y = 200;
 			
 			boton_playHome.x = 250;
 			boton_playHome.y = 1050;
+			
+			var scale:Number = stage.stageWidth / fondo_home.width;
 			
 			if(fondo_home.height * scale > stage.stageHeight){
 				scale = stage.stageHeight / fondo_home.height;

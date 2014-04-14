@@ -4,12 +4,9 @@ package objects
 	
 	public class Flecha extends Sprite 
 	{
-		
 		public function Flecha() 
 		{
 			
 		}
-		
 	}
-
 }
