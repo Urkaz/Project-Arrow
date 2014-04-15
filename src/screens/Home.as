@@ -12,7 +12,7 @@ package screens
 	{
 		
 		private var boton_playHome:Button;
-		private var titulo_home:Image;
+		//private var titulo_home:Image;
 		private var fondo_home:Image;
 		
 		
@@ -31,19 +31,19 @@ package screens
 		
 		private function drawScreen():void
 		{
-			fondo_home = new Image(Assets.getTexture("FondoWelcome"));
+			fondo_home = new Image(Assets.getTexture("TituloWelcome"));
 			this.addChild(fondo_home)
 			
 			boton_playHome = new Button(Assets.getTexture("BotonWelcome"));
 			this.addChild(boton_playHome)
 			
-			titulo_home = new Image(Assets.getTexture("TituloWelcome"));
-			this.addChild(titulo_home);
+			//titulo_home = new Image(Assets.getTexture("TituloWelcome"));
+			//this.addChild(titulo_home);
 			
 			
 			//Poner las coordenadas de la resolución original, todos los escalados se harán luego
-			titulo_home.x = 50;
-			titulo_home.y = 200;
+			//titulo_home.x = 50;
+			//titulo_home.y = 200;
 			
 			boton_playHome.x = 250;
 			boton_playHome.y = 1050;
@@ -57,9 +57,9 @@ package screens
 			fondo_home.scaleX = fondo_home.scaleY = scale;
 			
 			//Escalado del título
-			titulo_home.scaleX = titulo_home.scaleY = scale;
-			titulo_home.x *= scale;
-			titulo_home.y *= scale;
+			//titulo_home.scaleX = titulo_home.scaleY = scale;
+			//titulo_home.x *= scale;
+			//titulo_home.y *= scale;
 			
 			//Escalado del botón
 			boton_playHome.scaleX = boton_playHome.scaleY = scale;

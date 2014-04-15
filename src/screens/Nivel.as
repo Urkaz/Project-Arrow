@@ -70,10 +70,10 @@ package screens
 			fondo_hierba.scaleX = fondo_hierba.scaleY = scale;
 			
 			this.addChild(fondo_hierba);
-			
-			
+			flecha.scaleX = flecha.scaleX / 2;
+			flecha.scaleY = flecha.scaleY / 2;
 			flecha.x = 200;
-			flecha.y = 200;
+			flecha.y = -100;
 			this.addChild(flecha);
 		}
 		
@@ -92,7 +92,7 @@ package screens
 			empezar();
 			
 			flecha.x = 200;
-			flecha.y = 200;
+			flecha.y = -100;
 		}
 		
 		/*private function checkElapsed(e:Event):void 
