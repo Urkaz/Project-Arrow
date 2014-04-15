@@ -6,12 +6,13 @@ package
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.geom.Rectangle;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
 	import net.hires.debug.Stats;
 	import starling.core.Starling;
 	
-	[SWF(frameRate="60", width="1920", height="1080", backgroundColor="0x333333")]
+	[SWF(frameRate="60", width="320", height="480", backgroundColor="0x333333")]
 	public class Main extends Sprite
 	{
 		private var stats:Stats;
@@ -30,7 +31,14 @@ package
 			stats = new Stats();
 			this.addChild(stats);
 			
-			myStarling = new Starling(Game, stage);
+			var screenWidth:int  = stage.fullScreenWidth;
+			var screenHeight:int = stage.fullScreenHeight;
+			var viewPort:Rectangle = new Rectangle(0, 0, screenWidth, screenHeight)
+			 
+			myStarling = new Starling(Game, stage, viewPort);
+			myStarling.stage.stageWidth  = 320;
+			myStarling.stage.stageHeight = 480;
+			
 			myStarling.antiAliasing = 1;
 			myStarling.start();
 			stage.quality = StageQuality.LOW;

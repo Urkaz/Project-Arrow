@@ -1,5 +1,6 @@
 package screens
 {
+	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -31,10 +32,19 @@ package screens
 		
 		private function drawScreen():void
 		{
-			fondo_home = new Image(Assets.getTexture("TituloWelcome"));
+			
+			var scale:Number = Starling.contentScaleFactor;
+			trace(scale);
+			if (scale >= 1 && scale < 2)
+				fondo_home = new Image(Assets.getTexture("TituloWelcomeLD", 1));
+			else if (scale >= 2 && scale < 3)
+				fondo_home = new Image(Assets.getTexture("TituloWelcomeSD", 2));
+			else if (scale >= 3 && scale < 4)
+				fondo_home = new Image(Assets.getTexture("TituloWelcomeHD", 3));
+			
 			this.addChild(fondo_home)
 			
-			boton_playHome = new Button(Assets.getTexture("BotonWelcome"));
+			boton_playHome = new Button(Assets.getTexture("BotonWelcome", scale));
 			this.addChild(boton_playHome)
 			
 			//titulo_home = new Image(Assets.getTexture("TituloWelcome"));
@@ -45,16 +55,17 @@ package screens
 			//titulo_home.x = 50;
 			//titulo_home.y = 200;
 			
-			boton_playHome.x = 250;
+			boton_playHome.x = 270;
 			boton_playHome.y = 1050;
 			
-			var scale:Number = stage.stageWidth / fondo_home.width;
+			/*var scale:Number = stage.stageWidth / fondo_home.width;
 			
 			if(fondo_home.height * scale > stage.stageHeight){
 				scale = stage.stageHeight / fondo_home.height;
-			}
+			}*/
+			
 			//Escalado del fondo
-			fondo_home.scaleX = fondo_home.scaleY = scale;
+			//fondo_home.scaleX = fondo_home.scaleY = scale;
 			
 			//Escalado del título
 			//titulo_home.scaleX = titulo_home.scaleY = scale;
@@ -62,9 +73,9 @@ package screens
 			//titulo_home.y *= scale;
 			
 			//Escalado del botón
-			boton_playHome.scaleX = boton_playHome.scaleY = scale;
-			boton_playHome.x *= scale;
-			boton_playHome.y *= scale;
+			//boton_playHome.scaleX = boton_playHome.scaleY = scale;
+			//boton_playHome.x *= scale;
+			//boton_playHome.y *= scale;
 			
 			this.addEventListener(Event.TRIGGERED, onMainMenuClick);
 		}

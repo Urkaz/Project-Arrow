@@ -1,5 +1,6 @@
 package screens 
 {
+	import starling.core.Starling;
 	import objects.Flecha;
 	import starling.display.Image;
 	import flash.utils.getTimer;
@@ -30,7 +31,7 @@ package screens
 		//private var touchX:Number;
 		//private var touchY:Number;
 		
-		var flecha:Flecha = new Flecha(1, true, 2);
+		private var flecha:Flecha = new Flecha(1, true, 2);
 		
 		/*******************
 		 * Constructor
@@ -57,21 +58,23 @@ package screens
 		
 		private function drawGame():void
 		{
-			fondo_hierba = new Image(Assets.getTexture("MurallaHierba"));
+			var scale:Number = Starling.contentScaleFactor;
+			
+			fondo_hierba = new Image(Assets.getTexture("MurallaHierba", scale));
 			
 			
-			var scale:Number = stage.stageWidth / fondo_hierba.width;
+			/*var scale:Number = stage.stageWidth / fondo_hierba.width;
 			
 			if(fondo_hierba.height * scale > stage.stageHeight){
 				scale = stage.stageHeight / fondo_hierba.height;
-			}
+			}*/
 			
 			//Escalado del fondo
-			fondo_hierba.scaleX = fondo_hierba.scaleY = scale;
+			//fondo_hierba.scaleX = fondo_hierba.scaleY = scale;
 			
 			this.addChild(fondo_hierba);
-			flecha.scaleX = flecha.scaleX / 2;
-			flecha.scaleY = flecha.scaleY / 2;
+			//flecha.scaleX = flecha.scaleX / 2;
+			//flecha.scaleY = flecha.scaleY / 2;
 			flecha.x = 200;
 			flecha.y = -100;
 			this.addChild(flecha);

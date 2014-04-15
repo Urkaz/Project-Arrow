@@ -1,5 +1,6 @@
 package screens 
 {
+	import starling.core.Starling;
 	import starling.display.Sprite;
 	import starling.display.Button;
 	import starling.display.Image;
@@ -27,18 +28,20 @@ package screens
 		
 		private function drawScreen():void
 		{
-			boton_LevelPrueba = new Button(Assets.getTexture("BotonWelcome"));
+			var scale:Number = Starling.contentScaleFactor;
 			
-			fondo_niveles = new Image(Assets.getTexture("NivelesPrueba"));
+			boton_LevelPrueba = new Button(Assets.getTexture("BotonWelcome", scale));
 			
-			var scale:Number = stage.stageWidth / fondo_niveles.width;
+			fondo_niveles = new Image(Assets.getTexture("NivelesPrueba", scale));
+			
+			/*var scale:Number = stage.stageWidth / fondo_niveles.width;
 			
 			if(fondo_niveles.height * scale > stage.stageHeight){
 				scale = stage.stageHeight / fondo_niveles.height;
-			}
+			}*/
 			
 			//Escalado del fondo
-			fondo_niveles.scaleX = fondo_niveles.scaleY = scale;
+			//fondo_niveles.scaleX = fondo_niveles.scaleY = scale;
 			
 			this.addChild(fondo_niveles);
 			this.addChild(boton_LevelPrueba);

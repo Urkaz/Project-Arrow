@@ -27,8 +27,14 @@ package utils
 		[Embed(source="../../assets/images/Welcomenotitle.png")]
 		public static const FondoWelcome:Class;
 		
-		[Embed(source="../../assets/images/titulo_welcome.png")]
-		public static const TituloWelcome:Class;
+		[Embed(source="../../assets/images/titulo_welcomeHD.png")]
+		public static const TituloWelcomeHD:Class;
+		
+		[Embed(source="../../assets/images/titulo_welcomeSD.png")]
+		public static const TituloWelcomeSD:Class;
+		
+		[Embed(source="../../assets/images/titulo_welcomeLD.png")]
+		public static const TituloWelcomeLD:Class;
 		
 		[Embed(source="../../assets/images/arrow.png")]
 		public static const Arrow:Class;
@@ -76,12 +82,12 @@ package utils
 			return gameTextureAtlas;
 		}
 		*/
-		public static function getTexture(name:String):Texture
+		public static function getTexture(name:String, scale:Number):Texture
 		{
 			if (gameTextures[name] == undefined)
 			{
 				var bitmap:Bitmap = new Assets[name]();
-				gameTextures[name] = Texture.fromBitmap(bitmap);
+				gameTextures[name] = Texture.fromBitmap(bitmap, true, false, scale);
 			}
 			return gameTextures[name];
 		}

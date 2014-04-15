@@ -1,5 +1,6 @@
 package objects 
 {
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -61,7 +62,9 @@ package objects
 		}
 		private function createObstacleArt():void
 		{
-			flecha = new Image(Assets.getTexture("Arrow"));
+			var scale:Number = Starling.contentScaleFactor;
+			
+			flecha = new Image(Assets.getTexture("Arrow", scale));
 			//flecha.x = 0;
 			//flecha.y = 0;
 			this.addChild(flecha);
