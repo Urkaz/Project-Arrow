@@ -4,7 +4,7 @@ package screens
 	
 	
 	/**
-	 * Estaclase será la que ponga en pantalla todos los elementos de los niveles (InGame)
+	 * Esta clase será la que ponga en pantalla todos los elementos de los niveles (InGame)
 	 */
 	public class Nivel extends Sprite 
 	{
