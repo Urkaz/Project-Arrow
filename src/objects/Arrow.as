@@ -5,51 +5,51 @@ package objects
 	import starling.events.Event;
 	import utils.Assets;
 	
-	public class Flecha extends Sprite 
+	public class Arrow extends Sprite 
 	{
-		private var _TipoFlecha:int;
-		private var _Velocidad:int;
-		private var _Visible:Boolean;
-		private var _Choque:Boolean;
+		private var tipoFlecha:String;
+		private var velocidad:Number;
+		private var _visible:Boolean;
+		private var choque:Boolean;
 		private var flecha:Image;
 		
-		public function Flecha(tipoFlecha:int, visible:Boolean = true, velocidad:int = 0)
+		public function Arrow(tipoFlecha:String, visible:Boolean = true, velocidad:Number = 0)
 		{
-			this._TipoFlecha = tipoFlecha;
-			this._Visible = visible;
-			this._Velocidad = velocidad;
+			this.tipoFlecha = tipoFlecha;
+			this._visible = visible;
+			this.velocidad = velocidad;
 			
-			_Choque = false;
+			choque = false;
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
-		public function get Velocidad():int
+		public function get Velocidad():Number
 		{
-			return _Velocidad;
+			return velocidad;
 		}
 		
-		public function set Velocidad(value:int):void
+		public function set Velocidad(value:Number):void
 		{
-			_Velocidad = value;
+			velocidad = value;
 		}
 		
 		public function get alreadyHit():Boolean
 		{
-			return _Choque;
+			return choque;
 		}
 		
 		public function set alreadyHit(value:Boolean):void
 		{
-			_Choque = value;
+			choque = value;
 		}
 
 		public function get watchOut():Boolean
 		{
-			return _Visible;
+			return _visible;
 		}
 		
 		public function set watchOut(value:Boolean):void
 		{
-			_Visible = value;
+			_visible = value;
 		}
 
 		private function onAddedToStage(event:Event):void
@@ -62,8 +62,11 @@ package objects
 		private function createObstacleArt():void
 		{
 			flecha = new Image(Assets.getTexture("Arrow"));
-			//flecha.x = 0;
-			//flecha.y = 0;
+			
+			//Hacer random
+			flecha.x = 200;
+			flecha.y = 200;
+			
 			this.addChild(flecha);
 		}
 		
