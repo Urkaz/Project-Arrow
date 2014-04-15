@@ -4,13 +4,9 @@ package objects
 	
 	public class Plataforma extends Sprite 
 	{
-		
 		public function Plataforma() 
 		{
-			super();
 			
 		}
-		
 	}
-
 }

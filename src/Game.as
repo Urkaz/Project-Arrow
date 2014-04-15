@@ -1,15 +1,18 @@
 package  
 {
+	import screens.Nivel;
 	import starling.display.Sprite;
 	import events.NavigationEvent;
 	import starling.events.Event;
+	import screens.Home;
+	import screens.LevelSelection;
 	
 	public class Game extends Sprite 
 	{
 		
 		private var HomeScreen:Home;
-		//private var LevelsScreen:Levels;
-		//private var GameScreen:InGame;
+		private var LevelsScreen:LevelSelection;
+		private var GameScreen:Nivel;
 		
 		
 		public function Game() 
@@ -21,30 +24,45 @@ package
 		
 		public function onAddedToStage(event:Event):void
 		{
-			trace("inicializado!")
+			trace("Juego inicializado!")
 			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
 			
-			//screenZone = new ZoneSelector();
-			//screenZone.disposeTemporarily();
-			//this.addChild(screenZone);
+			GameScreen = new Nivel();
+			GameScreen.disposeTemporarily();
+			this.addChild(GameScreen);
+			
+			
+			LevelsScreen = new LevelSelection();
+			LevelsScreen.disposeTemporarily();
+			this.addChild(LevelsScreen);
+			
+			GameScreen = new Nivel();
+			GameScreen.disposeTemporarily();
+			this.addChild(GameScreen);
 			
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);
 			HomeScreen.initialize();
 		}
 		
-		
 		private function onChangeScreen(event:NavigationEvent):void
 		{
 			switch (event.params.id)
 			{
 				case "play":
-					//Ir a la seleccion de ZONAS
-					//screenWelcome.disposeTemporarily();
-					//screenInGame.initialize();
+					//Ir al selector de niveles
+					HomeScreen.disposeTemporarily();
+					LevelsScreen.initialize();
 					break;
+				case "level":
+					//Los params del evento CHANGE_SCREEN DE los niveles: {id: "level", lvl: x}
+					LevelsScreen.disposeTemporarily();
+					GameScreen.loadLevel(event.params.lvl);
+					GameScreen.initialize();
+					break;
+					
+			
 			}
 		}
 	}
-
 }

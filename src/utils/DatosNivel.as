@@ -1,4 +1,4 @@
-package utiles 
+package utils 
 {
 	import flash.geom.Point;
 	
@@ -12,7 +12,7 @@ package utiles
 		 * Atributos
 		 *******************/
 		
-		private var DEBUG:Boolean = true; //ELIMINAR DE LA VERSIÓN FINAL JUNTO A TODO SU CODIGO
+		private var DEBUG:Boolean = false; //ELIMINAR DE LA VERSIÓN FINAL JUNTO A TODO SU CODIGO
 		 
 		private var numeroNivel:int = 0;
 		private var puntosMin:int = 0;
@@ -106,7 +106,7 @@ package utiles
 		 * Esta función hará que se lea y se cargue un XML u otro.
 		 * Según se vayan añadiendo niveles, esta será la función dónde "registrarlos".
 		 */
-		private function loadLevel(level:int):void
+		public function loadLevel(level:int):void
 		{
 			switch(level)
 			{
@@ -186,15 +186,15 @@ package utiles
 				trace("\t grassPanel: " + grassPanel);
 				
 				trace("VICTORIA");
-				for (var i:int = 0; i < arrayVictoria.length; i++)
+				for (var i1:int = 0; i1 < arrayVictoria.length; i1++)
 				{
-					trace("\t t:"+arrayVictoria[i][0] + ", c:" + arrayVictoria[i][1]);
+					trace("\t t:"+arrayVictoria[i1][0] + ", c:" + arrayVictoria[i1][1]);
 				}
 				
 				trace("SOLDADOS");
-				for (var i:int = 0; i < arraySoldados.length; i++)
+				for (var i2:int = 0; i2 < arraySoldados.length; i2++)
 				{
-					trace("\t x:"+arraySoldados[i][0] + ", y:" + arraySoldados[i][1] + ", a:" + arraySoldados[i][2] + ", p:" + arraySoldados[i][3]);
+					trace("\t x:"+arraySoldados[i2][0] + ", y:" + arraySoldados[i2][1] + ", a:" + arraySoldados[i2] + ", p:" + arraySoldados[i2][3]);
 				}
 			}
 		}

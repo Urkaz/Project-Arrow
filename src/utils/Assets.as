@@ -30,11 +30,18 @@ package utils
 		[Embed(source="../../assets/images/titulo_welcome.png")]
 		public static const TituloWelcome:Class;
 		
+		[Embed(source="../../assets/images/arrow.png")]
+		public static const Arrow:Class;
+		
+		
 		[Embed(source="../../assets/images/Welcome_boton.png")]
 		public static const BotonWelcome:Class;
 		
 		[Embed(source="../../assets/images/Muralla_Hierba.png")]
 		public static const MurallaHierba:Class;
+		
+		[Embed(source="../../assets/images/Pantalla_niveles.png")]
+		public static const NivelesPrueba:Class;
 	
 		
 		

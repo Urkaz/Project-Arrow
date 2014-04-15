@@ -9,3 +9,5 @@
 /dist
 /obj
 /application.xml
+/icons
+*.swc
