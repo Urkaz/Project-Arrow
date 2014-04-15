@@ -10,7 +10,7 @@
 	<arrow type="fire" prob="6" vel="1.5"/>
 	<arrow type="ice" prob="6" vel="1.5"/>
 	<arrow type="plant" prob="6" vel="1.5"/>
-	<arrow type="fast" prob="6" vel="1.5"/>
+	<arrow type="fast" prob="6" vel="3"/>
 	<arrow type="elec" prob="6" vel="1.5"/>
 	
 	<panel type="water">

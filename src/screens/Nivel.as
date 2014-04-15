@@ -29,10 +29,6 @@ package screens
 		private var elapsed:Number;
 		private var tiempo:Number;
 		
-		//private var touch:Touch;
-		//private var touchX:Number;
-		//private var touchY:Number;
-		
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
 		
@@ -94,8 +90,6 @@ package screens
 			timer = new Timer(timerDelay, timerRepeat);
 			timer.addEventListener(TimerEvent.TIMER, timerListener);
 			timer.start();
-			
-			//this.addEventListener(Event.ENTER_FRAME, checkElapsed);
 		}
 		
 		private function timerListener (e:TimerEvent):void
@@ -106,7 +100,7 @@ package screens
 		
 		private function empezar():void 
 		{
-			this.addEventListener(TouchEvent.TOUCH, onTouch);
+			//this.addEventListener(TouchEvent.TOUCH, onTouch);
 			this.addEventListener(Event.ENTER_FRAME, onGameTick);
 			timer.addEventListener(TimerEvent.TIMER, spawnArrow);
 			
@@ -119,7 +113,7 @@ package screens
 		{
 			arrowIndex = nextArrowIndex();
 			
-			trace("SPAWN FLECHA " + datosNivel.Flechas[0][arrowIndex]);
+			//trace("SPAWN FLECHA " + datosNivel.Flechas[0][arrowIndex]);
 			var newArrow:Arrow = new Arrow(datosNivel.Flechas[0][arrowIndex], true, datosNivel.Flechas[2][arrowIndex]);
 			
 			this.addChild(newArrow);
@@ -133,36 +127,32 @@ package screens
 			
 			//Recalcular tiempo para el spawn de la siguiente flecha y reiniciar timer
 			timer.delay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax - datosNivel.TimeSpawnMin + 1)) + datosNivel.TimeSpawnMin; // Random*(max-min+1)+min
-			trace("\tSiguiente en: "+timer.delay+"ms");
+			//trace("\tSiguiente en: "+timer.delay+"ms");
 			timer.reset();
 			timer.start();
 		}
 		
-		//No se si esto nos servirá para lo que nosotros queremos
 		private function onTouch(event:TouchEvent):void
 		{
-			/*touch = event.getTouch(stage);
-			
-			touchX = touch.globalX;
-			touchY = touch.globalY;*/
-		}
-		
-		private function onGameTick(e:Event):void 
-		{
-			//Toda la lógica aquí
-			for each(var arr:Arrow in arrowArray)
-				arr.y += arr.Velocidad;
+			/* Lo dejo aquí por si acaso
+			 * 
+			 * var touch:Touch = event.getTouch(this, TouchPhase.BEGAN);
+			if (touch)
+			{
+				var localPos:Point = touch.getLocation(this);
+				trace("Touched object at position: " + localPos);
+			}*/
 		}
 		
 		private function nextArrowIndex():int
 		{
 			var prob:int = Math.floor(Math.random() * (100 - 0 + 1));
 			
-			trace("\tProb:"  + prob + "%");
+			//trace("\tProb:"  + prob + "%");
 			
 			var sum:int = 0;
 			var typeIndex:int = 0;
-			for (var i:int = 0; i < datosNivel.Flechas[1].length; i++)
+			for (var i:int = 0; i < datosNivel.Flechas[1].length; ++i)
 			{
 				sum += int(datosNivel.Flechas[1][i]);
 				if (prob < sum)
@@ -172,6 +162,35 @@ package screens
 				}
 			}
 			return typeIndex;
+		}
+		
+		private function onGameTick(e:Event):void 
+		{
+			//Toda la lógica aquí
+			for (var i:int = 0; i < arrowArray.length; ++i)
+			{
+				if (arrowArray[i].Status == Arrow.DESTROY)
+				{
+					timer.removeEventListener(TimerEvent.TIMER, spawnArrow);
+					
+					var aux:Arrow = arrowArray[i]
+					arrowArray[i] = arrowArray[arrowArray.length - 1];
+					arrowArray[arrowArray.length - 1] = aux;
+					
+					trace("Flecha de tipo " + aux.Tipo + " destruida.");
+					
+					this.removeChild(arrowArray.pop());
+					--i;
+					
+					
+					
+					timer.addEventListener(TimerEvent.TIMER, spawnArrow);
+				}
+				else
+				{
+					arrowArray[i].y += arrowArray[i].Velocidad;
+				}
+			}
 		}
 	}
 
