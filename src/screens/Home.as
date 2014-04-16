@@ -35,11 +35,11 @@ package screens
 			
 			var scale:Number = Starling.contentScaleFactor;
 			trace(scale);
-			if (scale >= 1 && scale < 2)
+			if (scale < 2)
 				fondo_home = new Image(Assets.getTexture("TituloWelcomeLD", 1));
 			else if (scale >= 2 && scale < 3)
 				fondo_home = new Image(Assets.getTexture("TituloWelcomeSD", 2));
-			else if (scale >= 3 && scale < 4)
+			else if (scale >= 3)
 				fondo_home = new Image(Assets.getTexture("TituloWelcomeHD", 3));
 			
 			this.addChild(fondo_home)
@@ -55,8 +55,8 @@ package screens
 			//titulo_home.x = 50;
 			//titulo_home.y = 200;
 			
-			boton_playHome.x = 270;
-			boton_playHome.y = 1050;
+			boton_playHome.x = 50;
+			boton_playHome.y = 200;
 			
 			/*var scale:Number = stage.stageWidth / fondo_home.width;
 			
