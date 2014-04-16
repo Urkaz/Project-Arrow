@@ -45,7 +45,7 @@ package screens
 			//titulo_home.x = 50;
 			//titulo_home.y = 200;
 			
-			boton_playHome.x = 250;
+			boton_playHome.x = 270;
 			boton_playHome.y = 1050;
 			
 			var scale:Number = stage.stageWidth / fondo_home.width;

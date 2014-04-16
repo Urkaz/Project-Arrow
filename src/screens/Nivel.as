@@ -24,11 +24,6 @@ package screens
 		
 		private var fondo_hierba:Image;
 		
-		private var timePrevious:Number;
-		private var timeCurrent:Number;
-		private var elapsed:Number;
-		private var tiempo:Number;
-		
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
 		
@@ -92,7 +87,7 @@ package screens
 			timer.start();
 		}
 		
-		private function timerListener (e:TimerEvent):void
+		private function timerListener(e:TimerEvent):void
 		{
 			timer.removeEventListener(TimerEvent.TIMER, timerListener);
 			empezar();
