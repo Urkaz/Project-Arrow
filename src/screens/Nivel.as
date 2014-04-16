@@ -1,6 +1,8 @@
 package screens 
 {
-	import objects.Flecha;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	import objects.Arrow;
 	import starling.display.Image;
 	import flash.utils.getTimer;
 	import starling.display.Sprite;
@@ -25,12 +27,17 @@ package screens
 		private var timePrevious:Number;
 		private var timeCurrent:Number;
 		private var elapsed:Number;
+		private var tiempo:Number;
 		
-		//private var touch:Touch;
-		//private var touchX:Number;
-		//private var touchY:Number;
+		private var arrowIndex:int;
+		private var arrowArray:Array = new Array();
 		
-		var flecha:Flecha = new Flecha(1, true, 2);
+		private var timerDelay:int = 1 * 1000;
+		private var timerRepeat:int = 1;
+		
+		private var timer:Timer;
+		
+		private var scale:Number;
 		
 		/*******************
 		 * Constructor
@@ -59,8 +66,7 @@ package screens
 		{
 			fondo_hierba = new Image(Assets.getTexture("MurallaHierba"));
 			
-			
-			var scale:Number = stage.stageWidth / fondo_hierba.width;
+			scale = stage.stageWidth / fondo_hierba.width;
 			
 			if(fondo_hierba.height * scale > stage.stageHeight){
 				scale = stage.stageHeight / fondo_hierba.height;
@@ -70,11 +76,6 @@ package screens
 			fondo_hierba.scaleX = fondo_hierba.scaleY = scale;
 			
 			this.addChild(fondo_hierba);
-			flecha.scaleX = flecha.scaleX / 2;
-			flecha.scaleY = flecha.scaleY / 2;
-			flecha.x = 200;
-			flecha.y = -100;
-			this.addChild(flecha);
 		}
 		
 		public function disposeTemporarily():void
@@ -86,42 +87,110 @@ package screens
 		{
 			this.visible = true;
 			
-			//this.addEventListener(Event.ENTER_FRAME, checkElapsed);
-			
-			//Después de 3 segundos, empezar juego
+			timer = new Timer(timerDelay, timerRepeat);
+			timer.addEventListener(TimerEvent.TIMER, timerListener);
+			timer.start();
+		}
+		
+		private function timerListener (e:TimerEvent):void
+		{
+			timer.removeEventListener(TimerEvent.TIMER, timerListener);
 			empezar();
-			
-			flecha.x = 200;
-			flecha.y = -100;
 		}
 		
-		/*private function checkElapsed(e:Event):void 
+		private function empezar():void 
 		{
-			timePrevious = timeCurrent;
-			timeCurrent = getTimer();
-			elapsed = (timeCurrent - timePrevious) * 0.001;
-		}*/
-		
-		public function empezar():void 
-		{
-			this.addEventListener(TouchEvent.TOUCH, onTouch);
+			//this.addEventListener(TouchEvent.TOUCH, onTouch);
 			this.addEventListener(Event.ENTER_FRAME, onGameTick);
+			timer.addEventListener(TimerEvent.TIMER, spawnArrow);
+			
+			timer.delay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax - datosNivel.TimeSpawnMin + 1)) + datosNivel.TimeSpawnMin; // Random*(max-min+1)+min
+			timer.reset();
+			timer.start();
 		}
 		
-		//No se si esto nos servirá para lo que nosotros queremos
+		private function spawnArrow(e:TimerEvent):void 
+		{
+			arrowIndex = nextArrowIndex();
+			
+			//trace("SPAWN FLECHA " + datosNivel.Flechas[0][arrowIndex]);
+			var newArrow:Arrow = new Arrow(datosNivel.Flechas[0][arrowIndex], true, datosNivel.Flechas[2][arrowIndex]);
+			
+			this.addChild(newArrow);
+			
+			//ESCALADO
+			newArrow.scaleX = newArrow.scaleY = scale;
+			newArrow.x *= scale;
+			newArrow.y *= scale;
+		
+			arrowArray.push(newArrow);
+			
+			//Recalcular tiempo para el spawn de la siguiente flecha y reiniciar timer
+			timer.delay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax - datosNivel.TimeSpawnMin + 1)) + datosNivel.TimeSpawnMin; // Random*(max-min+1)+min
+			//trace("\tSiguiente en: "+timer.delay+"ms");
+			timer.reset();
+			timer.start();
+		}
+		
 		private function onTouch(event:TouchEvent):void
 		{
-			/*touch = event.getTouch(stage);
+			/* Lo dejo aquí por si acaso
+			 * 
+			 * var touch:Touch = event.getTouch(this, TouchPhase.BEGAN);
+			if (touch)
+			{
+				var localPos:Point = touch.getLocation(this);
+				trace("Touched object at position: " + localPos);
+			}*/
+		}
+		
+		private function nextArrowIndex():int
+		{
+			var prob:int = Math.floor(Math.random() * (100 - 0 + 1));
 			
-			touchX = touch.globalX;
-			touchY = touch.globalY;*/
+			//trace("\tProb:"  + prob + "%");
+			
+			var sum:int = 0;
+			var typeIndex:int = 0;
+			for (var i:int = 0; i < datosNivel.Flechas[1].length; ++i)
+			{
+				sum += int(datosNivel.Flechas[1][i]);
+				if (prob < sum)
+				{
+					typeIndex = i;
+					break;
+				}
+			}
+			return typeIndex;
 		}
 		
 		private function onGameTick(e:Event):void 
 		{
 			//Toda la lógica aquí
-			
-			flecha.y += flecha.Velocidad;
+			for (var i:int = 0; i < arrowArray.length; ++i)
+			{
+				if (arrowArray[i].Status == Arrow.DESTROY)
+				{
+					timer.removeEventListener(TimerEvent.TIMER, spawnArrow);
+					
+					var aux:Arrow = arrowArray[i]
+					arrowArray[i] = arrowArray[arrowArray.length - 1];
+					arrowArray[arrowArray.length - 1] = aux;
+					
+					trace("Flecha de tipo " + aux.Tipo + " destruida.");
+					
+					this.removeChild(arrowArray.pop());
+					--i;
+					
+					
+					
+					timer.addEventListener(TimerEvent.TIMER, spawnArrow);
+				}
+				else
+				{
+					arrowArray[i].y += arrowArray[i].Velocidad;
+				}
+			}
 		}
 	}
 

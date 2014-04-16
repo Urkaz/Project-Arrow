@@ -17,8 +17,12 @@ package utils
 		private var numeroNivel:int = 0;
 		private var puntosMin:int = 0;
 		private var muertesMin:int = 0;
+		private var spawnMin:Number = 0;
+		private var spawnMax:Number = 0;
 		
 		private var arrayFlechas:Array = new Array(); //Array de String tipo
+		private var arrayFlechasProb:Array = new Array(); //Array de int
+		private var arrayFlechasVel:Array = new Array(); //Array de Number
 		
 		private var waterPanel:Boolean = false;
 		private var fogPanel:Boolean = false;
@@ -54,10 +58,20 @@ package utils
 		{
 			return muertesMin;
 		}
+		
+		public function get TimeSpawnMin():int
+		{
+			return spawnMin*1000;
+		}
+		
+		public function get TimeSpawnMax():int
+		{
+			return spawnMax*1000;
+		}
 			
 		public function get Flechas():Array
 		{
-			return arrayFlechas;
+			return new Array(arrayFlechas, arrayFlechasProb, arrayFlechasVel);
 		}
 			
 		public function get Victoria():Array
@@ -134,13 +148,27 @@ package utils
 			numeroNivel = xmlLevel.caract.attribute("nivel");
 			puntosMin = xmlLevel.caract.attribute("puntos");
 			muertesMin = xmlLevel.caract.attribute("muertes");
+			spawnMin = Number(xmlLevel.caract.attribute("spawnMin"));
+			spawnMax = Number(xmlLevel.caract.attribute("spawnMax"));
 			
 			//Leer las flechas que tendrá el nivel
 			attr = xmlLevel.arrow.attributes();
 			for each (var tipo:XML in attr)
 			{
-				arrayFlechas.push(tipo);
+				if(tipo.name() == "type")
+					arrayFlechas.push(tipo);
+				else if(tipo.name() == "prob")
+					arrayFlechasProb.push(int(tipo));
+				else if(tipo.name() == "vel")
+					arrayFlechasVel.push(Number(tipo));
 			}
+			
+			//Comprobar si la probabilidad es correcta
+			var maxProb:int;
+			for each(var fp:int in arrayFlechasProb)
+				maxProb += fp;
+			if (maxProb != 100)
+				throw new Error("La suma de probabilidades de las flechas debe ser 100");
 			
 			//Leer las propiedades del panel
 			waterPanel = (xmlLevel.panel.(@type == "water").status == "true");
@@ -176,7 +204,7 @@ package utils
 				trace("FLECHAS DEL NIVEL");
 				for (var i:int = 0; i < arrayFlechas.length; i++)
 				{
-					trace("\t "+arrayFlechas[i]);
+					trace("\t "+arrayFlechas[i]+" - P:"+arrayFlechasProb[i]+"% - V:"+arrayFlechasVel[i]);
 				}
 				
 				trace("PANEL");

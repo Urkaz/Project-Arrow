@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract nivel="0" puntos="123" muertes="2" />
+	<caract nivel="0" puntos="123" muertes="2" spawnMin="1" spawnMax="2.3" />
 	
-	<arrow type="fire"/>
-	<arrow type="ice"/>
-	<arrow type="plant"/>
-	<arrow type="fast"/>
-	<arrow type="elec"/>
+	<!--
+	La prob de una flecha especial no debe ser mayor de 20 en niveles normales
+	La suma de prob de todas las flechas debe ser 100
+	-->
+	<arrow type="normal" prob="70" vel="1"/>
+	<arrow type="fire" prob="6" vel="1.5"/>
+	<arrow type="ice" prob="6" vel="1.5"/>
+	<arrow type="plant" prob="6" vel="1.5"/>
+	<arrow type="fast" prob="6" vel="3"/>
+	<arrow type="elec" prob="6" vel="1.5"/>
 	
 	<panel type="water">
 		<status>true</status>
