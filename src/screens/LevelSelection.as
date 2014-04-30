@@ -1,5 +1,6 @@
 package screens 
 {
+	import adobe.utils.CustomActions;
 	import starling.display.Sprite;
 	import starling.display.Button;
 	import starling.display.Image;
@@ -14,15 +15,17 @@ package screens
 	import feathers.layout.VerticalLayout;
 	import feathers.controls.ScrollBar;
 	import feathers.controls.Scroller;
+	import utils.BotonNivel;
 	
 	public class LevelSelection extends Sprite 
 	{
 		private var fondo_niveles:Image;
-		private var boton_LevelPrueba:Button;
+		private var container:ScrollContainer;
+		private var layout:VerticalLayout;
+		
 		
 		public function LevelSelection() 
 		{
-			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -34,8 +37,6 @@ package screens
 		
 		private function drawScreen():void
 		{
-			boton_LevelPrueba = new Button(Assets.getTexture("BotonWelcome"));
-			
 			fondo_niveles = new Image(Assets.getTexture("NivelesPrueba"));
 			
 			var scale:Number = stage.stageWidth / fondo_niveles.width;
@@ -49,49 +50,29 @@ package screens
 			
 			this.addChild(fondo_niveles);
 			
-			
-			this.addEventListener(Event.TRIGGERED, onLevelClick);
-			
-			
 			//SCROLL
-			var container:ScrollContainer = new ScrollContainer();
+			container = new ScrollContainer();
 			this.addChild(container);
 			
-			var yPosition:Number = 0;
-			for(var i:int = 0; i < 60; i++)
+			for(var i:int = 0; i < 2; i++)
 			{
-				var quad:Image = new Image(Assets.getTexture("candado750"));
-				quad.y = yPosition;
-				quad.height = stage.stageHeight/7;
-				quad.width = stage.stageWidth;
-				
-				container.addChild( quad );
-				trace(quad.height);
-				trace(quad.width);
-				
-				yPosition += quad.width + 10;
+				var boton:BotonNivel;
+				if (i % 2 == 0)
+					boton = new BotonNivel(i, 0, 3);
+				else
+					boton = new BotonNivel(i,0,3, false);
+				container.addChild(boton);
  			}
 			
-			
+			//container.scrollToPosition(0,1000);
 			container.padding = 0;
 			container.width = stage.stageWidth;
 			container.height = stage.stageHeight;
  			
-			//.gap es la separaciÃ³n.
-			var layout:VerticalLayout = new VerticalLayout();
-			layout.gap = 0;
+			//Gap es la separación.
+			layout = new VerticalLayout();
+			//layout.gap = 0;
 			container.layout = layout;
-			
-			this.addChild(boton_LevelPrueba);
-		}
-		
-		private function onLevelClick(event:Event):void
-		{
-			var buttonClicked:Button = event.target as Button;
-			if((buttonClicked as Button) == boton_LevelPrueba)
-			{
-				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "level", lvl: 0}, true));
-			}
 		}
 		
 		public function disposeTemporarily():void

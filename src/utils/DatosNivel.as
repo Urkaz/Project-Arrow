@@ -125,10 +125,10 @@ package utils
 			switch(level)
 			{
 				case 0:
-					 readXML(new XML(new Assets.nivelDePrueba()));
+					readXML(new XML(new Assets.nivel0()));
 					break;
 				case 1:
-					//return new XML(new Assets.nivel1());
+					readXML(new XML(new Assets.nivel1()));
 					break;
 				case 2:
 					//return new XML(new Assets.nivel2());

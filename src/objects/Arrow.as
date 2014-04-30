@@ -63,15 +63,15 @@ package objects
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
-			createObstacleArt();
+			createArrowArt();
 		}
 		
-		private function createObstacleArt():void
+		private function createArrowArt():void
 		{
 			flecha = new Image(Assets.getTexture("Arrow"));
 			
 			//Hacer random
-			flecha.x = Math.floor(Math.random() * (1080 - 0 + 1)) + 0;
+			flecha.x = Math.floor(Math.random() * (1000 - 80 + 1)) + 80;
 			trace(flecha.x);
 			flecha.y = -flecha.height;
 			

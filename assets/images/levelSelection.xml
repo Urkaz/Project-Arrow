@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:010d2729fc2bae8df289379f451705ec$ -->
+<TextureAtlas imagePath="levelSelection.png">
+    <SubTexture name="corazon" x="910" y="0" width="87" height="86"/>
+    <SubTexture name="estrellas_0" x="750" y="288" width="160" height="96"/>
+    <SubTexture name="estrellas_1" x="750" y="192" width="160" height="96"/>
+    <SubTexture name="estrellas_2" x="750" y="96" width="160" height="96"/>
+    <SubTexture name="estrellas_3" x="750" y="0" width="160" height="96"/>
+    <SubTexture name="nv_candado" x="0" y="534" width="750" height="178"/>
+    <SubTexture name="nv_nieve" x="0" y="356" width="750" height="178"/>
+    <SubTexture name="nv_noche" x="0" y="178" width="750" height="178"/>
+    <SubTexture name="nv_normal" x="0" y="0" width="750" height="178"/>
+</TextureAtlas>

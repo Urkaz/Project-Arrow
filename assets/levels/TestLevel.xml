@@ -19,6 +19,9 @@
 	<panel type="fog">
 		<status>false</status>
 	</panel>
+	<panel type="snow">
+		<status>false</status>
+	</panel>
 	<panel type="night">
 		<status>false</status>
 	</panel>

@@ -22,10 +22,10 @@ package utils
 		
 	
 		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
-		public static const nivelDePrueba:Class;
+		public static const nivel0:Class;
 		
-		[Embed(source="../../assets/images/Welcomenotitle.png")]
-		public static const FondoWelcome:Class;
+		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
+		public static const nivel1:Class;
 		
 		[Embed(source="../../assets/images/titulo_welcome.png")]
 		public static const TituloWelcome:Class;
@@ -33,21 +33,23 @@ package utils
 		[Embed(source="../../assets/images/arrow.png")]
 		public static const Arrow:Class;
 		
-		
 		[Embed(source="../../assets/images/Welcome_boton.png")]
 		public static const BotonWelcome:Class;
 		
-		[Embed(source="../../assets/images/Muralla_Hierba.png")]
+		[Embed(source="../../assets/images/Fondo_Normal.png")]
 		public static const MurallaHierba:Class;
 		
 		[Embed(source="../../assets/images/Pantalla_niveles.png")]
 		public static const NivelesPrueba:Class;
 		
-		[Embed(source="../../assets/images/candado750.png")]
-		public static const candado750:Class;
-		
 		[Embed(source = "../../assets/images/Bicho.png")]
 		public static const Soldado:Class;
+		
+		[Embed(source="../../assets/images/levelSelection.png")]
+		public static const levelSelectSprite:Class;
+		
+		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
+		public static const levelSelectXML:Class;
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
@@ -67,19 +69,27 @@ package utils
 		{
 			var ps:PDParticleSystem = new PDParticleSystem(XML(new ParticlePEX()), Texture.fromBitmap(new ParticleTexture()));
 			return ps;
-		}
+		}*/
 		
-		public static function getAtlas():TextureAtlas
+		public static function getAtlas(name:String):TextureAtlas
 		{
 			if (gameTextureAtlas == null)
 			{
-				var texture:Texture = getTexture("AtlasTextureGame");
-				var xml:XML = XML(new AtlasXmlGame());
+				var texture:Texture = getTexture(name);
+				var xml:XML;
+				switch(name)
+				{
+				case "levelSelectSprite":
+					xml = XML(new levelSelectXML());
+					break;
+				case "XXXXXX":
+					break;
+				}
 				gameTextureAtlas = new TextureAtlas(texture, xml);
 			}
 			return gameTextureAtlas;
 		}
-		*/
+		
 		public static function getTexture(name:String):Texture
 		{
 			if (gameTextures[name] == undefined)
