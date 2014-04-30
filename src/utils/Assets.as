@@ -46,6 +46,9 @@ package utils
 		[Embed(source="../../assets/images/candado750.png")]
 		public static const candado750:Class;
 		
+		[Embed(source = "../../assets/images/Bicho.png")]
+		public static const Soldado:Class;
+		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
 		 *
