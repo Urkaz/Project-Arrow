@@ -7,6 +7,13 @@ package screens
 	import flash.system.Capabilities;
 	import utils.Assets;
 	import events.NavigationEvent;
+	import feathers.controls.ScrollScreen;
+	import feathers.events.FeathersEventType;
+	import feathers.controls.ScrollContainer;
+	import feathers.layout.HorizontalLayout;
+	import feathers.layout.VerticalLayout;
+	import feathers.controls.ScrollBar;
+	import feathers.controls.Scroller;
 	
 	public class LevelSelection extends Sprite 
 	{
@@ -41,9 +48,41 @@ package screens
 			fondo_niveles.scaleX = fondo_niveles.scaleY = scale;
 			
 			this.addChild(fondo_niveles);
-			this.addChild(boton_LevelPrueba);
+			
 			
 			this.addEventListener(Event.TRIGGERED, onLevelClick);
+			
+			
+			//SCROLL
+			var container:ScrollContainer = new ScrollContainer();
+			this.addChild(container);
+			
+			var yPosition:Number = 0;
+			for(var i:int = 0; i < 60; i++)
+			{
+				var quad:Image = new Image(Assets.getTexture("candado750"));
+				quad.y = yPosition;
+				quad.height = stage.stageHeight/7;
+				quad.width = stage.stageWidth;
+				
+				container.addChild( quad );
+				trace(quad.height);
+				trace(quad.width);
+				
+				yPosition += quad.width + 10;
+ 			}
+			
+			
+			container.padding = 0;
+			container.width = stage.stageWidth;
+			container.height = stage.stageHeight;
+ 			
+			//.gap es la separaciÃ³n.
+			var layout:VerticalLayout = new VerticalLayout();
+			layout.gap = 0;
+			container.layout = layout;
+			
+			this.addChild(boton_LevelPrueba);
 		}
 		
 		private function onLevelClick(event:Event):void

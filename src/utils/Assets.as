@@ -42,8 +42,9 @@ package utils
 		
 		[Embed(source="../../assets/images/Pantalla_niveles.png")]
 		public static const NivelesPrueba:Class;
-	
 		
+		[Embed(source="../../assets/images/candado750.png")]
+		public static const candado750:Class;
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
