@@ -15,6 +15,7 @@ package utils
 		private var DEBUG:Boolean = false; //ELIMINAR DE LA VERSIÓN FINAL JUNTO A TODO SU CODIGO
 		 
 		private var numeroNivel:int = 0;
+		private var tiempoMax:int = 0;
 		private var puntosMin:int = 0;
 		private var muertesMin:int = 0;
 		private var spawnMin:Number = 0;
@@ -125,10 +126,10 @@ package utils
 			switch(level)
 			{
 				case 0:
-					 readXML(new XML(new Assets.nivelDePrueba()));
+					readXML(new XML(new Assets.nivel0()));
 					break;
 				case 1:
-					//return new XML(new Assets.nivel1());
+					readXML(new XML(new Assets.nivel1()));
 					break;
 				case 2:
 					//return new XML(new Assets.nivel2());
@@ -146,6 +147,7 @@ package utils
 			
 			//Leer las propiedades del nivel
 			numeroNivel = xmlLevel.caract.attribute("nivel");
+			tiempoMax = xmlLevel.caract.attribute("tiempo");
 			puntosMin = xmlLevel.caract.attribute("puntos");
 			muertesMin = xmlLevel.caract.attribute("muertes");
 			spawnMin = Number(xmlLevel.caract.attribute("spawnMin"));

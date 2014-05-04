@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract nivel="0" puntos="123" muertes="2" spawnMin="1" spawnMax="2.3" />
+	<caract nivel="0" tiempo="0" puntos="123" muertes="2" spawnMin="1" spawnMax="2.3" />
 	
 	<!--
 	La prob de una flecha especial no debe ser mayor de 20 en niveles normales
@@ -17,6 +17,9 @@
 		<status>true</status>
 	</panel>
 	<panel type="fog">
+		<status>false</status>
+	</panel>
+	<panel type="snow">
 		<status>false</status>
 	</panel>
 	<panel type="night">

@@ -1,5 +1,6 @@
 package screens 
 {
+	import adobe.utils.CustomActions;
 	import starling.display.Sprite;
 	import starling.display.Button;
 	import starling.display.Image;
@@ -7,15 +8,24 @@ package screens
 	import flash.system.Capabilities;
 	import utils.Assets;
 	import events.NavigationEvent;
+	import feathers.controls.ScrollScreen;
+	import feathers.events.FeathersEventType;
+	import feathers.controls.ScrollContainer;
+	import feathers.layout.HorizontalLayout;
+	import feathers.layout.VerticalLayout;
+	import feathers.controls.ScrollBar;
+	import feathers.controls.Scroller;
+	import utils.BotonNivel;
 	
 	public class LevelSelection extends Sprite 
 	{
 		private var fondo_niveles:Image;
-		private var boton_LevelPrueba:Button;
+		private var container:ScrollContainer;
+		private var layout:VerticalLayout;
+		
 		
 		public function LevelSelection() 
 		{
-			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -27,8 +37,6 @@ package screens
 		
 		private function drawScreen():void
 		{
-			boton_LevelPrueba = new Button(Assets.getTexture("BotonWelcome"));
-			
 			fondo_niveles = new Image(Assets.getTexture("NivelesPrueba"));
 			
 			var scale:Number = stage.stageWidth / fondo_niveles.width;
@@ -41,18 +49,36 @@ package screens
 			fondo_niveles.scaleX = fondo_niveles.scaleY = scale;
 			
 			this.addChild(fondo_niveles);
-			this.addChild(boton_LevelPrueba);
 			
-			this.addEventListener(Event.TRIGGERED, onLevelClick);
-		}
-		
-		private function onLevelClick(event:Event):void
-		{
-			var buttonClicked:Button = event.target as Button;
-			if((buttonClicked as Button) == boton_LevelPrueba)
+			
+			//Leer lista de niveles
+			var levelList:XML = new XML(new Assets.levelList());
+			var attr:XMLList;
+			
+			//SCROLL
+			container = new ScrollContainer();
+			this.addChild(container);
+			
+			attr = levelList.level.attributes();
+			for (var s:int = 0; s < attr.length(); s = s+3)
 			{
-				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "level", lvl: 0}, true));
+				var boton:BotonNivel;
+				
+				
+				//Leer partida guardada y poner puntuacion, estrellas y lock
+				boton = new BotonNivel(attr[s+1], attr[s+2], attr[s], 0, 3, false);
+				container.addChild(boton);
 			}
+			
+			//container.scrollToPosition(0,1000);
+			container.padding = 0;
+			container.width = stage.stageWidth;
+			container.height = stage.stageHeight;
+ 			
+			//Gap es la separación.
+			layout = new VerticalLayout();
+			//layout.gap = 0;
+			container.layout = layout;
 		}
 		
 		public function disposeTemporarily():void

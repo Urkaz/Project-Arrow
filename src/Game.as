@@ -14,7 +14,6 @@ package
 		private var LevelsScreen:LevelSelection;
 		private var GameScreen:Nivel;
 		
-		
 		public function Game() 
 		{
 			super();
@@ -27,18 +26,9 @@ package
 			trace("Juego inicializado!")
 			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
 			
-			GameScreen = new Nivel();
-			GameScreen.disposeTemporarily();
-			this.addChild(GameScreen);
-			
-			
 			LevelsScreen = new LevelSelection();
 			LevelsScreen.disposeTemporarily();
 			this.addChild(LevelsScreen);
-			
-			GameScreen = new Nivel();
-			GameScreen.disposeTemporarily();
-			this.addChild(GameScreen);
 			
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);
@@ -55,9 +45,13 @@ package
 					LevelsScreen.initialize();
 					break;
 				case "level":
-					//Los params del evento CHANGE_SCREEN DE los niveles: {id: "level", lvl: x}
+					//Los params del evento CHANGE_SCREEN DE los niveles: { id: "level", lvl: x, type: lvlType, vic: victoryType }
+					
 					LevelsScreen.disposeTemporarily();
-					GameScreen.loadLevel(event.params.lvl);
+					
+					//Crear el nivel, no se tiene cargado ya como los demás
+					GameScreen = new Nivel(event.params.lvl, event.params.type, event.params.vic);
+					this.addChild(GameScreen);
 					GameScreen.initialize();
 					break;
 					

@@ -17,20 +17,16 @@ package objects
 		
 		private var tipoFlecha:String;
 		private var velocidad:Number;
-		private var _visible:Boolean;
-		private var choque:Boolean;
 		private var flecha:Image;
 		private var status:String; //Cayendo, pendiente de destruir, en el suelo, sleecionada, etc...
 		
 		public function Arrow(tipoFlecha:String, visible:Boolean = true, velocidad:Number = 0)
 		{
 			this.tipoFlecha = tipoFlecha;
-			this._visible = visible;
 			this.velocidad = velocidad;
 			
 			status = MOVING;
 			
-			choque = false;
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			this.addEventListener(TouchEvent.TOUCH, onTouch);
 		}
@@ -63,42 +59,19 @@ package objects
 			return tipoFlecha;
 		}
 		
-		
-		
-		public function get alreadyHit():Boolean
-		{
-			return choque;
-		}
-		
-		public function set alreadyHit(value:Boolean):void
-		{
-			choque = value;
-		}
-
-		public function get watchOut():Boolean
-		{
-			return _visible;
-		}
-		
-		public function set watchOut(value:Boolean):void
-		{
-			_visible = value;
-		}
-
 		private function onAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
-			createObstacleArt();
+			createArrowArt();
 		}
 		
-		private function createObstacleArt():void
+		private function createArrowArt():void
 		{
 			flecha = new Image(Assets.getTexture("Arrow"));
 			
 			//Hacer random
-			flecha.x = Math.floor(Math.random() * (1080 - 0 + 1)) + 0;
-			trace(flecha.x);
+			flecha.x = Math.floor(Math.random() * (1000 - 80 + 1)) + 80;
 			flecha.y = -flecha.height;
 			
 			this.addChild(flecha);
