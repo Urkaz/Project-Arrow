@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LevelSelector>
+	<!--
+	El tipo de nivel será el fondo y su correspondiente mecánica (normal, noche, agua,  etc)
+	La condicion de victoria será el icono que aparezca en al lista (tiempo, muertes o combos)
+	-->
+	<level num="0" type="normal" victory="time"/>
+	<level num="1" type="snow" victory="lives"/>
+	<level num="2" type="ground" victory="combo"/>
+
+</LevelSelector>

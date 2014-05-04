@@ -50,19 +50,25 @@ package screens
 			
 			this.addChild(fondo_niveles);
 			
+			
+			//Leer lista de niveles
+			var levelList:XML = new XML(new Assets.levelList());
+			var attr:XMLList;
+			
 			//SCROLL
 			container = new ScrollContainer();
 			this.addChild(container);
 			
-			for(var i:int = 0; i < 2; i++)
+			attr = levelList.level.attributes();
+			for (var s:int = 0; s < attr.length(); s = s+3)
 			{
 				var boton:BotonNivel;
-				if (i % 2 == 0)
-					boton = new BotonNivel(i, 0, 3);
-				else
-					boton = new BotonNivel(i,0,3, false);
+				
+				
+				//Leer partida guardada y poner puntuacion, estrellas y lock
+				boton = new BotonNivel(attr[s+1], attr[s+2], attr[s], 0, 3, false);
 				container.addChild(boton);
- 			}
+			}
 			
 			//container.scrollToPosition(0,1000);
 			container.padding = 0;

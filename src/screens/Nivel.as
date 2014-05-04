@@ -22,35 +22,40 @@ package screens
 		 *******************/
 		private var datosNivel:DatosNivel;
 		
-		private var fondo_hierba:Image;
+		private var imgMuralla:Image;
 		
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
 		
 		private var timerDelay:int = 1 * 1000;
-		private var timerRepeat:int = 1;
+		private var timerRepeat:int = 4;
 		
 		private var timer:Timer;
 		
 		private var scale:Number;
 		
+		private var levelType:String;
+		private var victoryType:String;
+		
+		private var seconds:int = 0;
+		
 		/*******************
 		 * Constructor
 		 *******************/
-		public function Nivel() 
+		public function Nivel(level:int, type:String, victory:String) 
 		{
+			trace("Nivel " + level + " cargado, de tipo: " + type);
+			datosNivel = new DatosNivel(level);
+			
+			levelType = type;
+			victoryType = victory;
+			
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
 		/*******************
 		 * Funciones
 		 *******************/
-		public function loadLevel(level:int):void
-		{
-			trace("Nivel " + level + " cargado");
-			datosNivel = new DatosNivel(level);
-		}
-		
 		private function onAddedToStage(event:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
@@ -59,18 +64,18 @@ package screens
 		
 		private function drawGame():void
 		{
-			fondo_hierba = new Image(Assets.getTexture("MurallaHierba"));
+			imgMuralla = new Image(Assets.getTexture("Muralla_" + levelType));
 			
-			scale = stage.stageWidth / fondo_hierba.width;
+			scale = stage.stageWidth / imgMuralla.width;
 			
-			if(fondo_hierba.height * scale > stage.stageHeight){
-				scale = stage.stageHeight / fondo_hierba.height;
+			if(imgMuralla.height * scale > stage.stageHeight){
+				scale = stage.stageHeight / imgMuralla.height;
 			}
 			
 			//Escalado del fondo
-			fondo_hierba.scaleX = fondo_hierba.scaleY = scale;
+			imgMuralla.scaleX = imgMuralla.scaleY = scale;
 			
-			this.addChild(fondo_hierba);
+			this.addChild(imgMuralla);
 		}
 		
 		public function disposeTemporarily():void
@@ -89,13 +94,18 @@ package screens
 		
 		private function timerListener(e:TimerEvent):void
 		{
-			timer.removeEventListener(TimerEvent.TIMER, timerListener);
-			empezar();
+			//Aquí falta por poner en pantalla los segundos restantes para que empieze el nivel
+			//Al llegar a 0, el número estaría un segundo en pantalla hasta desaparecer (por eso el timer cuenta 4 segundos)
+			trace("¡Empieza en " + (3-timer.currentCount) + " segundos!");
+			if (timer.currentCount == 4)
+			{
+				timer.removeEventListener(TimerEvent.TIMER, timerListener);
+				empezar();
+			}
 		}
 		
 		private function empezar():void 
 		{
-			//this.addEventListener(TouchEvent.TOUCH, onTouch);
 			this.addEventListener(Event.ENTER_FRAME, onGameTick);
 			timer.addEventListener(TimerEvent.TIMER, spawnArrow);
 			
@@ -104,8 +114,10 @@ package screens
 			timer.start();
 		}
 		
+		//Crea una nueva flecha
+		//   Depende de la función nextArrowIndex
 		private function spawnArrow(e:TimerEvent):void 
-		{
+		{	
 			arrowIndex = nextArrowIndex();
 			
 			//trace("SPAWN FLECHA " + datosNivel.Flechas[0][arrowIndex]);
@@ -122,28 +134,14 @@ package screens
 			
 			//Recalcular tiempo para el spawn de la siguiente flecha y reiniciar timer
 			timer.delay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax - datosNivel.TimeSpawnMin + 1)) + datosNivel.TimeSpawnMin; // Random*(max-min+1)+min
-			//trace("\tSiguiente en: "+timer.delay+"ms");
 			timer.reset();
 			timer.start();
 		}
 		
-		private function onTouch(event:TouchEvent):void
-		{
-			/* Lo dejo aquí por si acaso
-			 * 
-			 * var touch:Touch = event.getTouch(this, TouchPhase.BEGAN);
-			if (touch)
-			{
-				var localPos:Point = touch.getLocation(this);
-				trace("Touched object at position: " + localPos);
-			}*/
-		}
-		
+		//Calcula el índice de la príxima flecha, este índice determinará el tipo de flecha.
 		private function nextArrowIndex():int
 		{
 			var prob:int = Math.floor(Math.random() * (100 - 0 + 1));
-			
-			//trace("\tProb:"  + prob + "%");
 			
 			var sum:int = 0;
 			var typeIndex:int = 0;

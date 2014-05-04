@@ -72,7 +72,6 @@ package objects
 			
 			//Hacer random
 			flecha.x = Math.floor(Math.random() * (1000 - 80 + 1)) + 80;
-			trace(flecha.x);
 			flecha.y = -flecha.height;
 			
 			this.addChild(flecha);
