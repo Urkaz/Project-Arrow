@@ -60,11 +60,11 @@ package utils
 			{
 				scroll = true;
 			}
-			if (end)
+			else if (end)
 			{
 				if(!scroll)
 					this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "level", lvl: level, type: lvlType, vic: victoryType }, true));
-				scroll = true;
+				scroll = false;
 			}
 		}
 		
