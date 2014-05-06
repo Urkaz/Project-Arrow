@@ -6,6 +6,7 @@ package screens
 	import starling.display.Image;
 	import flash.utils.getTimer;
 	import starling.display.Sprite;
+	import starling.text.TextField;
 	import utils.DatosNivel;
 	import starling.events.Event;
 	import utils.Assets;
@@ -38,6 +39,7 @@ package screens
 		private var victoryType:String;
 		
 		private var seconds:int = 0;
+		private var restanteInicio:TextField;
 		
 		/*******************
 		 * Constructor
@@ -64,6 +66,8 @@ package screens
 		
 		private function drawGame():void
 		{
+			restanteInicio = new TextField(300, 300, String(3), Assets.getFont("FontLevel").name, 100, 0xffffff);
+			
 			imgMuralla = new Image(Assets.getTexture("Muralla_" + levelType));
 			
 			scale = stage.stageWidth / imgMuralla.width;
@@ -76,6 +80,7 @@ package screens
 			imgMuralla.scaleX = imgMuralla.scaleY = scale;
 			
 			this.addChild(imgMuralla);
+			this.addChild(restanteInicio);
 		}
 		
 		public function disposeTemporarily():void
@@ -96,11 +101,20 @@ package screens
 		{
 			//Aquí falta por poner en pantalla los segundos restantes para que empieze el nivel
 			//Al llegar a 0, el número estaría un segundo en pantalla hasta desaparecer (por eso el timer cuenta 4 segundos)
-			trace("¡Empieza en " + (3-timer.currentCount) + " segundos!");
+			
 			if (timer.currentCount == 4)
 			{
+				this.removeChild(restanteInicio);
 				timer.removeEventListener(TimerEvent.TIMER, timerListener);
 				empezar();
+			}
+			else if (timer.currentCount == 3)
+			{
+				restanteInicio.text = "GO!";
+			}
+			else
+			{
+				restanteInicio.text = String(3 - timer.currentCount);
 			}
 		}
 		

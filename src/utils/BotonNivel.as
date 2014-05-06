@@ -3,6 +3,7 @@ package utils
 	import starling.display.Sprite;
 	import starling.display.MovieClip;
 	import starling.display.Image;
+	import starling.text.TextField;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import utils.Assets;
@@ -20,6 +21,7 @@ package utils
 		private var scroll:Boolean = false;
 		private var lvlType:String;
 		private var victoryType:String;
+		private var numNivel:TextField;
 		
 		public function BotonNivel(lvlType:String, victoryType:String, level:int, score:int, starsCount:int, lock:Boolean = true)
 		{
@@ -43,9 +45,14 @@ package utils
 				stars.x = this.x + 480;
 				stars.y = this.y + 21;
 				
+				numNivel = new TextField(200, 120, String(level), Assets.getFont("FontLevel").name, 80, 0xffffff);
+				numNivel.x = this.x + bg.width / 2 - 100;
+				numNivel.y = this.y + bg.height / 2 - 60;
+				
 				this.addChild(bg);
 				this.addChild(victory);
 				this.addChild(stars);
+				this.addChild(numNivel);
 			}
 			
 			if(!lock)

@@ -7,5 +7,12 @@
 	<level num="0" type="normal" victory="time"/>
 	<level num="1" type="snow" victory="lives"/>
 	<level num="2" type="ground" victory="combo"/>
+	<level num="3" type="ground" victory="combo"/>
+	<level num="4" type="ground" victory="combo"/>
+	<level num="5" type="ground" victory="combo"/>
+	<level num="6" type="ground" victory="combo"/>
+	<level num="7" type="ground" victory="combo"/>
+	<level num="8" type="ground" victory="combo"/>
+	<level num="9" type="ground" victory="combo"/>
 
 </LevelSelector>

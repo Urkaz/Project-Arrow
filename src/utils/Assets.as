@@ -31,6 +31,12 @@ package utils
 		[Embed(source="../../assets/levels/LevelList.xml", mimeType="application/octet-stream")]
 		public static const levelList:Class;
 		
+		// FUENTES //
+		[Embed(source="../../assets/images/font.png")]
+		public static const FontLevel:Class;
+		
+		[Embed(source="../../assets/images/font.fnt", mimeType="application/octet-stream")]
+		public static const FontXML:Class;
 		
 		// IMAGENES //
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
@@ -57,20 +63,24 @@ package utils
 		[Embed(source="../../assets/images/Fondo_Tierra.png")]
 		public static const Muralla_ground:Class;
 		
-		[Embed(source="../../assets/images/Pantalla_niveles.png")]
-		public static const NivelesPrueba:Class;
-		
 		[Embed(source = "../../assets/images/Bicho.png")]
 		public static const Soldado:Class;
 		
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
-		 *
-		public static function getFont():BitmapFont
+		 */
+		public static function getFont(name:String):BitmapFont
 		{
-			var fontTexture:Texture = Texture.fromBitmap(new FontTexture());
-			var fontXML:XML = XML(new FontXML());
+			var fontTexture:Texture;
+			var fontXML:XML;
+			switch(name)
+			{
+				case "FontLevel":
+					fontTexture = Texture.fromBitmap(new FontLevel());
+					fontXML = XML(new FontXML());
+					break;
+			}
 			
 			var font:BitmapFont = new BitmapFont(fontTexture, fontXML);
 			TextField.registerBitmapFont(font);
@@ -78,7 +88,7 @@ package utils
 			return font;
 		}
 		
-		public static function getParticleSystem():PDParticleSystem
+		/*public static function getParticleSystem():PDParticleSystem
 		{
 			var ps:PDParticleSystem = new PDParticleSystem(XML(new ParticlePEX()), Texture.fromBitmap(new ParticleTexture()));
 			return ps;

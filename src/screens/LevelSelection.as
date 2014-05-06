@@ -19,7 +19,6 @@ package screens
 	
 	public class LevelSelection extends Sprite 
 	{
-		private var fondo_niveles:Image;
 		private var container:ScrollContainer;
 		private var layout:VerticalLayout;
 		
@@ -36,27 +35,14 @@ package screens
 		}
 		
 		private function drawScreen():void
-		{
-			fondo_niveles = new Image(Assets.getTexture("NivelesPrueba"));
-			
-			var scale:Number = stage.stageWidth / fondo_niveles.width;
-			
-			if(fondo_niveles.height * scale > stage.stageHeight){
-				scale = stage.stageHeight / fondo_niveles.height;
-			}
-			
-			//Escalado del fondo
-			fondo_niveles.scaleX = fondo_niveles.scaleY = scale;
-			
-			this.addChild(fondo_niveles);
-			
-			
+		{			
 			//Leer lista de niveles
 			var levelList:XML = new XML(new Assets.levelList());
 			var attr:XMLList;
 			
 			//SCROLL
 			container = new ScrollContainer();
+			container.hasElasticEdges = false;
 			this.addChild(container);
 			
 			attr = levelList.level.attributes();
@@ -64,8 +50,16 @@ package screens
 			{
 				var boton:BotonNivel;
 				
+				//lock temporal
+				var lock:Boolean = false;
+				if (attr[s] > 1) 
+				{
+					lock = true;
+				}
+				
+				
 				//Leer partida guardada y poner puntuacion, estrellas y lock
-				boton = new BotonNivel(attr[s + 1], attr[s + 2], attr[s], 0, 3, false);
+				boton = new BotonNivel(attr[s + 1], attr[s + 2], attr[s], 0, 3, lock);
 				//boton.scaleX = 1 / 2;
 				//boton.scaleY = 1 / 2;
 				container.addChild(boton);
