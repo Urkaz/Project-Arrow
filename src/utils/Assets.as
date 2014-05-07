@@ -72,6 +72,16 @@ package utils
 		[Embed(source = "../../assets/images/Bicho.png")]
 		public static const Soldado:Class;
 		
+		[Embed(source = "../../assets/images/Tablon_izq.png")]
+		public static const Tablon_izq:Class;
+		
+		[Embed(source = "../../assets/images/Tablon_der.png")]
+		public static const Tablon_der:Class;
+		
+		[Embed(source = "../../assets/images/Tablon_medio.png")]
+		public static const Tablon_medio:Class;
+		
+		
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
