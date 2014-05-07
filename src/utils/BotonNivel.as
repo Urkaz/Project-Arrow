@@ -46,8 +46,8 @@ package utils
 				stars.y = this.y + 21;
 				
 				numNivel = new TextField(200, 120, String(level), Assets.getFont("FontLevel").name, 80, 0xffffff);
-				numNivel.x = this.x + bg.width / 2 - 100;
-				numNivel.y = this.y + bg.height / 2 - 60;
+				numNivel.x = this.x + bg.width / 2 - numNivel.width / 2;
+				numNivel.y = this.y + bg.height / 2 - numNivel.height / 2;
 				
 				this.addChild(bg);
 				this.addChild(victory);

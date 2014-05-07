@@ -16,7 +16,6 @@ package screens
 		private var fondo_home:Image;
 		
 		
-		
 		public function Home() 
 		{
 			super();

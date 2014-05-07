@@ -35,7 +35,7 @@ package screens
 		}
 		
 		private function drawScreen():void
-		{			
+		{
 			//Leer lista de niveles
 			var levelList:XML = new XML(new Assets.levelList());
 			var attr:XMLList;

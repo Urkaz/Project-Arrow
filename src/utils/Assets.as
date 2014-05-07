@@ -32,11 +32,17 @@ package utils
 		public static const levelList:Class;
 		
 		// FUENTES //
-		[Embed(source="../../assets/images/font.png")]
+		[Embed(source="../../assets/fonts/font.png")]
 		public static const FontLevel:Class;
 		
-		[Embed(source="../../assets/images/font.fnt", mimeType="application/octet-stream")]
+		[Embed(source="../../assets/fonts/font.fnt", mimeType="application/octet-stream")]
 		public static const FontXML:Class;
+		
+		[Embed(source="../../assets/fonts/banderas.png")]
+		public static const Banderas:Class;
+		
+		[Embed(source="../../assets/fonts/banderas.fnt", mimeType="application/octet-stream")]
+		public static const BanderasXML:Class;
 		
 		// IMAGENES //
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
@@ -79,6 +85,10 @@ package utils
 				case "FontLevel":
 					fontTexture = Texture.fromBitmap(new FontLevel());
 					fontXML = XML(new FontXML());
+					break;
+				case "Banderas":
+					fontTexture = Texture.fromBitmap(new Banderas());
+					fontXML = XML(new BanderasXML());
 					break;
 			}
 			
