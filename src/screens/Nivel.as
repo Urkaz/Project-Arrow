@@ -3,6 +3,8 @@ package screens
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import objects.Arrow;
+	import objects.Plataforma;
+	import objects.Soldado;
 	import starling.display.Image;
 	import flash.utils.getTimer;
 	import starling.display.Sprite;
@@ -40,6 +42,9 @@ package screens
 		
 		private var seconds:int = 0;
 		private var restanteInicio:TextField;
+		private var unaPlataforma:Plataforma;
+		private var soldado1:Soldado;
+		
 		
 		/*******************
 		 * Constructor
@@ -76,11 +81,18 @@ package screens
 				scale = stage.stageHeight / imgMuralla.height;
 			}
 			
+			//unaPlataforma = new Plataforma(10, 100, 350, 1);
+			//soldado1 = new Soldado(50, 100, 1);
+			
 			//Escalado del fondo
 			imgMuralla.scaleX = imgMuralla.scaleY = scale;
 			
 			this.addChild(imgMuralla);
 			this.addChild(restanteInicio);
+			//this.addChild(unaPlataforma);
+			//this.addChild(soldado1);
+			
+			
 		}
 		
 		public function disposeTemporarily():void
@@ -174,6 +186,7 @@ package screens
 		private function onGameTick(e:Event):void 
 		{
 			//Toda la lógica aquí
+			
 			for (var i:int = 0; i < arrowArray.length; ++i)
 			{
 				if (arrowArray[i].Status == Arrow.DESTROY)

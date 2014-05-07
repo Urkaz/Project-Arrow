@@ -4,6 +4,7 @@ package objects
 	import starling.display.Sprite;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
+	import utils.Assets;
 	
 	public class Soldado extends Sprite 
 	{
@@ -17,6 +18,7 @@ package objects
 			this.armor = armor;
 			
 			//this.addEventListener(TouchEvent.TOUCH, onTouch);
+			createSoldierArt();
 		}
 		
 		/*private function onTouch(e:TouchEvent):void
@@ -30,7 +32,7 @@ package objects
 		
 		private function createSoldierArt():void
 		{
-			imgSoldier = new Image(Assets.getAtlas().getTexture("Soldier"));
+			imgSoldier = new Image(Assets.getTexture("Soldado"));
 			addChild(imgSoldier);
 		}
 		
