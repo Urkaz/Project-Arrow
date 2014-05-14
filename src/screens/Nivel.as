@@ -81,7 +81,7 @@ package screens
 				scale = stage.stageHeight / imgMuralla.height;
 			}
 			
-			//unaPlataforma = new Plataforma(10, 100, 350, 1);
+			unaPlataforma = new Plataforma(10, 100, 350, 1);
 			//soldado1 = new Soldado(50, 100, 1);
 			
 			//Escalado del fondo
@@ -89,7 +89,7 @@ package screens
 			
 			this.addChild(imgMuralla);
 			this.addChild(restanteInicio);
-			//this.addChild(unaPlataforma);
+			this.addChild(unaPlataforma);
 			//this.addChild(soldado1);
 			
 			
@@ -209,6 +209,9 @@ package screens
 				else
 				{
 					arrowArray[i].y += arrowArray[i].Velocidad;
+					
+					
+					
 				}
 			}
 		}

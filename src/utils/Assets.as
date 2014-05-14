@@ -69,9 +69,6 @@ package utils
 		[Embed(source="../../assets/images/Fondo_Tierra.png")]
 		public static const Muralla_ground:Class;
 		
-		[Embed(source = "../../assets/images/Bicho.png")]
-		public static const Soldado:Class;
-		
 		[Embed(source = "../../assets/images/Tablon_izq.png")]
 		public static const Tablon_izq:Class;
 		
@@ -81,7 +78,14 @@ package utils
 		[Embed(source = "../../assets/images/Tablon_medio.png")]
 		public static const Tablon_medio:Class;
 		
+		[Embed(source = "../../assets/images/soldado_0.png")]
+		public static const Soldado_0:Class;
 		
+		[Embed(source = "../../assets/images/soldado_1.png")]
+		public static const Soldado_1:Class;
+		
+		[Embed(source = "../../assets/images/soldado_2.png")]
+		public static const Soldado_2:Class;
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
