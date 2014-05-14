@@ -33,15 +33,10 @@ package objects
 		private function onTouch(e:TouchEvent):void
 		{
 			var move:Touch = e.getTouch(this, TouchPhase.MOVED);
-			var touch:Touch = e.getTouch(this, TouchPhase.BEGAN);
-			if (touch)
+			if (move)
 			{
-				trace(touch.target);
-	
-			}
-			else if (move)
-			{
-				soldado.x = move.globalX - soldado.width /2;
+				if (soldado.x > imgPlatMedio.x && soldado.x+soldado.width < imgPlatDer.x)
+					soldado.x = move.globalX - (x + soldado.width / 2);
 			}
 		}
 		

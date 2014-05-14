@@ -31,6 +31,8 @@ package screens
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
 		
+		private var soldierArray:Array = new Array();
+		
 		private var timerDelay:int = 1 * 1000;
 		private var timerRepeat:int = 4;
 		
@@ -41,10 +43,11 @@ package screens
 		private var levelType:String;
 		private var victoryType:String;
 		
-		private var seconds:int = 0;
 		private var restanteInicio:TextField;
+		
+		
+		
 		private var unaPlataforma:Plataforma;
-		private var soldado1:Soldado;
 		
 		
 		/*******************
@@ -82,18 +85,21 @@ package screens
 				scale = stage.stageHeight / imgMuralla.height;
 			}
 			
-			unaPlataforma = new Plataforma(10, 100, 350, 1);
-			//soldado1 = new Soldado(50, 100, 1);
-			
 			//Escalado del fondo
 			imgMuralla.scaleX = imgMuralla.scaleY = scale;
 			
 			this.addChild(imgMuralla);
+			
+			//PLATAFORMAS
+			for (var i:int = 0; i < datosNivel.Soldados.length; i++)
+			{
+				var platf:Plataforma = new Plataforma(datosNivel.Soldados[i][0], datosNivel.Soldados[i][1], datosNivel.Soldados[i][3], datosNivel.Soldados[i][2]);
+				soldierArray.push(platf);
+				trace("\t x:"+datosNivel.Soldados[i][0] + ", y:" + datosNivel.Soldados[i][1] + ", a:" + datosNivel.Soldados[i][2] + ", p:" + datosNivel.Soldados[i][3]);
+				addChild(platf);
+			}
+			
 			this.addChild(restanteInicio);
-			this.addChild(unaPlataforma);
-			//this.addChild(soldado1);
-			
-			
 		}
 		
 		public function disposeTemporarily():void
@@ -211,11 +217,13 @@ package screens
 				{
 					arrowArray[i].y += arrowArray[i].Velocidad;
 					
-					trace(unaPlataforma.x + unaPlataforma.soldado.x, unaPlataforma.y + unaPlataforma.soldado.y);
-					
+					//PLATAFORMAS
+					for each(var platf:Plataforma in soldierArray)
+					{
+						trace(platf.x + platf.soldado.x, platf.y + platf.soldado.y);
+					}
 				}
 			}
 		}
 	}
-
 }

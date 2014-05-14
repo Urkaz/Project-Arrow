@@ -78,14 +78,14 @@ package utils
 		[Embed(source = "../../assets/images/Tablon_medio.png")]
 		public static const Tablon_medio:Class;
 		
-		[Embed(source = "../../assets/images/soldado_0.png")]
-		public static const Soldado_0:Class;
-		
 		[Embed(source = "../../assets/images/soldado_1.png")]
 		public static const Soldado_1:Class;
 		
 		[Embed(source = "../../assets/images/soldado_2.png")]
 		public static const Soldado_2:Class;
+		
+		[Embed(source = "../../assets/images/soldado_3.png")]
+		public static const Soldado_3:Class;
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...

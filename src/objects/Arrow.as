@@ -70,7 +70,7 @@ package objects
 		{
 			flecha = new Image(Assets.getTexture("Arrow"));
 			
-			//Hacer random
+			//Cambiar si se cambia el ancho del escenario
 			flecha.x = Math.floor(Math.random() * (1000 - 80 + 1)) + 80;
 			flecha.y = -flecha.height;
 			

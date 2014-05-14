@@ -216,7 +216,7 @@ package utils
 				trace("SOLDADOS");
 				for (var i2:int = 0; i2 < arraySoldados.length; i2++)
 				{
-					trace("\t x:"+arraySoldados[i2][0] + ", y:" + arraySoldados[i2][1] + ", a:" + arraySoldados[i2] + ", p:" + arraySoldados[i2][3]);
+					trace("\t x:"+arraySoldados[i2][0] + ", y:" + arraySoldados[i2][1] + ", a:" + arraySoldados[i2][2] + ", p:" + arraySoldados[i2][3]);
 				}
 			}
 		}

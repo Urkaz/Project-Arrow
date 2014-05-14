@@ -11,13 +11,14 @@ package objects
 		private var imgSoldier:Image;
 		private var armor:int;
 		
-		public function Soldado(x:Number, y:Number, armor:int)
+		public function Soldado(x:Number, y:Number, armorInit:int)
 		{
+			armor = armorInit;
+			
 			createSoldierArt();
 			
 			this.x = x - imgSoldier.width / 2;
-			this.y = y - imgSoldier.height /2;
-			this.armor = armor;
+			this.y = y - imgSoldier.height / 2;
 		}
 		
 		private function createSoldierArt():void
