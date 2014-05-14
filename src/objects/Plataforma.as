@@ -16,7 +16,7 @@ package objects
 		private var imgPlatIzq:Image;
 		private var imgPlatDer:Image;
 		private var imgPlatMedio:Image;
-		private var soldado:Soldado;
+		public var soldado:Soldado;
 		
 		public function Plataforma(x:Number, y:Number, ancho:int, soldierArmor:int) 
 		{

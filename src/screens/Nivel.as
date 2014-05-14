@@ -1,6 +1,7 @@
 package screens 
 {
 	import flash.events.TimerEvent;
+	import flash.geom.Point;
 	import flash.utils.Timer;
 	import objects.Arrow;
 	import objects.Plataforma;
@@ -210,7 +211,7 @@ package screens
 				{
 					arrowArray[i].y += arrowArray[i].Velocidad;
 					
-					
+					trace(unaPlataforma.x + unaPlataforma.soldado.x, unaPlataforma.y + unaPlataforma.soldado.y);
 					
 				}
 			}
