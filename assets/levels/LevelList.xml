@@ -6,6 +6,21 @@
 	-->
 	<level num="0" type="normal" victory="time"/>
 	<level num="1" type="snow" victory="lives"/>
-	<level num="2" type="ground" victory="combo"/>
+	<level num="2" type="normal" victory="combo"/>
+	<level num="3" type="ground" victory="combo"/>
+	<level num="4" type="normal" victory="lives"/>
+	<level num="5" type="normal" victory="combo"/>
+	<level num="6" type="snow" victory="lives"/>
+	<level num="7" type="normal" victory="combo"/>
+	<level num="8" type="ground" victory="time"/>
+	<level num="9" type="normal" victory="combo"/>
+	<level num="10" type="snow" victory="time"/>
+	<level num="11" type="night" victory="combo"/>
+	<level num="12" type="normal" victory="time"/>
+	<level num="13" type="normal" victory="lives"/>
+	<level num="14" type="night" victory="combo"/>
+	<level num="15" type="snow" victory="time"/>
+
+
 
 </LevelSelector>

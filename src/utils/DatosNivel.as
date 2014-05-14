@@ -15,8 +15,7 @@ package utils
 		private var DEBUG:Boolean = false; //ELIMINAR DE LA VERSIÓN FINAL JUNTO A TODO SU CODIGO
 		 
 		private var numeroNivel:int = 0;
-		private var tiempoMax:int = 0;
-		private var puntosMin:int = 0;
+		private var tiempo:int = 0; //Tiempo que hay que tardar
 		private var muertesMin:int = 0;
 		private var spawnMin:Number = 0;
 		private var spawnMax:Number = 0;
@@ -48,11 +47,6 @@ package utils
 		public function get Nivel():int
 		{
 			return numeroNivel;
-		}
-		
-		public function get PuntosMin():int
-		{
-			return puntosMin;
 		}
 		
 		public function get MuertesMin():int
@@ -147,8 +141,7 @@ package utils
 			
 			//Leer las propiedades del nivel
 			numeroNivel = xmlLevel.caract.attribute("nivel");
-			tiempoMax = xmlLevel.caract.attribute("tiempo");
-			puntosMin = xmlLevel.caract.attribute("puntos");
+			tiempo = xmlLevel.caract.attribute("tiempo");
 			muertesMin = xmlLevel.caract.attribute("muertes");
 			spawnMin = Number(xmlLevel.caract.attribute("spawnMin"));
 			spawnMax = Number(xmlLevel.caract.attribute("spawnMax"));
@@ -200,7 +193,6 @@ package utils
 				trace("----NIVEL----")
 				trace("PROPIEDADES");
 				trace("\t numeroNivel: " + numeroNivel);
-				trace("\t puntosMin: " + puntosMin);
 				trace("\t muertesMin: " + muertesMin);
 				
 				trace("FLECHAS DEL NIVEL");
@@ -224,7 +216,7 @@ package utils
 				trace("SOLDADOS");
 				for (var i2:int = 0; i2 < arraySoldados.length; i2++)
 				{
-					trace("\t x:"+arraySoldados[i2][0] + ", y:" + arraySoldados[i2][1] + ", a:" + arraySoldados[i2] + ", p:" + arraySoldados[i2][3]);
+					trace("\t x:"+arraySoldados[i2][0] + ", y:" + arraySoldados[i2][1] + ", a:" + arraySoldados[i2][2] + ", p:" + arraySoldados[i2][3]);
 				}
 			}
 		}

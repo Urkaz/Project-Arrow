@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract nivel="0" tiempo="0" puntos="123" muertes="2" spawnMin="1" spawnMax="2.3" />
+	<caract nivel="0" tiempo="0" muertes="2" spawnMin="1" spawnMax="2.3" />
 	
 	<!--
 	La prob de una flecha especial no debe ser mayor de 20 en niveles normales
@@ -34,6 +34,6 @@
 	<victory type="time" min="2"/>
 	<victory type="health" num="200"/>
 		
-	<soldier x="22" y="333" arm="3" platf="34" />
-	<soldier x="5" y="342" arm="1" platf="83" />
+	<soldier x="200" y="133" arm="3" platf="350" />
+	<soldier x="5" y="342" arm="1" platf="500" />
 </Level>

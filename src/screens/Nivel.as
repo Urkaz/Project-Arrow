@@ -1,11 +1,15 @@
 package screens 
 {
 	import flash.events.TimerEvent;
+	import flash.geom.Point;
 	import flash.utils.Timer;
 	import objects.Arrow;
+	import objects.Plataforma;
+	import objects.Soldado;
 	import starling.display.Image;
 	import flash.utils.getTimer;
 	import starling.display.Sprite;
+	import starling.text.TextField;
 	import utils.DatosNivel;
 	import starling.events.Event;
 	import utils.Assets;
@@ -27,6 +31,8 @@ package screens
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
 		
+		private var soldierArray:Array = new Array();
+		
 		private var timerDelay:int = 1 * 1000;
 		private var timerRepeat:int = 4;
 		
@@ -37,7 +43,12 @@ package screens
 		private var levelType:String;
 		private var victoryType:String;
 		
-		private var seconds:int = 0;
+		private var restanteInicio:TextField;
+		
+		
+		
+		private var unaPlataforma:Plataforma;
+		
 		
 		/*******************
 		 * Constructor
@@ -64,6 +75,8 @@ package screens
 		
 		private function drawGame():void
 		{
+			restanteInicio = new TextField(300, 300, String(3), Assets.getFont("FontLevel").name, 100, 0xffffff);
+			
 			imgMuralla = new Image(Assets.getTexture("Muralla_" + levelType));
 			
 			scale = stage.stageWidth / imgMuralla.width;
@@ -76,6 +89,17 @@ package screens
 			imgMuralla.scaleX = imgMuralla.scaleY = scale;
 			
 			this.addChild(imgMuralla);
+			
+			//PLATAFORMAS
+			for (var i:int = 0; i < datosNivel.Soldados.length; i++)
+			{
+				var platf:Plataforma = new Plataforma(datosNivel.Soldados[i][0], datosNivel.Soldados[i][1], datosNivel.Soldados[i][3], datosNivel.Soldados[i][2]);
+				soldierArray.push(platf);
+				trace("\t x:"+datosNivel.Soldados[i][0] + ", y:" + datosNivel.Soldados[i][1] + ", a:" + datosNivel.Soldados[i][2] + ", p:" + datosNivel.Soldados[i][3]);
+				addChild(platf);
+			}
+			
+			this.addChild(restanteInicio);
 		}
 		
 		public function disposeTemporarily():void
@@ -96,11 +120,20 @@ package screens
 		{
 			//Aquí falta por poner en pantalla los segundos restantes para que empieze el nivel
 			//Al llegar a 0, el número estaría un segundo en pantalla hasta desaparecer (por eso el timer cuenta 4 segundos)
-			trace("¡Empieza en " + (3-timer.currentCount) + " segundos!");
+			
 			if (timer.currentCount == 4)
 			{
+				this.removeChild(restanteInicio);
 				timer.removeEventListener(TimerEvent.TIMER, timerListener);
 				empezar();
+			}
+			else if (timer.currentCount == 3)
+			{
+				restanteInicio.text = "GO!";
+			}
+			else
+			{
+				restanteInicio.text = String(3 - timer.currentCount);
 			}
 		}
 		
@@ -160,6 +193,7 @@ package screens
 		private function onGameTick(e:Event):void 
 		{
 			//Toda la lógica aquí
+			
 			for (var i:int = 0; i < arrowArray.length; ++i)
 			{
 				if (arrowArray[i].Status == Arrow.DESTROY)
@@ -182,9 +216,14 @@ package screens
 				else
 				{
 					arrowArray[i].y += arrowArray[i].Velocidad;
+					
+					//PLATAFORMAS
+					for each(var platf:Plataforma in soldierArray)
+					{
+						trace(platf.x + platf.soldado.x, platf.y + platf.soldado.y);
+					}
 				}
 			}
 		}
 	}
-
 }

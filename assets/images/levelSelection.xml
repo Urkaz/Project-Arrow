@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:631a40ef0c12b3cb46ce25bd9d19d277$ -->
+<!-- $TexturePacker:SmartUpdate:e616ad480ea5d3d2c50e6b57ce17fd87$ -->
 <TextureAtlas imagePath="levelSelection.png">
-    <SubTexture name="0_Estrellas" x="701" y="262" width="223" height="87"/>
-    <SubTexture name="1_Estrellas" x="701" y="175" width="223" height="87"/>
-    <SubTexture name="2_Estrellas" x="701" y="88" width="223" height="87"/>
-    <SubTexture name="3_Estrellas" x="701" y="1" width="223" height="87"/>
-    <SubTexture name="Candado_ground" x="1" y="1163" width="700" height="166"/>
-    <SubTexture name="Candado_night" x="1" y="997" width="700" height="166"/>
-    <SubTexture name="Candado_normal" x="1" y="831" width="700" height="166"/>
-    <SubTexture name="Candado_snow" x="1" y="665" width="700" height="166"/>
-    <SubTexture name="Nivel_ground" x="1" y="499" width="700" height="166"/>
-    <SubTexture name="Nivel_night" x="1" y="333" width="700" height="166"/>
-    <SubTexture name="Nivel_normal" x="1" y="167" width="700" height="166"/>
+    <SubTexture name="0_Estrellas" x="702" y="265" width="223" height="87"/>
+    <SubTexture name="1_Estrellas" x="702" y="177" width="223" height="87"/>
+    <SubTexture name="2_Estrellas" x="702" y="89" width="223" height="87"/>
+    <SubTexture name="3_Estrellas" x="702" y="1" width="223" height="87"/>
+    <SubTexture name="Candado_ground" x="1" y="1170" width="700" height="166"/>
+    <SubTexture name="Candado_night" x="1" y="1003" width="700" height="166"/>
+    <SubTexture name="Candado_normal" x="1" y="836" width="700" height="166"/>
+    <SubTexture name="Candado_snow" x="1" y="669" width="700" height="166"/>
+    <SubTexture name="Nivel_ground" x="1" y="502" width="700" height="166"/>
+    <SubTexture name="Nivel_night" x="1" y="335" width="700" height="166"/>
+    <SubTexture name="Nivel_normal" x="1" y="168" width="700" height="166"/>
     <SubTexture name="Nivel_snow" x="1" y="1" width="700" height="166"/>
-    <SubTexture name="Victoria_combo" x="924" y="197" width="99" height="98"/>
-    <SubTexture name="Victoria_lives" x="924" y="99" width="99" height="98"/>
-    <SubTexture name="Victoria_time" x="924" y="1" width="99" height="98"/>
+    <SubTexture name="Victoria_combo" x="902" y="353" width="99" height="98"/>
+    <SubTexture name="Victoria_lives" x="802" y="353" width="99" height="98"/>
+    <SubTexture name="Victoria_time" x="702" y="353" width="99" height="98"/>
 </TextureAtlas>

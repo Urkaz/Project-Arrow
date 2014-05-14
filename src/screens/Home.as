@@ -16,7 +16,6 @@ package screens
 		private var fondo_home:Image;
 		
 		
-		
 		public function Home() 
 		{
 			super();
@@ -37,14 +36,7 @@ package screens
 			boton_playHome = new Button(Assets.getTexture("BotonWelcome"));
 			this.addChild(boton_playHome)
 			
-			//titulo_home = new Image(Assets.getTexture("TituloWelcome"));
-			//this.addChild(titulo_home);
-			
-			
 			//Poner las coordenadas de la resolución original, todos los escalados se harán luego
-			//titulo_home.x = 50;
-			//titulo_home.y = 200;
-			
 			boton_playHome.x = 270;
 			boton_playHome.y = 1050;
 			
@@ -53,13 +45,9 @@ package screens
 			if(fondo_home.height * scale > stage.stageHeight){
 				scale = stage.stageHeight / fondo_home.height;
 			}
+			
 			//Escalado del fondo
 			fondo_home.scaleX = fondo_home.scaleY = scale;
-			
-			//Escalado del título
-			//titulo_home.scaleX = titulo_home.scaleY = scale;
-			//titulo_home.x *= scale;
-			//titulo_home.y *= scale;
 			
 			//Escalado del botón
 			boton_playHome.scaleX = boton_playHome.scaleY = scale;

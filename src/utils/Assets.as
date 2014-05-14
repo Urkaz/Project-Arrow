@@ -31,6 +31,18 @@ package utils
 		[Embed(source="../../assets/levels/LevelList.xml", mimeType="application/octet-stream")]
 		public static const levelList:Class;
 		
+		// FUENTES //
+		[Embed(source="../../assets/fonts/font.png")]
+		public static const FontLevel:Class;
+		
+		[Embed(source="../../assets/fonts/font.fnt", mimeType="application/octet-stream")]
+		public static const FontXML:Class;
+		
+		[Embed(source="../../assets/fonts/banderas.png")]
+		public static const Banderas:Class;
+		
+		[Embed(source="../../assets/fonts/banderas.fnt", mimeType="application/octet-stream")]
+		public static const BanderasXML:Class;
 		
 		// IMAGENES //
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
@@ -57,20 +69,42 @@ package utils
 		[Embed(source="../../assets/images/Fondo_Tierra.png")]
 		public static const Muralla_ground:Class;
 		
-		[Embed(source="../../assets/images/Pantalla_niveles.png")]
-		public static const NivelesPrueba:Class;
+		[Embed(source = "../../assets/images/Tablon_izq.png")]
+		public static const Tablon_izq:Class;
 		
-		[Embed(source = "../../assets/images/Bicho.png")]
-		public static const Soldado:Class;
+		[Embed(source = "../../assets/images/Tablon_der.png")]
+		public static const Tablon_der:Class;
 		
+		[Embed(source = "../../assets/images/Tablon_medio.png")]
+		public static const Tablon_medio:Class;
+		
+		[Embed(source = "../../assets/images/soldado_1.png")]
+		public static const Soldado_1:Class;
+		
+		[Embed(source = "../../assets/images/soldado_2.png")]
+		public static const Soldado_2:Class;
+		
+		[Embed(source = "../../assets/images/soldado_3.png")]
+		public static const Soldado_3:Class;
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
-		 *
-		public static function getFont():BitmapFont
+		 */
+		public static function getFont(name:String):BitmapFont
 		{
-			var fontTexture:Texture = Texture.fromBitmap(new FontTexture());
-			var fontXML:XML = XML(new FontXML());
+			var fontTexture:Texture;
+			var fontXML:XML;
+			switch(name)
+			{
+				case "FontLevel":
+					fontTexture = Texture.fromBitmap(new FontLevel());
+					fontXML = XML(new FontXML());
+					break;
+				case "Banderas":
+					fontTexture = Texture.fromBitmap(new Banderas());
+					fontXML = XML(new BanderasXML());
+					break;
+			}
 			
 			var font:BitmapFont = new BitmapFont(fontTexture, fontXML);
 			TextField.registerBitmapFont(font);
@@ -78,7 +112,7 @@ package utils
 			return font;
 		}
 		
-		public static function getParticleSystem():PDParticleSystem
+		/*public static function getParticleSystem():PDParticleSystem
 		{
 			var ps:PDParticleSystem = new PDParticleSystem(XML(new ParticlePEX()), Texture.fromBitmap(new ParticleTexture()));
 			return ps;

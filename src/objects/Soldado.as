@@ -4,40 +4,33 @@ package objects
 	import starling.display.Sprite;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
+	import utils.Assets;
 	
 	public class Soldado extends Sprite 
 	{
 		private var imgSoldier:Image;
 		private var armor:int;
 		
-		public function Soldado(x:Number, y:Number, armor:int)
+		public function Soldado(x:Number, y:Number, armorInit:int)
 		{
-			this.x = x;
-			this.y = y;
-			this.armor = armor;
+			armor = armorInit;
 			
-			//this.addEventListener(TouchEvent.TOUCH, onTouch);
+			createSoldierArt();
+			
+			this.x = x - imgSoldier.width / 2;
+			this.y = y - imgSoldier.height / 2;
 		}
-		
-		/*private function onTouch(e:TouchEvent):void
-		{
-			var touch:Touch = e.getTouch(this, TouchPhase.BEGAN);
-			if (touch)
-			{
-				
-			}
-		}*/
 		
 		private function createSoldierArt():void
 		{
-			imgSoldier = new Image(Assets.getAtlas().getTexture("Soldier"));
+			imgSoldier = new Image(Assets.getTexture("Soldado_" + armor));
 			addChild(imgSoldier);
 		}
 		
 		public function reduceArmor():void
 		{
 			armor -= 1;
-			//Cambiar imagen por la de la nueva armadura
+			imgSoldier.texture = Assets.getTexture("Soldado_" + armor);
 			
 			if (armor < 1)
 				destroy();
