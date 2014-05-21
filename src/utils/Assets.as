@@ -3,7 +3,7 @@ package utils
 	import flash.display.Bitmap;
 	import flash.text.Font;
 	import flash.utils.Dictionary;
-	//import starling.extensions.PDParticleSystem;
+	import starling.extensions.PDParticleSystem;
 	
 	import starling.text.BitmapFont;
 	import starling.textures.Texture;
@@ -16,11 +16,6 @@ package utils
 		private static var gameTextures:Dictionary = new Dictionary();
 		private static var gameTextureAtlas:TextureAtlas;
 		
-		//Añadir imágenes
-		//[Embed(source="")]
-		//public static const (nombre):Class;
-		
-	
 		// NIVELES //
 		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
 		public static const nivel0:Class;
@@ -96,6 +91,31 @@ package utils
 		[Embed(source = "../../assets/images/Selector_hierba.png")]
 		public static const Selector:Class;
 		
+		// PARTÍCULAS //
+		[Embed(source="../../assets/particles/texture_fuego.png")]
+		public static const Particle_Fuego:Class;
+		
+		[Embed(source="../../assets/particles/particle_fuego.pex", mimeType="application/octet-stream")]
+		public static const particle_fuegoXML:Class;
+		
+		[Embed(source="../../assets/particles/texture_hielo.png")]
+		public static const Particle_Hielo:Class;
+		
+		[Embed(source="../../assets/particles/particle_hielo.pex", mimeType="application/octet-stream")]
+		public static const particle_hieloXML:Class;
+		
+		[Embed(source="../../assets/particles/texture_rapida.png")]
+		public static const Particle_Rapida:Class;
+		
+		[Embed(source="../../assets/particles/particle_rapida.pex", mimeType="application/octet-stream")]
+		public static const particle_rapidaXML:Class;
+		
+		[Embed(source="../../assets/particles/texture_electricidad.png")]
+		public static const Particle_Electro:Class;
+		
+		[Embed(source="../../assets/particles/particle_electricidad.pex", mimeType="application/octet-stream")]
+		public static const particle_electroXML:Class;
+		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
 		 */
@@ -145,6 +165,35 @@ package utils
 			}
 			return gameTextureAtlas;
 		}
+		
+		public static function getParticleSystem(name:String):PDParticleSystem
+		{
+			var particleTexture:Texture;
+			var particleXML:XML;
+			switch(name)
+			{
+				case "Particle_Fuego":
+					particleTexture = Texture.fromBitmap(new Particle_Fuego());
+					particleXML = XML(new particle_fuegoXML());
+					break;
+				case "Particle_Hielo":
+					particleTexture = Texture.fromBitmap(new Particle_Hielo());
+					particleXML = XML(new particle_hieloXML());
+					break;
+				case "Particle_Rapida":
+					particleTexture = Texture.fromBitmap(new Particle_Rapida());
+					particleXML = XML(new particle_rapidaXML());
+					break;
+				case "Particle_Electro":
+					particleTexture = Texture.fromBitmap(new Particle_Electro());
+					particleXML = XML(new particle_electroXML());
+					break;
+			}
+			
+			var ps:PDParticleSystem = new PDParticleSystem(particleXML, particleTexture);
+			return ps;
+		}
+		
 		
 		public static function getTexture(name:String):Texture
 		{
