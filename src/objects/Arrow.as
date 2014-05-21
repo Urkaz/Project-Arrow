@@ -1,9 +1,11 @@
 package objects 
 {
 	import flash.geom.Point;
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.extensions.PDParticleSystem;
 	import utils.Assets;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
@@ -18,7 +20,9 @@ package objects
 		private var tipoFlecha:String;
 		private var velocidad:Number;
 		private var flecha:Image;
+		private var particles:PDParticleSystem;
 		private var status:String; //Cayendo, pendiente de destruir, en el suelo, sleecionada, etc...
+		
 		
 		public function Arrow(tipoFlecha:String, visible:Boolean = true, velocidad:Number = 0)
 		{
@@ -70,11 +74,35 @@ package objects
 		{
 			flecha = new Image(Assets.getAtlas("gameSprite").getTexture("Flecha"));
 			
+			if (tipoFlecha != "normal" && tipoFlecha != "plant")
+			{
+				particles = Assets.getParticleSystem("Particle_" + tipoFlecha);
+				Starling.juggler.add(particles);
+				particles.start();
+				
+				particles.x = flecha.width / 2;
+				particles.y = flecha.height;
+				
+				this.addChild(particles);
+			}
+			
 			//Cambiar si se cambia el ancho del escenario
-			this.x = Math.floor(Math.random() * (stage.width*0.9 - stage.width*0.1 + 1)) + stage.width*0.1;
+			this.x = Math.floor(Math.random() * (stage.stageWidth*0.9 - stage.stageWidth*0.1 + 1)) + stage.stageWidth*0.1;
 			this.y = -flecha.height;
 			
 			this.addChild(flecha);
+		}
+		
+		public function destroy():void
+		{
+			if (tipoFlecha != "normal" && tipoFlecha != "plant")
+			{
+				Starling.juggler.remove(particles);
+				particles.stop();
+				
+				this.removeChild(particles);
+				this.removeChild(flecha);
+			}
 		}
 	}
 }

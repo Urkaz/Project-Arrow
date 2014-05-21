@@ -186,11 +186,13 @@ package screens
 				{
 					timer.removeEventListener(TimerEvent.TIMER, spawnArrow);
 					
-					var aux:Arrow = arrowArray[i]
+					var aux:Arrow = arrowArray[i];
 					arrowArray[i] = arrowArray[arrowArray.length - 1];
 					arrowArray[arrowArray.length - 1] = aux;
 					
 					trace("Flecha de tipo " + aux.Tipo + " destruida.");
+					
+					aux.destroy();
 					
 					this.removeChild(arrowArray.pop());
 					--i;
@@ -201,28 +203,43 @@ package screens
 				{
 					arrowArray[i].y += arrowArray[i].Velocidad;
 					
-					//PLATAFORMAS
-					for each(var platf:Plataforma in soldierArray)
+					//Si está fuera del escenario, borrar
+					if (arrowArray[i].y > stage.stageHeight)
 					{
-						var puntaFlecha:Point = new Point(arrowArray[i].x + arrowArray[i].width / 2, arrowArray[i].y + arrowArray[i].height);
-						var center:Point = new Point(platf.getSoldadoXGlobal + platf.soldado.width / 2, platf.getSoldadoYGlobal + platf.soldado.height / 2);
-						var rad:Number = platf.soldado.width / 2;
+						var aux:Arrow = arrowArray[i];
+						arrowArray[i] = arrowArray[arrowArray.length - 1];
+						arrowArray[arrowArray.length - 1] = aux;
 						
-						var dist:Number = Point.distance(center, puntaFlecha);
+						aux.destroy();
 						
-						if (dist < rad)
+						this.removeChild(arrowArray.pop());
+						--i;
+					}
+					else //Si no, se comprueban las colisiones
+					{
+						//PLATAFORMAS
+						for each(var platf:Plataforma in soldierArray)
 						{
-							platf.soldado.reduceArmor();
+							var puntaFlecha:Point = new Point(arrowArray[i].x + arrowArray[i].width / 2, arrowArray[i].y + arrowArray[i].height);
+							var center:Point = new Point(platf.getSoldadoXGlobal + platf.soldado.width / 2, platf.getSoldadoYGlobal + platf.soldado.height / 2);
+							var rad:Number = platf.soldado.width / 2;
 							
-							var aux:Arrow = arrowArray[i]
-							arrowArray[i] = arrowArray[arrowArray.length - 1];
-							arrowArray[arrowArray.length - 1] = aux;
+							var dist:Number = Point.distance(center, puntaFlecha);
 							
-							trace("Colsión con soldado.");
-							
-							this.removeChild(arrowArray.pop());
-							--i;
-							break;
+							if (dist < rad)
+							{
+								platf.soldado.reduceArmor();
+								
+								var aux:Arrow = arrowArray[i]
+								arrowArray[i] = arrowArray[arrowArray.length - 1];
+								arrowArray[arrowArray.length - 1] = aux;
+								
+								aux.destroy();
+								
+								this.removeChild(arrowArray.pop());
+								--i;
+								break;
+							}
 						}
 					}
 				}

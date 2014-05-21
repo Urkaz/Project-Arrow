@@ -41,8 +41,8 @@ package utils
 			numeroNivel = new TextField(250, 100,"NiVeL " + String(numLvl) , Assets.getFont("Banderas").name, 60, 0xffffff);
 			
 			//Posiciones
-			selector.x = stage.width / 2 - selector.width / 2;
-			selector.y = stage.height / 2 - selector.height / 2;
+			selector.x = stage.stageWidth / 2 - selector.width / 2;
+			selector.y = stage.stageHeight / 2 - selector.height / 2;
 			
 			closeBtn.x = playBtn.x = selector.x + selector.width / 2 - closeBtn.width / 2;
 			closeBtn.x -= 100;
@@ -52,8 +52,8 @@ package utils
 			numeroNivel.x = selector.x + selector.width / 2 - numeroNivel.width / 2;
 			numeroNivel.y = selector.y + 40;
 			
-			negro.width = stage.width;
-			negro.height = stage.height;
+			negro.width = stage.stageWidth;
+			negro.height = stage.stageHeight;
 			negro.alpha = 0.5;
 			
 			this.addChild(negro);

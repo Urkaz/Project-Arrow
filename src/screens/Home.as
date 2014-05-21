@@ -35,7 +35,7 @@ package screens
 			boton_playHome = new Button(Assets.getTexture("PlayInicialBtn"));
 			this.addChild(boton_playHome)
 			
-			boton_playHome.x = stage.width / 2 - boton_playHome.width / 2;
+			boton_playHome.x = stage.stageWidth / 2 - boton_playHome.width / 2;
 			boton_playHome.y = 350;
 			
 			this.addEventListener(Event.TRIGGERED, onMainMenuClick);

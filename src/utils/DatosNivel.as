@@ -12,8 +12,6 @@ package utils
 		 * Atributos
 		 *******************/
 		
-		private var DEBUG:Boolean = false; //ELIMINAR DE LA VERSIÓN FINAL JUNTO A TODO SU CODIGO
-		 
 		private var numeroNivel:int = 0;
 		private var tiempo:int = 0; //Tiempo que hay que tardar
 		private var muertesMin:int = 0;
@@ -185,39 +183,6 @@ package utils
 			{
 				var soldado:Array = new Array(attr[s], attr[s + 1], attr[s + 2], attr[s + 3]);
 				arraySoldados.push(soldado);
-			}
-			
-			//DEBUG
-			if (DEBUG)
-			{
-				trace("----NIVEL----")
-				trace("PROPIEDADES");
-				trace("\t numeroNivel: " + numeroNivel);
-				trace("\t muertesMin: " + muertesMin);
-				
-				trace("FLECHAS DEL NIVEL");
-				for (var i:int = 0; i < arrayFlechas.length; i++)
-				{
-					trace("\t "+arrayFlechas[i]+" - P:"+arrayFlechasProb[i]+"% - V:"+arrayFlechasVel[i]);
-				}
-				
-				trace("PANEL");
-				trace("\t waterPanel: " + waterPanel);
-				trace("\t fogPanel: " + fogPanel);
-				trace("\t nightPanel: " + nightPanel);
-				trace("\t grassPanel: " + grassPanel);
-				
-				trace("VICTORIA");
-				for (var i1:int = 0; i1 < arrayVictoria.length; i1++)
-				{
-					trace("\t t:"+arrayVictoria[i1][0] + ", c:" + arrayVictoria[i1][1]);
-				}
-				
-				trace("SOLDADOS");
-				for (var i2:int = 0; i2 < arraySoldados.length; i2++)
-				{
-					trace("\t x:"+arraySoldados[i2][0] + ", y:" + arraySoldados[i2][1] + ", a:" + arraySoldados[i2][2] + ", p:" + arraySoldados[i2][3]);
-				}
 			}
 		}
 	}
