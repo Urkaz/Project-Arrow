@@ -1,8 +1,11 @@
 package utils 
 {
+
+	//import air.update.core.UpdaterConfiguration;
 	import flash.display.Bitmap;
 	import flash.text.Font;
 	import flash.utils.Dictionary;
+	import starling.extensions.PDParticleSystem;
 	//import starling.extensions.PDParticleSystem;
 	
 	import starling.text.BitmapFont;
@@ -87,11 +90,31 @@ package utils
 		[Embed(source = "../../assets/images/soldado_3.png")]
 		public static const Soldado_3:Class;
 		
-		[Embed(source = "../../assets/images/Boton_Atras_Mitad.png")]
-		public static const Boton_Atras:Class;
+		//[Embed(source = "../../assets/images/Boton_Atras_Mitad.png")]
+		//public static const Boton_Atras:Class;
 		
-		[Embed(source = "../../assets/images/Boton_Start_Mitad.png")]
-		public static const Boton_Start:Class;
+		//[Embed(source = "../../assets/images/Boton_Start_Mitad.png")]
+		//public static const Boton_Start:Class;
+		
+		
+		[Embed(source="../../assets/particles/texture_fuego.png")]
+		public static const Particle_Fuego:Class;
+		
+		[Embed(source="../../assets/particles/particle_fuego.pex", mimeType="application/octet-stream")]
+		public static const particle_fuegoXML:Class;
+		
+		[Embed(source="../../assets/particles/texture_hielo.png")]
+		public static const Particle_Hielo:Class;
+		
+		[Embed(source="../../assets/particles/particle_hielo.pex", mimeType="application/octet-stream")]
+		public static const particle_hieloXML:Class;
+		
+		[Embed(source="../../assets/particles/texture_rapida.png")]
+		public static const Particle_Rapida:Class;
+		
+		[Embed(source="../../assets/particles/particle_fuego.pex", mimeType="application/octet-stream")]
+		public static const particle_rapidaXML:Class;
+		
 		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
@@ -142,6 +165,31 @@ package utils
 			}
 			return gameTextureAtlas;
 		}
+		
+		public static function getParticleSystem(name:String):PDParticleSystem
+		{
+			var particleTexture:Texture;
+			var particleXML:XML;
+			switch(name)
+			{
+				case "Particle_Fuego":
+					particleTexture = Texture.fromBitmap(new Particle_Fuego());
+					particleXML = XML(new particle_fuegoXML());
+					break;
+				case "Particle_Hielo":
+					particleTexture = Texture.fromBitmap(new Particle_Hielo());
+					particleXML = XML(new particle_hieloXML());
+					break;
+				case "Particle_Rapida":
+					particleTexture = Texture.fromBitmap(new Particle_Rapida());
+					particleXML = XML(new particle_rapidaXML());
+					break;
+			}
+			
+			var ps:PDParticleSystem = new PDParticleSystem(particleXML, particleTexture);
+			return ps;
+		}
+		
 		
 		public static function getTexture(name:String):Texture
 		{
