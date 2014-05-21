@@ -112,8 +112,14 @@ package utils
 		[Embed(source="../../assets/particles/texture_rapida.png")]
 		public static const Particle_Rapida:Class;
 		
-		[Embed(source="../../assets/particles/particle_fuego.pex", mimeType="application/octet-stream")]
+		[Embed(source="../../assets/particles/particle_rapida.pex", mimeType="application/octet-stream")]
 		public static const particle_rapidaXML:Class;
+		
+		[Embed(source="../../assets/particles/texture_electricidad.png")]
+		public static const Particle_Electro:Class;
+		
+		[Embed(source="../../assets/particles/particle_electricidad.pex", mimeType="application/octet-stream")]
+		public static const particle_electroXML:Class;
 		
 		
 		/*
@@ -183,6 +189,10 @@ package utils
 				case "Particle_Rapida":
 					particleTexture = Texture.fromBitmap(new Particle_Rapida());
 					particleXML = XML(new particle_rapidaXML());
+					break;
+				case "Particle_Electro":
+					particleTexture = Texture.fromBitmap(new Particle_Electro());
+					particleXML = XML(new particle_electroXML());
 					break;
 			}
 			
