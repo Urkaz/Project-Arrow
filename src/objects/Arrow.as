@@ -68,10 +68,10 @@ package objects
 		
 		private function createArrowArt():void
 		{
-			flecha = new Image(Assets.getTexture("Arrow"));
+			flecha = new Image(Assets.getAtlas("gameSprite").getTexture("Flecha"));
 			
 			//Cambiar si se cambia el ancho del escenario
-			this.x = Math.floor(Math.random() * (1000 - 80 + 1)) + 80;
+			this.x = Math.floor(Math.random() * (stage.width*0.9 - stage.width*0.1 + 1)) + stage.width*0.1;
 			this.y = -flecha.height;
 			
 			this.addChild(flecha);

@@ -77,16 +77,7 @@ package screens
 		{
 			restanteInicio = new TextField(300, 300, String(3), Assets.getFont("FontLevel").name, 100, 0xffffff);
 			
-			imgMuralla = new Image(Assets.getTexture("Muralla_" + levelType));
-			
-			scale = stage.stageWidth / imgMuralla.width;
-			
-			if(imgMuralla.height * scale > stage.stageHeight){
-				scale = stage.stageHeight / imgMuralla.height;
-			}
-			
-			//Escalado del fondo
-			imgMuralla.scaleX = imgMuralla.scaleY = scale;
+			imgMuralla = new Image(Assets.getAtlas("gameSprite").getTexture("Muralla_" + levelType));
 			
 			this.addChild(imgMuralla);
 			
@@ -158,11 +149,6 @@ package screens
 			
 			this.addChild(newArrow);
 			
-			//ESCALADO
-			newArrow.scaleX = newArrow.scaleY = scale;
-			newArrow.x *= scale;
-			newArrow.y *= scale;
-		
 			arrowArray.push(newArrow);
 			
 			//Recalcular tiempo para el spawn de la siguiente flecha y reiniciar timer

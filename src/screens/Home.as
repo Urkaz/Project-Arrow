@@ -29,29 +29,14 @@ package screens
 		
 		private function drawScreen():void
 		{
-			fondo_home = new Image(Assets.getTexture("TituloWelcome"));
+			fondo_home = new Image(Assets.getTexture("PantallaInicial"));
 			this.addChild(fondo_home)
 			
-			boton_playHome = new Button(Assets.getTexture("BotonWelcome"));
+			boton_playHome = new Button(Assets.getTexture("PlayInicialBtn"));
 			this.addChild(boton_playHome)
 			
-			//Poner las coordenadas de la resolución original, todos los escalados se harán luego
-			boton_playHome.x = 270;
-			boton_playHome.y = 1050;
-			
-			var scale:Number = stage.stageWidth / fondo_home.width;
-			
-			if(fondo_home.height * scale > stage.stageHeight){
-				scale = stage.stageHeight / fondo_home.height;
-			}
-			
-			//Escalado del fondo
-			fondo_home.scaleX = fondo_home.scaleY = scale;
-			
-			//Escalado del botón
-			boton_playHome.scaleX = boton_playHome.scaleY = scale;
-			boton_playHome.x *= scale;
-			boton_playHome.y *= scale;
+			boton_playHome.x = stage.width / 2 - boton_playHome.width / 2;
+			boton_playHome.y = 350;
 			
 			this.addEventListener(Event.TRIGGERED, onMainMenuClick);
 		}

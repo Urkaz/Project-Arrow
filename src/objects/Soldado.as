@@ -11,19 +11,19 @@ package objects
 		private var imgSoldier:Image;
 		private var armor:int;
 		
-		public function Soldado(x:Number, y:Number, armorInit:int)
+		public function Soldado(x:Number, armorInit:int)
 		{
 			armor = armorInit;
 			
 			createSoldierArt();
 			
 			this.x = x - imgSoldier.width / 2;
-			this.y = y - imgSoldier.height / 2;
+			this.y = -imgSoldier.height+5;
 		}
 		
 		private function createSoldierArt():void
 		{
-			imgSoldier = new Image(Assets.getTexture("Soldado_" + armor));
+			imgSoldier = new Image(Assets.getAtlas("gameSprite").getTexture("soldado_" + armor));
 			addChild(imgSoldier);
 		}
 		
@@ -34,7 +34,7 @@ package objects
 			if (armor < 1)
 				destroy();
 			else
-				imgSoldier.texture = Assets.getTexture("Soldado_" + armor);
+				imgSoldier.texture = Assets.getAtlas("gameSprite").getTexture("soldado_" + armor);
 		}
 		
 		private function destroy():void

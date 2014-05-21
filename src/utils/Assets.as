@@ -14,7 +14,7 @@ package utils
 	public class Assets 
 	{
 		private static var gameTextures:Dictionary = new Dictionary();
-		private static var gameTextureAtlas:TextureAtlas;
+		private static var gameAtlas:Dictionary = new Dictionary();
 		
 		// NIVELES //
 		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
@@ -46,50 +46,17 @@ package utils
 		[Embed(source="../../assets/images/levelSelection.png")]
 		public static const levelSelectSprite:Class;
 		
-		[Embed(source="../../assets/images/titulo_welcome.png")]
-		public static const TituloWelcome:Class;
+		[Embed(source="../../assets/images/levelGame.xml", mimeType="application/octet-stream")]
+		public static const gameXML:Class;
 		
-		[Embed(source="../../assets/images/arrow.png")]
-		public static const Arrow:Class;
+		[Embed(source="../../assets/images/levelGame.png")]
+		public static const gameSprite:Class;
 		
-		[Embed(source="../../assets/images/Welcome_boton.png")]
-		public static const BotonWelcome:Class;
+		[Embed(source="../../assets/images/PantallaInicial.png")]
+		public static const PantallaInicial:Class;
 		
-		[Embed(source="../../assets/images/Fondo_Normal.png")]
-		public static const Muralla_normal:Class;
-		
-		[Embed(source="../../assets/images/Fondo_Nieve.png")]
-		public static const Muralla_snow:Class;
-		
-		[Embed(source="../../assets/images/Fondo_Tierra.png")]
-		public static const Muralla_ground:Class;
-		
-		[Embed(source = "../../assets/images/Tablon_izq.png")]
-		public static const Tablon_izq:Class;
-		
-		[Embed(source = "../../assets/images/Tablon_der.png")]
-		public static const Tablon_der:Class;
-		
-		[Embed(source = "../../assets/images/Tablon_medio.png")]
-		public static const Tablon_medio:Class;
-		
-		[Embed(source = "../../assets/images/soldado_1.png")]
-		public static const Soldado_1:Class;
-		
-		[Embed(source = "../../assets/images/soldado_2.png")]
-		public static const Soldado_2:Class;
-		
-		[Embed(source = "../../assets/images/soldado_3.png")]
-		public static const Soldado_3:Class;
-		
-		[Embed(source = "../../assets/images/Boton_Atras_Mitad.png")]
-		public static const Boton_Atras:Class;
-		
-		[Embed(source = "../../assets/images/Boton_Start_Mitad.png")]
-		public static const Boton_Start:Class;
-		
-		[Embed(source = "../../assets/images/Selector_hierba.png")]
-		public static const Selector:Class;
+		[Embed(source="../../assets/images/PlayInicial.png")]
+		public static const PlayInicialBtn:Class;
 		
 		// PARTÍCULAS //
 		[Embed(source="../../assets/particles/texture_fuego.png")]
@@ -116,9 +83,6 @@ package utils
 		[Embed(source="../../assets/particles/particle_electricidad.pex", mimeType="application/octet-stream")]
 		public static const particle_electroXML:Class;
 		
-		/*
-		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
-		 */
 		public static function getFont(name:String):BitmapFont
 		{
 			var fontTexture:Texture;
@@ -149,7 +113,7 @@ package utils
 		
 		public static function getAtlas(name:String):TextureAtlas
 		{
-			if (gameTextureAtlas == null)
+			if (gameAtlas[name] == undefined)
 			{
 				var texture:Texture = getTexture(name);
 				var xml:XML;
@@ -158,12 +122,14 @@ package utils
 				case "levelSelectSprite":
 					xml = XML(new levelSelectXML());
 					break;
-				case "XXXXXX":
+				case "gameSprite":
+					xml = XML(new gameXML());
 					break;
 				}
-				gameTextureAtlas = new TextureAtlas(texture, xml);
+				gameAtlas[name] = new TextureAtlas(texture, xml);
+				
 			}
-			return gameTextureAtlas;
+			return gameAtlas[name];
 		}
 		
 		public static function getParticleSystem(name:String):PDParticleSystem

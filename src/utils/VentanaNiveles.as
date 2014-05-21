@@ -1,5 +1,6 @@
 package utils 
 {
+	import starling.display.Stage;
 	import starling.events.Event;
 	import starling.display.Sprite;
 	import starling.display.Image;
@@ -14,6 +15,7 @@ package utils
 
 		private var selector:Image;
 		private var stars:Image;
+		private var negro:Image;
 		
 		private var closeBtn:Button;
 		private var playBtn:Button;
@@ -22,33 +24,46 @@ package utils
 		private var type:String;
 		private var victory:String;
 		
-		public function VentanaNiveles(numLvl:int, starsCount:int, type:String, victory:String) 
+		public function VentanaNiveles(numLvl:int, starsCount:int, type:String, victory:String, stage:Stage)
 		{
 			this.numLvl = numLvl;
 			this.type = type;
 			this.victory = victory;
 			
-			closeBtn = new Button(Assets.getTexture("Boton_Atras"));
-			playBtn = new Button(Assets.getTexture("Boton_Start"));
-			selector = new Image(Assets.getTexture("Selector"));
+			negro = new Image(Assets.getAtlas("levelSelectSprite").getTexture("negro"));
 			
-			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount + "_Estrellas"));
+			closeBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Atras"));
+			playBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Start"));
+			selector = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Selector_" + type));
 			
-			numeroNivel = new TextField(300, 220,"NiVeL " + String(numLvl) , Assets.getFont("Banderas").name, 85, 0xffffff);
+			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
-			closeBtn.x = 150;
-			closeBtn.y = 150;
+			numeroNivel = new TextField(250, 100,"NiVeL " + String(numLvl) , Assets.getFont("Banderas").name, 60, 0xffffff);
 			
-			playBtn.x = 300;
-			playBtn.y = 300;
+			//Posiciones
+			selector.x = stage.width / 2 - selector.width / 2;
+			selector.y = stage.height / 2 - selector.height / 2;
 			
+			closeBtn.x = playBtn.x = selector.x + selector.width / 2 - closeBtn.width / 2;
+			closeBtn.x -= 100;
+			playBtn.x += 100;
+			closeBtn.y = playBtn.y = selector.y + selector.height - closeBtn.height - 12;
+			
+			numeroNivel.x = selector.x + selector.width / 2 - numeroNivel.width / 2;
+			numeroNivel.y = selector.y + 40;
+			
+			negro.width = stage.width;
+			negro.height = stage.height;
+			negro.alpha = 0.5;
+			
+			this.addChild(negro);
 			
 			this.addChild(selector);
 			this.addChild(numeroNivel)
 			
 			this.addChild(closeBtn);
 			this.addChild(playBtn);
-			this.addChild(stars);
+			//this.addChild(stars);
 			
 			this.addEventListener(Event.TRIGGERED, buttonClick);
 		}

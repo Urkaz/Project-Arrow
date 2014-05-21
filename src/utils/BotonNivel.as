@@ -42,12 +42,12 @@ package utils
 				victory = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Victoria_" + victoryType));
 				stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 				
-				victory.x = this.x + 29;
-				victory.y = this.y + 10;
-				stars.x = this.x + 480;
-				stars.y = this.y + 21;
+				victory.x = this.x + 10;
+				victory.y = this.y + bg.height / 2 - victory.height / 2 - 10;
+				stars.x = this.x + bg.width - stars.width - 10;
+				stars.y = this.y + bg.height / 2 - stars.height / 2 - 10;
 				
-				numNivel = new TextField(200, 120, String(level), Assets.getFont("FontLevel").name, 80, 0xffffff);
+				numNivel = new TextField(200, bg.height-10, String(level), Assets.getFont("FontLevel").name, 40, 0xffffff);
 				numNivel.x = this.x + bg.width / 2 - numNivel.width / 2;
 				numNivel.y = this.y + bg.height / 2 - numNivel.height / 2;
 				

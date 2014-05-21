@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>levelSelection.png</filename>
+        <filename>levelGame.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -61,9 +61,9 @@
         <key>fixedTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>-1</int>
+            <int>2048</int>
             <key>height</key>
-            <int>-1</int>
+            <int>1024</int>
         </QSize>
         <key>reduceBorderArtifacts</key>
         <true/>
@@ -99,7 +99,7 @@
             <key>packageName</key>
             <string>Texture</string>
             <key>javaFileName</key>
-            <filename>levelSelection.java</filename>
+            <filename>../Assets_Selector_Niveles/levelSelection.java</filename>
             <key>wrap</key>
             <struct type="AndEngineWrap">
                 <key>s</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>levelSelection.xml</filename>
+        <filename>levelGame.xml</filename>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>
@@ -141,25 +141,16 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>Candado_ground.png</filename>
-            <filename>Candado_normal.png</filename>
-            <filename>Candado_snow.png</filename>
-            <filename>negro.png</filename>
-            <filename>Nivel_ground.png</filename>
-            <filename>Nivel_normal.png</filename>
-            <filename>Nivel_snow.png</filename>
-            <filename>Selector_ground.png</filename>
-            <filename>Selector_normal.png</filename>
-            <filename>Selector_snow.png</filename>
-            <filename>0_Estrellas.png</filename>
-            <filename>1_Estrellas.png</filename>
-            <filename>2_Estrellas.png</filename>
-            <filename>3_Estrellas.png</filename>
-            <filename>Boton_Atras.png</filename>
-            <filename>Boton_Start.png</filename>
-            <filename>Victoria_combo.png</filename>
-            <filename>Victoria_lives.png</filename>
-            <filename>Victoria_time.png</filename>
+            <filename>platf_der.png</filename>
+            <filename>platf_izq.png</filename>
+            <filename>platf_med.png</filename>
+            <filename>Flecha.png</filename>
+            <filename>soldado_1.png</filename>
+            <filename>soldado_2.png</filename>
+            <filename>soldado_3.png</filename>
+            <filename>Muralla_ground.png</filename>
+            <filename>Muralla_normal.png</filename>
+            <filename>Muralla_snow.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -15,10 +15,10 @@
 	<level num="8" type="ground" victory="time"/>
 	<level num="9" type="normal" victory="combo"/>
 	<level num="10" type="snow" victory="time"/>
-	<level num="11" type="night" victory="combo"/>
+	<level num="11" type="snow" victory="combo"/>
 	<level num="12" type="normal" victory="time"/>
 	<level num="13" type="normal" victory="lives"/>
-	<level num="14" type="night" victory="combo"/>
+	<level num="14" type="ground" victory="combo"/>
 	<level num="15" type="snow" victory="time"/>
 
 

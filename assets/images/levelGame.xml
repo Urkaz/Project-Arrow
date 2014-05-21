@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:6c3e41307cb8b1623622cfb027fec640$ -->
+<TextureAtlas imagePath="levelGame.png">
+    <SubTexture name="Flecha" x="1" y="642" width="13" height="64"/>
+    <SubTexture name="Muralla_ground" x="723" y="1" width="360" height="640"/>
+    <SubTexture name="Muralla_normal" x="362" y="1" width="360" height="640"/>
+    <SubTexture name="Muralla_snow" x="1" y="1" width="360" height="640"/>
+    <SubTexture name="platf_der" x="1" y="768" width="20" height="21"/>
+    <SubTexture name="platf_izq" x="1" y="746" width="20" height="21"/>
+    <SubTexture name="platf_med" x="15" y="681" width="46" height="21"/>
+    <SubTexture name="soldado_1" x="58" y="642" width="42" height="38"/>
+    <SubTexture name="soldado_2" x="15" y="642" width="42" height="38"/>
+    <SubTexture name="soldado_3" x="1" y="707" width="42" height="38"/>
+</TextureAtlas>

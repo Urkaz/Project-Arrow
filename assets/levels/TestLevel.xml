@@ -34,5 +34,5 @@
 	<victory type="time" min="2"/>
 	<victory type="health" num="200"/>
 	
-	<soldier x="-200" y="80" arm="3" platf="1000" />
+	<soldier x="0" y="150" arm="3" platf="300" />
 </Level>
