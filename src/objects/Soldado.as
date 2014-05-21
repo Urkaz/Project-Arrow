@@ -30,10 +30,11 @@ package objects
 		public function reduceArmor():void
 		{
 			armor -= 1;
-			imgSoldier.texture = Assets.getTexture("Soldado_" + armor);
 			
 			if (armor < 1)
 				destroy();
+			else
+				imgSoldier.texture = Assets.getTexture("Soldado_" + armor);
 		}
 		
 		private function destroy():void

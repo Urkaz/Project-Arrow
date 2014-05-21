@@ -22,12 +22,14 @@ package utils
 		private var lvlType:String;
 		private var victoryType:String;
 		private var numNivel:TextField;
+		private var starsCount:int;
 		
 		public function BotonNivel(lvlType:String, victoryType:String, level:int, score:int, starsCount:int, lock:Boolean = true)
 		{
 			this.level = level;
 			this.lvlType = lvlType;
 			this.victoryType = victoryType;
+			this.starsCount = starsCount;
 			
 			if (lock)
 			{
@@ -70,7 +72,7 @@ package utils
 			else if (end)
 			{
 				if(!scroll)
-					this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "level", lvl: level, type: lvlType, vic: victoryType }, true));
+					this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "lvlstats", lvl: level, stars: starsCount, type: lvlType, vic: victoryType }, true));
 				scroll = false;
 			}
 		}

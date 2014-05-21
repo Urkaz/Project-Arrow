@@ -93,6 +93,9 @@ package utils
 		[Embed(source = "../../assets/images/Boton_Start_Mitad.png")]
 		public static const Boton_Start:Class;
 		
+		[Embed(source = "../../assets/images/Selector_hierba.png")]
+		public static const Selector:Class;
+		
 		/*
 		 * Estas funciones por ahora no se pueden usar porque dan errores al no existir los archivos aun...
 		 */

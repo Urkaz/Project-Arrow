@@ -1,11 +1,11 @@
-VentanaNiveles
-
 package utils 
 {
+	import starling.events.Event;
 	import starling.display.Sprite;
 	import starling.display.Image;
 	import starling.display.Button;
 	import starling.text.TextField;
+	import events.NavigationEvent;
 	
 	public class VentanaNiveles extends Sprite 
 	{
@@ -18,38 +18,52 @@ package utils
 		private var closeBtn:Button;
 		private var playBtn:Button;
 		
-		//public function VentanaNiveles(numLvl:int, starsCount:int)
-		public function VentanaNiveles(numLvl:int)
+		private var numLvl:int;
+		private var type:String;
+		private var victory:String;
+		
+		public function VentanaNiveles(numLvl:int, starsCount:int, type:String, victory:String) 
 		{
-			var datosNv:DatosNivel = new DatosNivel(numLvl);
+			this.numLvl = numLvl;
+			this.type = type;
+			this.victory = victory;
 			
 			closeBtn = new Button(Assets.getTexture("Boton_Atras"));
 			playBtn = new Button(Assets.getTexture("Boton_Start"));
-			selector = new Image(Assets.getTexture("Selector_Tierra"));
+			selector = new Image(Assets.getTexture("Selector"));
 			
-			//stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount + "_Estrellas"));
+			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount + "_Estrellas"));
 			
 			numeroNivel = new TextField(300, 220,"NiVeL " + String(numLvl) , Assets.getFont("Banderas").name, 85, 0xffffff);
 			
-			numeroNivel.x = this.x + selector.width / 2 - numeroNivel.width / 2;
-			numeroNivel.y = this.y + selector.width / 2 - ( numeroNivel.height / 2 - 32);
+			closeBtn.x = 150;
+			closeBtn.y = 150;
 			
-			closeBtn.x = this.x + selector.width / 2 - closeBtn.width / 2;
-			closeBtn.y = this.y + selector.width / 2 - closeBtn.height / 2;
+			playBtn.x = 300;
+			playBtn.y = 300;
 			
-			playBtn.x = this.x + selector.width / 2 - playBtn.width / 2;
-			playBtn.y = this.y + selector.width / 2 - playBtn.height / 2;
 			
 			this.addChild(selector);
 			this.addChild(numeroNivel)
 			
-			
 			this.addChild(closeBtn);
 			this.addChild(playBtn);
+			this.addChild(stars);
 			
-			
-			
-			
+			this.addEventListener(Event.TRIGGERED, buttonClick);
+		}
+		
+		private function buttonClick(e:Event):void 
+		{
+			var buttonClicked:Button = e.target as Button;
+			if((buttonClicked as Button) == playBtn)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "level", lvl: numLvl, type: type, vic: victory }, true));
+			}
+			else if((buttonClicked as Button) == closeBtn)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "lvlclose" }, true));
+			}
 		}
 	}
 

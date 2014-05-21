@@ -60,8 +60,8 @@ package screens
 				
 				//Leer partida guardada y poner puntuacion, estrellas y lock
 				boton = new BotonNivel(attr[s + 1], attr[s + 2], attr[s], 0, 3, lock);
-				//boton.scaleX = 1 / 2;
-				//boton.scaleY = 1 / 2;
+				
+				
 				container.addChild(boton);
 			}
 			
