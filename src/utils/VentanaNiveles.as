@@ -1,72 +1,69 @@
 package utils 
 {
+	import starling.events.Event;
 	import starling.display.Sprite;
 	import starling.display.Image;
 	import starling.display.Button;
+	import starling.text.TextField;
+	import events.NavigationEvent;
 	
 	public class VentanaNiveles extends Sprite 
 	{
 		
-		private var arrIzq:Image;
-		private var arr:Image;
-		private var arrDer:Image;
-		private var medIzq:Image;
-		private var med:Image;
-		private var medDer:Image;
-		private var abjIzq:Image;
-		private var abj:Image;
-		private var abjDer:Image;
-		
+		private var numeroNivel:TextField;
+
+		private var selector:Image;
 		private var stars:Image;
 		
 		private var closeBtn:Button;
 		private var playBtn:Button;
 		
-		public function VentanaNiveles(ancho:int, alto:int, numLvl:int, starsCount:int)
+		private var numLvl:int;
+		private var type:String;
+		private var victory:String;
+		
+		public function VentanaNiveles(numLvl:int, starsCount:int, type:String, victory:String) 
 		{
-			var datosNv:DatosNivel = new DatosNivel(numLvl);
+			this.numLvl = numLvl;
+			this.type = type;
+			this.victory = victory;
 			
-			/*arrIzq = new Image(Assets.getAtlas("levelSelectSprite").getTexture("arrIzq"));
-			arr = new Image(Assets.getAtlas("levelSelectSprite").getTexture("arr"));
-			arrDer = new Image(Assets.getAtlas("levelSelectSprite").getTexture("arrDer"));
-			medIzq = new Image(Assets.getAtlas("levelSelectSprite").getTexture("medIzq"));
-			med = new Image(Assets.getAtlas("levelSelectSprite").getTexture("med"));
-			medDer = new Image(Assets.getAtlas("levelSelectSprite").getTexture("medDer"));
-			abjIzq = new Image(Assets.getAtlas("levelSelectSprite").getTexture("abjIzq"));
-			abj = new Image(Assets.getAtlas("levelSelectSprite").getTexture("abj"));
-			abjDer = new Image(Assets.getAtlas("levelSelectSprite").getTexture("abjDer"));
-			
-			arr.width = med.width = abj.width = ancho - arrIzq.width * 2;
-			medIzq.height = med.height = medDer.height = alto - arrIzq.height * 2;
-			
-			arr.x = arrIzq.x + arrIzq.width;
-			arrDer.x = arr.x + arr.width;
-			
-			medIzq.y = arrIzq.y + arrIzq.height;
-			medIzq.x = arrIzq.x;
-			med.y = arr.y + arrIzq.height;
-			med.x = arrIzq.x + arrIzq.width;
-			medDer.y = arrDer.y + arrDer.height;
-			medDer.x = arr.x + arr.width;
-			
-			abjIzq.y = medIzq.y + medIzq.height;
-			abjIzq.x = medIzq.x;
-			abj.y = med.y + medIzq.height;
-			abj.x = medIzq.x + medIzq.width;
-			abjDer.y = medDer.y + medDer.height;
-			abjDer.x = med.x + med.width;
-			
-			this.addChild(arrIzq);
-			this.addChild(arr);
-			this.addChild(arrDer);
-			this.addChild(medIzq);
-			this.addChild(med);
-			this.addChild(medDer);
-			this.addChild(abjIzq);
-			this.addChild(abj);
-			this.addChild(abjDer);*/
+			closeBtn = new Button(Assets.getTexture("Boton_Atras"));
+			playBtn = new Button(Assets.getTexture("Boton_Start"));
+			selector = new Image(Assets.getTexture("Selector"));
 			
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount + "_Estrellas"));
+			
+			numeroNivel = new TextField(300, 220,"NiVeL " + String(numLvl) , Assets.getFont("Banderas").name, 85, 0xffffff);
+			
+			closeBtn.x = 150;
+			closeBtn.y = 150;
+			
+			playBtn.x = 300;
+			playBtn.y = 300;
+			
+			
+			this.addChild(selector);
+			this.addChild(numeroNivel)
+			
+			this.addChild(closeBtn);
+			this.addChild(playBtn);
+			this.addChild(stars);
+			
+			this.addEventListener(Event.TRIGGERED, buttonClick);
+		}
+		
+		private function buttonClick(e:Event):void 
+		{
+			var buttonClicked:Button = e.target as Button;
+			if((buttonClicked as Button) == playBtn)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "level", lvl: numLvl, type: type, vic: victory }, true));
+			}
+			else if((buttonClicked as Button) == closeBtn)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "lvlclose" }, true));
+			}
 		}
 	}
 

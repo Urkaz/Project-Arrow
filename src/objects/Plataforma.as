@@ -25,10 +25,23 @@ package objects
 			this.y = y;
 			
 			soldado = new Soldado(anchoPlatMedio / 2, 0, soldierArmor);
+			addChild(soldado);
 			soldado.addEventListener(TouchEvent.TOUCH, onTouch);
 			
 			createPlatformArt();
 		}
+		
+		public function get getSoldadoXGlobal():int
+		{
+			return x + soldado.x;
+		}
+		
+		public function get getSoldadoYGlobal():int
+		{
+			return y + soldado.y;
+		}
+		
+		
 		
 		private function onTouch(e:TouchEvent):void
 		{
@@ -52,7 +65,6 @@ package objects
 			imgPlatMedio.x = imgPlatIzq.width;
 			imgPlatDer.x = imgPlatMedio.x + imgPlatMedio.width;
 			
-			addChild(soldado);
 			addChild(imgPlatIzq);
 			addChild(imgPlatMedio);
 			addChild(imgPlatDer);

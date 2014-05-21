@@ -209,8 +209,6 @@ package screens
 					this.removeChild(arrowArray.pop());
 					--i;
 					
-					
-					
 					timer.addEventListener(TimerEvent.TIMER, spawnArrow);
 				}
 				else
@@ -220,7 +218,26 @@ package screens
 					//PLATAFORMAS
 					for each(var platf:Plataforma in soldierArray)
 					{
-						trace(platf.x + platf.soldado.x, platf.y + platf.soldado.y);
+						var puntaFlecha:Point = new Point(arrowArray[i].x + arrowArray[i].width / 2, arrowArray[i].y + arrowArray[i].height);
+						var center:Point = new Point(platf.getSoldadoXGlobal + platf.soldado.width / 2, platf.getSoldadoYGlobal + platf.soldado.height / 2);
+						var rad:Number = platf.soldado.width / 2;
+						
+						var dist:Number = Point.distance(center, puntaFlecha);
+						
+						if (dist < rad)
+						{
+							platf.soldado.reduceArmor();
+							
+							var aux:Arrow = arrowArray[i]
+							arrowArray[i] = arrowArray[arrowArray.length - 1];
+							arrowArray[arrowArray.length - 1] = aux;
+							
+							trace("Colsión con soldado.");
+							
+							this.removeChild(arrowArray.pop());
+							--i;
+							break;
+						}
 					}
 				}
 			}

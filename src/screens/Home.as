@@ -12,7 +12,6 @@ package screens
 	{
 		
 		private var boton_playHome:Button;
-		//private var titulo_home:Image;
 		private var fondo_home:Image;
 		
 		

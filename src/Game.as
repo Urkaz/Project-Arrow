@@ -6,6 +6,7 @@ package
 	import starling.events.Event;
 	import screens.Home;
 	import screens.LevelSelection;
+	import utils.VentanaNiveles;
 	
 	public class Game extends Sprite 
 	{
@@ -13,6 +14,7 @@ package
 		private var HomeScreen:Home;
 		private var LevelsScreen:LevelSelection;
 		private var GameScreen:Nivel;
+		private var ventNiveles:VentanaNiveles;
 		
 		public function Game() 
 		{
@@ -46,6 +48,7 @@ package
 					break;
 				case "level":
 					//Los params del evento CHANGE_SCREEN DE los niveles: { id: "level", lvl: x, type: lvlType, vic: victoryType }
+					this.removeChild(ventNiveles);
 					
 					LevelsScreen.disposeTemporarily();
 					
@@ -54,7 +57,21 @@ package
 					this.addChild(GameScreen);
 					GameScreen.initialize();
 					break;
+				case "lvlstats":
+					//Los params del evento CHANGE_SCREEN DE los niveles: { id: "lvlstats", lvl: x, stars: x }
+					this.removeChild(ventNiveles);
 					
+					ventNiveles = new VentanaNiveles(event.params.lvl, event.params.stars, event.params.type, event.params.vic);
+					ventNiveles.x = 100;
+					ventNiveles.y = 100;
+					this.addChild(ventNiveles);
+					
+					break;
+					
+				case "lvlclose":
+					this.removeChild(ventNiveles);
+					
+					break;
 			
 			}
 		}

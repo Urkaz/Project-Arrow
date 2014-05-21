@@ -71,8 +71,8 @@ package objects
 			flecha = new Image(Assets.getTexture("Arrow"));
 			
 			//Cambiar si se cambia el ancho del escenario
-			flecha.x = Math.floor(Math.random() * (1000 - 80 + 1)) + 80;
-			flecha.y = -flecha.height;
+			this.x = Math.floor(Math.random() * (1000 - 80 + 1)) + 80;
+			this.y = -flecha.height;
 			
 			this.addChild(flecha);
 		}
