@@ -10,6 +10,7 @@ package
 	import utils.Ventana;
 	import utils.VentanaFinal;
 	import utils.VentanaNiveles;
+	import flash.net.SharedObject;
 	
 	public class Game extends Sprite 
 	{
@@ -19,9 +20,12 @@ package
 		private var GameScreen:Nivel;
 		private var ventana:Ventana;
 		
+		public static var saveGame:SharedObject = SharedObject.getLocal("partida");
+		
 		public function Game() 
 		{
-			super();
+			saveGame.clear();
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
 			
 		}
@@ -54,6 +58,7 @@ package
 				case "level":
 					//Los params del evento CHANGE_SCREEN DE los niveles: { id: "level", lvl: x, type: lvlType, vic: victoryType }
 					this.removeChild(ventana);
+					this.removeChild(GameScreen);
 					
 					LevelsScreen.disposeTemporarily();
 					
@@ -61,6 +66,14 @@ package
 					GameScreen = new Nivel(event.params.lvl, event.params.type, event.params.vic);
 					this.addChild(GameScreen);
 					GameScreen.initialize();
+					break;
+				case "menu":
+					this.removeChild(GameScreen);
+					
+					GameScreen = null;
+					
+					LevelsScreen.initialize();
+					
 					break;
 			}
 		}
@@ -82,12 +95,16 @@ package
 					this.removeChild(ventana);
 					
 					//Crear ventana
-					ventana = new VentanaFinal(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage, event.params.status);
+					ventana = new VentanaFinal(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage, event.params.go);
 					
 					this.addChild(ventana);
 					break;
 					
 				case "close":
+					if (event.params.cs)
+					{
+						this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: event.params.nav_ev}, true));
+					}
 					removeChild(ventana);
 					break;
 			}

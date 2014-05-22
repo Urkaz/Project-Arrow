@@ -14,6 +14,24 @@ package screens
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	
+	/*
+	 * Tiempo
+	 * 1- pasarse el nivel
+	 * 2- puntuacion
+	 * 3- perfecto (vidas)
+	 * 
+	 * Vida
+	 * 1- Pasarte el nivel
+	 * 2- Puntuación
+	 * 3- Tiempo min (x segundos)
+	 * 
+	 * Combos
+	 * 1- pasarlo
+	 * 2- sin morir
+	 * 3- tiempo
+	 * 
+	
+	
 	/**
 	 * Esta clase será la que ponga en pantalla todos los elementos de los niveles (InGame)
 	 */
@@ -47,6 +65,9 @@ package screens
 		private var numVidas:int;
 		private var vidasTxt:TextField;
 		
+		private var numPuntos:int = 0;
+		private var puntosTxt:TextField;
+		
 		/*******************
 		 * Constructor
 		 *******************/
@@ -79,6 +100,8 @@ package screens
 			tiempoTxt = new TextField(50, 50, "0:00", Assets.getFont("Banderas").name, 20, 0xffffff);
 			vidasTxt = new TextField(50, 50, "Vidas: " + numVidas, Assets.getFont("Banderas").name, 20, 0xffffff);
 			
+			puntosTxt = new TextField(50, 50, "0000", Assets.getFont("Banderas").name, 20, 0xffffff);
+			
 			//El tiempo en el modo de timepo se cuenta de forma inversa
 			if (victoryType == "time")
 			{
@@ -92,8 +115,8 @@ package screens
 			}
 			
 			tiempoTxt.x = stage.stageWidth - tiempoTxt.width;
-			
 			vidasTxt.x = stage.stageWidth - tiempoTxt.width - tiempoTxt.width;
+			puntosTxt.x = stage.x;
 			
 			this.addChild(imgMuralla);
 			
@@ -108,6 +131,7 @@ package screens
 			
 			this.addChild(vidasTxt);
 			this.addChild(tiempoTxt);
+			this.addChild(puntosTxt);
 			this.addChild(restanteInicioTxt);
 		}
 		
@@ -200,6 +224,11 @@ package screens
 		{
 			vidasTxt.text = "Vidas: " + numVidas;
 			
+			if (numPuntos < 10)
+				puntosTxt.text = min + "000" + numPuntos;
+			else if (numPuntos < 100)
+				puntosTxt.text = min + "00" + numPuntos;
+			
 			tiempoTrascurrido += 1;
 			arrowTimer += 1;
 			
@@ -207,6 +236,7 @@ package screens
 			if (numVidas == 0)
 			{
 				this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: 0, type: levelType, vic: victoryType, go: true }, true));
 			}
 			
 			//MODOS DE JUEGO
@@ -223,8 +253,19 @@ package screens
 				//Condicion de victoria
 				if (int(tiempoTrascurrido / 60) == datosNivel.TiempoVictoria)
 				{
+					//Calcular estrellas conseguidas
+					var starEarned:int = 1;
+					if (numVidas == datosNivel.Vidas)
+						++starEarned;
+					if (numPuntos > datosNivel.PuntosVictoria)
+						++starEarned;
+					
+					//Guardar partida
+					save(starEarned);
+					
+					//Detener el juego y abrir ventana final
 					this.removeEventListener(Event.ENTER_FRAME, onGameTick);
-					this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: 3, type: levelType, vic: victoryType, status: 1 }, true));
+					this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType, go: false }, true));
 				}
 			}
 			else
@@ -248,9 +289,26 @@ package screens
 			//Mover flechas y comprobar sus estados (romper con el dedo, colisiones con plataformas, etc)
 			for (var a:int = 0; a < arrowArray.length; ++a)
 			{
-				if (arrowArray[a].Status == Arrow.DESTROY)
+				if (arrowArray[a].Status == Arrow.STATUS_DESTROY)
 				{
 					trace("Flecha de tipo " + arrowArray[a].Tipo + " destruida.");
+					switch(arrowArray[a].Tipo)
+					{
+						//Puntos
+						case Arrow.TYPE_NORMAL:
+							++numPuntos;
+							break;
+						case Arrow.TYPE_ELECTRIC:
+						case Arrow.TYPE_FIRE:
+						case Arrow.TYPE_ICE:
+						case Arrow.TYPE_PLANT:
+							numPuntos += 5;
+							break;
+						case Arrow.TYPE_FAST:
+							numPuntos += 10;
+							break;
+					}
+					
 					a = deleteArrow(a);
 				}
 				else
@@ -276,7 +334,7 @@ package screens
 							if (dist < rad)
 							{
 								//Si el soldado tiene armadura de nivel 3 (contra el fuego) no se le reducirá.
-								if (!(soldierArray[s].SoldierArmor == 3 && arrowArray[a].Tipo == "fire"))
+								if (!(soldierArray[s].SoldierArmor == 3 && arrowArray[a].Tipo == Arrow.TYPE_FIRE))
 								{
 									soldierArray[s].reduceSoldierArmor();
 									
@@ -316,6 +374,14 @@ package screens
 			
 			soldierArray.pop();
 			--numVidas;
+		}
+		
+		private function save(stars:int):void 
+		{
+			Game.saveGame.setProperty(datosNivel.Numero + "_stars", stars);
+			Game.saveGame.setProperty(datosNivel.Numero + 1 + "_lock", false);
+			
+			Game.saveGame.flush();
 		}
 	}
 }

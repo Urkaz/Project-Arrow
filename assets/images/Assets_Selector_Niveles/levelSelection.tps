@@ -160,6 +160,8 @@
             <filename>Victoria_combo.png</filename>
             <filename>Victoria_lives.png</filename>
             <filename>Victoria_time.png</filename>
+            <filename>Boton_menu.png</filename>
+            <filename>Boton_repetir.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

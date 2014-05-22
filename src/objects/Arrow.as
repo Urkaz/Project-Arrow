@@ -14,9 +14,17 @@ package objects
 	public class Arrow extends Sprite 
 	{
 		//CONSTANTES
-		public static var MOVING:String = "moving";
-		public static var DESTROY:String = "destroy";
+		public static const TYPE_NORMAL:String = "normal";
+		public static const TYPE_FIRE:String = "fire";
+		public static const TYPE_PLANT:String = "plant";
+		public static const TYPE_ELECTRIC:String = "elec";
+		public static const TYPE_ICE:String = "ice";
+		public static const TYPE_FAST:String = "fast";
 		
+		public static const STATUS_MOVING:String = "moving";
+		public static const STATUS_DESTROY:String = "destroy";
+		
+		//Variables
 		private var tipoFlecha:String;
 		private var velocidad:Number;
 		private var flecha:Image;
@@ -29,7 +37,7 @@ package objects
 			this.tipoFlecha = tipoFlecha;
 			this.velocidad = velocidad;
 			
-			status = MOVING;
+			status = STATUS_MOVING;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			this.addEventListener(TouchEvent.TOUCH, onTouch);
@@ -40,10 +48,10 @@ package objects
 			var touch:Touch = e.getTouch(this, TouchPhase.BEGAN);
 			if (touch)
 			{
-				if (status == MOVING)
+				if (status == STATUS_MOVING)
 				{
 					var localPos:Point = touch.getLocation(this);
-					status = DESTROY;
+					status = STATUS_DESTROY;
 				}
 			}
 		}
@@ -74,7 +82,7 @@ package objects
 		{
 			flecha = new Image(Assets.getAtlas("gameSprite").getTexture("Flecha"));
 			
-			if (tipoFlecha != "normal" && tipoFlecha != "plant")
+			if (tipoFlecha != TYPE_NORMAL)
 			{
 				particles = Assets.getParticleSystem("Particle_" + tipoFlecha);
 				Starling.juggler.add(particles);
@@ -95,7 +103,7 @@ package objects
 		
 		public function destroy():void
 		{
-			if (tipoFlecha != "normal" && tipoFlecha != "plant")
+			if (tipoFlecha != TYPE_NORMAL)
 			{
 				Starling.juggler.remove(particles);
 				particles.stop();

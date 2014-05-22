@@ -21,7 +21,7 @@ package screens
 	{
 		private var container:ScrollContainer;
 		private var layout:VerticalLayout;
-		
+		private var btnArray:Array = new Array();
 		
 		public function LevelSelection() 
 		{
@@ -45,24 +45,25 @@ package screens
 			container.hasElasticEdges = false;
 			this.addChild(container);
 			
+			//Desbloquear primer nivel
+			Game.saveGame.setProperty(0 + "_lock", false);
+			Game.saveGame.setProperty(1 + "_lock", false);
+			Game.saveGame.setProperty(2 + "_lock", false);
+			
 			attr = levelList.level.attributes();
 			for (var s:int = 0; s < attr.length(); s = s+3)
 			{
 				var boton:BotonNivel;
 				
-				//lock temporal
-				var lock:Boolean = false;
-				if (attr[s] > 2)
-				{
-					lock = true;
-				}
-				
-				
 				//Leer partida guardada y poner puntuacion, estrellas y lock
-				boton = new BotonNivel(attr[s + 1], attr[s + 2], attr[s], 0, 3, lock);
+				var stars:int = int(Game.saveGame.data[attr[s] + "_stars"]);
 				
+				boton = new BotonNivel(attr[s + 1], attr[s + 2], attr[s], stars);
+				if(!(Game.saveGame.data[attr[s] + "_lock"] == undefined || Game.saveGame.data[attr[s] + "_lock"]))
+					boton.Unlock();
 				
 				container.addChild(boton);
+				btnArray.push(boton);
 			}
 			
 			//container.scrollToPosition(0,1000);
@@ -83,7 +84,21 @@ package screens
 		
 		public function initialize():void
 		{
+			
 			this.visible = true;
+			
+			//Actualizar o desbloquear bontones niveles
+			for (var i:int = 0; i < container.numChildren; ++i) 
+			{
+				if (!(Game.saveGame.data[i + "_lock"] == undefined || Game.saveGame.data[i + "_lock"]))
+				{
+					btnArray[i].Unlock();
+					btnArray[i].Update(int(Game.saveGame.data[i + "_stars"]));
+					trace(Game.saveGame.data[i + "_stars"]);
+				}
+				else
+					break;
+			}
 		}
 	}
 }

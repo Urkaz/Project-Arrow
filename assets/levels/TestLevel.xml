@@ -4,7 +4,7 @@
 	El tiempo se pone en segundos
 	spawnMin y spawnMax es la frecuencia de spawn de flechas, sera un numero entre spawnMin y spawnMax segundos
 	-->
-	<caract nivel="0" tiempo="10" vidas="1" health="200" spawnMin="1" spawnMax="2.3" />
+	<caract nivel="0" tiempo="10" puntos="10" vidas="1" health="200" spawnMin="1" spawnMax="2.3" />
 	
 	<!--
 	La prob de una flecha especial no debe ser mayor de 20 en niveles normales
@@ -17,14 +17,14 @@
 	<arrow type="fast" prob="6" vel="3"/>
 	<arrow type="elec" prob="6" vel="1.5"/>
 	
-	<panel type="water">
-		<status>true</status>
-	</panel>
 	<panel type="fog">
 		<status>false</status>
 	</panel>
 	<panel type="grass">
 		<status>2</status>
+	</panel>
+	<panel type="water">
+		<status>true</status>
 	</panel>
 	
 	<!--
@@ -32,6 +32,7 @@
 	-->
 	<victory type="normal" num="2"/>
 	<victory type="fire" num="2"/>
+	
 	
 	<soldier x="0" y="150" arm="1" platf="300" />
 </Level>

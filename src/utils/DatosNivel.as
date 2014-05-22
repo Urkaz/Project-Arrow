@@ -14,6 +14,7 @@ package utils
 		
 		private var numeroNivel:int = 0;
 		private var tiempo:int = 0;
+		private var puntos:int = 0;
 		private var vidas:int = 0;
 		private var salud:int = 0;
 		private var spawnMin:Number = 0;
@@ -25,7 +26,6 @@ package utils
 		
 		private var waterPanel:Boolean = false;
 		private var fogPanel:Boolean = false;
-		private var nightPanel:Boolean = false;
 		private var grassPanel:int = 0;
 		
 		private var arrayVictoria:Array = new Array(); //Array de Array(String tipo_flecha, int cantidad)
@@ -56,6 +56,11 @@ package utils
 		public function get TiempoVictoria():int
 		{
 			return tiempo;
+		}
+		
+		public function get PuntosVictoria():int
+		{
+			return puntos;
 		}
 		
 		public function get TimeSpawnMin():int
@@ -91,11 +96,6 @@ package utils
 		public function get isFogPanel():Boolean
 		{
 			return fogPanel;
-		}
-		
-		public function get isNightPanel():Boolean
-		{
-			return nightPanel;
 		}
 		
 		public function get isGrassPanel():Boolean
@@ -146,6 +146,7 @@ package utils
 			//Leer las propiedades del nivel
 			numeroNivel = xmlLevel.caract.attribute("nivel");
 			tiempo = xmlLevel.caract.attribute("tiempo");
+			puntos = xmlLevel.caract.attribute("puntos");
 			vidas = xmlLevel.caract.attribute("vidas");
 			salud = xmlLevel.caract.attribute("health");
 			spawnMin = Number(xmlLevel.caract.attribute("spawnMin"));
@@ -173,7 +174,6 @@ package utils
 			//Leer las propiedades del panel
 			waterPanel = (xmlLevel.panel.(@type == "water").status == "true");
 			fogPanel = (xmlLevel.panel.(@type == "fog").status == "true");
-			nightPanel = (xmlLevel.panel.(@type == "night").status == "true");
 			grassPanel = int(xmlLevel.panel.(@type == "grass").status);
 			
 			//Leer condiciones de victoria

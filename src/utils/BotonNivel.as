@@ -24,41 +24,15 @@ package utils
 		private var numNivel:TextField;
 		private var starsCount:int;
 		
-		public function BotonNivel(lvlType:String, victoryType:String, level:int, score:int, starsCount:int, lock:Boolean = true)
+		public function BotonNivel(lvlType:String, victoryType:String, level:int, starsCount:int)
 		{
 			this.level = level;
 			this.lvlType = lvlType;
 			this.victoryType = victoryType;
 			this.starsCount = starsCount;
 			
-			if (lock)
-			{
-				bg = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Candado_"+lvlType));
-				this.addChild(bg);
-			}
-			else
-			{
-				bg = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Nivel_" + lvlType));
-				victory = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Victoria_" + victoryType));
-				stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
-				
-				victory.x = this.x + 10;
-				victory.y = this.y + bg.height / 2 - victory.height / 2 - 10;
-				stars.x = this.x + bg.width - stars.width - 10;
-				stars.y = this.y + bg.height / 2 - stars.height / 2 - 10;
-				
-				numNivel = new TextField(200, bg.height-10, String(level), Assets.getFont("FontLevel").name, 40, 0xffffff);
-				numNivel.x = this.x + bg.width / 2 - numNivel.width / 2;
-				numNivel.y = this.y + bg.height / 2 - numNivel.height / 2;
-				
-				this.addChild(bg);
-				this.addChild(victory);
-				this.addChild(stars);
-				this.addChild(numNivel);
-			}
-			
-			if(!lock)
-				this.addEventListener(TouchEvent.TOUCH, onTouch);
+			bg = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Candado_"+lvlType));
+			this.addChild(bg);
 		}
 		
 		private function onTouch(e:TouchEvent):void 
@@ -77,6 +51,32 @@ package utils
 			}
 		}
 		
+		public function Unlock():void
+		{
+			bg = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Nivel_" + lvlType));
+			victory = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Victoria_" + victoryType));
+			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
+			
+			victory.x = 10;
+			victory.y = bg.height / 2 - victory.height / 2 - 10;
+			stars.x = bg.width - stars.width - 10;
+			stars.y = bg.height / 2 - stars.height / 2 - 10;
+			
+			numNivel = new TextField(200, bg.height-10, String(level), Assets.getFont("FontLevel").name, 40, 0xffffff);
+			numNivel.x = bg.width / 2 - numNivel.width / 2;
+			numNivel.y = bg.height / 2 - numNivel.height / 2;
+			
+			this.addChild(bg);
+			this.addChild(victory);
+			this.addChild(stars);
+			this.addChild(numNivel);
+			
+			this.addEventListener(TouchEvent.TOUCH, onTouch);
+		}
+		
+		public function Update(starsCount:int):void
+		{
+			stars.texture = Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas");
+		}
 	}
-
 }

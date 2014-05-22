@@ -78,7 +78,7 @@ package utils
 			tween.onComplete = function():void
 			{
 				Starling.juggler.remove(tween);
-				dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "close" }, true));
+				dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "close", cs: false}, true));
 			};
 		}
 		

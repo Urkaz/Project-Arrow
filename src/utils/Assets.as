@@ -56,29 +56,26 @@ package utils
 		public static const PlayInicialBtn:Class;
 		
 		// PARTÍCULAS //
-		[Embed(source="../../assets/particles/texture_fuego.png")]
-		public static const Particle_fire:Class;
-		
 		[Embed(source="../../assets/particles/particle_fuego.pex", mimeType="application/octet-stream")]
 		public static const particle_fuegoXML:Class;
-		
-		[Embed(source="../../assets/particles/texture_hielo.png")]
-		public static const Particle_ice:Class;
 		
 		[Embed(source="../../assets/particles/particle_hielo.pex", mimeType="application/octet-stream")]
 		public static const particle_hieloXML:Class;
 		
-		[Embed(source="../../assets/particles/texture_rapida.png")]
-		public static const Particle_fast:Class;
-		
 		[Embed(source="../../assets/particles/particle_rapida.pex", mimeType="application/octet-stream")]
 		public static const particle_rapidaXML:Class;
 		
-		[Embed(source="../../assets/particles/texture_electricidad.png")]
-		public static const Particle_elec:Class;
-		
 		[Embed(source="../../assets/particles/particle_electricidad.pex", mimeType="application/octet-stream")]
 		public static const particle_electroXML:Class;
+		
+		[Embed(source="../../assets/particles/particle_planta.pex", mimeType="application/octet-stream")]
+		public static const particle_plantXML:Class;
+		
+		[Embed(source="../../assets/particles/texture_circle.png")]
+		public static const Particle_circle:Class;
+		
+		[Embed(source="../../assets/particles/texture_planta.png")]
+		public static const Particle_plant:Class;
 		
 		public static function getFont(name:String):BitmapFont
 		{
@@ -135,20 +132,24 @@ package utils
 			switch(name)
 			{
 				case "Particle_fire":
-					particleTexture = Texture.fromBitmap(new Particle_fire());
+					particleTexture = Texture.fromBitmap(new Particle_circle());
 					particleXML = XML(new particle_fuegoXML());
 					break;
 				case "Particle_ice":
-					particleTexture = Texture.fromBitmap(new Particle_ice());
+					particleTexture = Texture.fromBitmap(new Particle_circle());
 					particleXML = XML(new particle_hieloXML());
 					break;
 				case "Particle_fast":
-					particleTexture = Texture.fromBitmap(new Particle_fast());
+					particleTexture = Texture.fromBitmap(new Particle_circle());
 					particleXML = XML(new particle_rapidaXML());
 					break;
 				case "Particle_elec":
-					particleTexture = Texture.fromBitmap(new Particle_elec());
+					particleTexture = Texture.fromBitmap(new Particle_circle());
 					particleXML = XML(new particle_electroXML());
+					break;
+				case "Particle_plant":
+					particleTexture = Texture.fromBitmap(new Particle_plant());
+					particleXML = XML(new particle_plantXML());
 					break;
 			}
 			

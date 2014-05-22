@@ -16,12 +16,12 @@ package utils
 		private var replayBtn:Button;
 		private var menuBtn:Button;
 		
-		public function VentanaFinal(numLvl:int, starsCount:int, type:String, victory:String, stage:Stage, status:int)
+		public function VentanaFinal(numLvl:int, starsCount:int, type:String, victoryType:String, stage:Stage, gameOver:Boolean)
 		{
-			super(numLvl, starsCount, type, victory, stage);
+			super(numLvl, starsCount, type, victoryType, stage);
 			
-			replayBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Atras"));
-			menuBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Start"));
+			replayBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_repetir"));
+			menuBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_menu"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
 			/* STATUS 1
@@ -34,9 +34,11 @@ package utils
 			
 			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Banderas").name, 30, 0xffffff);
 			
-			mainTxt.text = "NiVeL " + numLvl;
-			
-
+			/*if(!gameOver)
+				mainTxt.text = "ViCtOrIa";
+			else
+				mainTxt.text = "GaMe OvEr";*/
+				
 			//Posiciones
 			
 			replayBtn.x = menuBtn.x = selector.x + selector.width / 2 - replayBtn.width / 2;
@@ -49,7 +51,7 @@ package utils
 			
 			descrip.x = selector.x + selector.width / 2 - descrip.width / 2;
 			descrip.y = stars.y + stars.height + 20;
-
+			
 			this.addChild(descrip);
 			this.addChild(replayBtn);
 			this.addChild(menuBtn);
@@ -63,9 +65,7 @@ package utils
 			var buttonClicked:Button = e.target as Button;
 			if((buttonClicked as Button) == menuBtn)
 			{
-				this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "close" }, true));
-				
-				//this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "level", lvl: numLvl, type: type, vic: victory }, true));
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "close" , cs: true, nav_ev: "menu"}, true));
 			}
 			else if((buttonClicked as Button) == replayBtn)
 			{
