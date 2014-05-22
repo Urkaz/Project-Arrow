@@ -5,6 +5,7 @@ package events
 	public class NavigationEvent extends Event
 	{
 		public static const CHANGE_SCREEN:String = "changeScreen";
+		public static const POPUP_WINDOW:String = "popUpWindow";
 		
 		public var params:Object;
 		

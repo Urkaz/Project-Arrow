@@ -72,7 +72,7 @@ package utils
 			else if (end)
 			{
 				if(!scroll)
-					this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "lvlstats", lvl: level, stars: starsCount, type: lvlType, vic: victoryType }, true));
+					this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "lvlstats", lvl: level, stars: starsCount, type: lvlType, vic: victoryType }, true));
 				scroll = false;
 			}
 		}

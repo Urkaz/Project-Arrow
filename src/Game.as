@@ -1,11 +1,14 @@
 package  
 {
 	import screens.Nivel;
+	import starling.animation.Tween;
 	import starling.display.Sprite;
 	import events.NavigationEvent;
 	import starling.events.Event;
 	import screens.Home;
 	import screens.LevelSelection;
+	import utils.Ventana;
+	import utils.VentanaFinal;
 	import utils.VentanaNiveles;
 	
 	public class Game extends Sprite 
@@ -14,7 +17,7 @@ package
 		private var HomeScreen:Home;
 		private var LevelsScreen:LevelSelection;
 		private var GameScreen:Nivel;
-		private var ventNiveles:VentanaNiveles;
+		private var ventana:Ventana;
 		
 		public function Game() 
 		{
@@ -27,6 +30,7 @@ package
 		{
 			trace("Juego inicializado!")
 			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
+			this.addEventListener(events.NavigationEvent.POPUP_WINDOW, popUpWindow)
 			
 			LevelsScreen = new LevelSelection();
 			LevelsScreen.disposeTemporarily();
@@ -46,9 +50,10 @@ package
 					HomeScreen.disposeTemporarily();
 					LevelsScreen.initialize();
 					break;
+					
 				case "level":
 					//Los params del evento CHANGE_SCREEN DE los niveles: { id: "level", lvl: x, type: lvlType, vic: victoryType }
-					this.removeChild(ventNiveles);
+					this.removeChild(ventana);
 					
 					LevelsScreen.disposeTemporarily();
 					
@@ -57,21 +62,34 @@ package
 					this.addChild(GameScreen);
 					GameScreen.initialize();
 					break;
+			}
+		}
+		
+		private function popUpWindow(event:NavigationEvent):void 
+		{
+			switch (event.params.id)
+			{
 				case "lvlstats":
-					//Los params del evento CHANGE_SCREEN DE los niveles: { id: "lvlstats", lvl: x, stars: x }
-					this.removeChild(ventNiveles);
+					this.removeChild(ventana);
 					
-					ventNiveles = new VentanaNiveles(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage);
+					//Crear ventana
+					ventana = new VentanaNiveles(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage);
 					
-					this.addChild(ventNiveles);
-					
+					this.addChild(ventana);
 					break;
 					
-				case "lvlclose":
-					this.removeChild(ventNiveles);
+				case "endlvl":
+					this.removeChild(ventana);
 					
+					//Crear ventana
+					ventana = new VentanaFinal(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage, event.params.status);
+					
+					this.addChild(ventana);
 					break;
-			
+					
+				case "close":
+					removeChild(ventana);
+					break;
 			}
 		}
 	}

@@ -43,7 +43,7 @@ package utils
 		/*******************
 		 * GETTERS
 		 *******************/
-		public function get Nivel():int
+		public function get Numero():int
 		{
 			return numeroNivel;
 		}

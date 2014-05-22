@@ -1,5 +1,6 @@
 package screens 
 {
+	import events.NavigationEvent;
 	import flash.geom.Point;
 	import objects.Arrow;
 	import objects.Plataforma;
@@ -29,14 +30,22 @@ package screens
 		private var arrowArray:Array = new Array();
 		private var soldierArray:Array = new Array();
 
+		
+		private var levelNumber:int;
 		private var levelType:String;
 		private var victoryType:String;
-		private var restanteInicio:TextField;
+		private var restanteInicioTxt:TextField;
 		
 		private var tiempoTrascurrido:int = 0;
 		private var nextArrowDelay:Number;
 		private var arrowTimer:Number = 0;
 		
+		private var tiempoTxt:TextField;
+		private var min:int
+		private var sec:int
+		
+		private var numVidas:int;
+		private var vidasTxt:TextField;
 		
 		/*******************
 		 * Constructor
@@ -46,8 +55,10 @@ package screens
 			trace("Nivel " + level + " cargado, de tipo: " + type);
 			datosNivel = new DatosNivel(level);
 			
+			levelNumber = level;
 			levelType = type;
 			victoryType = victory;
+			numVidas = datosNivel.Vidas;
 			
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
@@ -63,9 +74,26 @@ package screens
 		
 		private function drawGame():void
 		{
-			restanteInicio = new TextField(300, 300, String(3), Assets.getFont("FontLevel").name, 100, 0xffffff);
-			
+			restanteInicioTxt = new TextField(300, 300, String(3), Assets.getFont("FontLevel").name, 100, 0xffffff);
 			imgMuralla = new Image(Assets.getAtlas("gameSprite").getTexture("Muralla_" + levelType));
+			tiempoTxt = new TextField(50, 50, "0:00", Assets.getFont("Banderas").name, 20, 0xffffff);
+			vidasTxt = new TextField(50, 50, "Vidas: " + numVidas, Assets.getFont("Banderas").name, 20, 0xffffff);
+			
+			//El tiempo en el modo de timepo se cuenta de forma inversa
+			if (victoryType == "time")
+			{
+				//Tiempo
+				min = datosNivel.TiempoVictoria / 60;
+				sec = datosNivel.TiempoVictoria - min * 60;
+				if (sec < 10)
+					tiempoTxt.text = min + ":0" + sec;
+				else
+					tiempoTxt.text = min + ":" + sec;
+			}
+			
+			tiempoTxt.x = stage.stageWidth - tiempoTxt.width;
+			
+			vidasTxt.x = stage.stageWidth - tiempoTxt.width - tiempoTxt.width;
 			
 			this.addChild(imgMuralla);
 			
@@ -78,7 +106,9 @@ package screens
 				addChild(platf);
 			}
 			
-			this.addChild(restanteInicio);
+			this.addChild(vidasTxt);
+			this.addChild(tiempoTxt);
+			this.addChild(restanteInicioTxt);
 		}
 		
 		public function disposeTemporarily():void
@@ -100,17 +130,17 @@ package screens
 			//Al llegar a 0, el número estaría un segundo en pantalla hasta desaparecer (por eso el timer cuenta 4 segundos)
 			if (int(tiempoTrascurrido / 60) == 4)
 			{
-				this.removeChild(restanteInicio);
+				this.removeChild(restanteInicioTxt);
 				this.removeEventListener(Event.ENTER_FRAME, prepareGameTick);
 				empezar();
 			}
 			else if (int(tiempoTrascurrido / 60) == 3)
 			{
-				restanteInicio.text = "GO!";
+				restanteInicioTxt.text = "GO!";
 			}
 			else
 			{
-				restanteInicio.text = String(3 - int(tiempoTrascurrido / 60));
+				restanteInicioTxt.text = String(3 - int(tiempoTrascurrido / 60));
 			}
 		}
 		
@@ -168,26 +198,52 @@ package screens
 		
 		private function onGameTick(e:Event):void 
 		{
-			//Condiciones de victoria
-			if (victoryType == "time")
-			{
-				if (int(tiempoTrascurrido / 60) == datosNivel.TiempoVictoria || soldierArray.length == 0)
-				{
-					this.removeEventListener(Event.ENTER_FRAME, onGameTick);
-				}
-			}
+			vidasTxt.text = "Vidas: " + numVidas;
 			
-			//Toda la lógica aquí
 			tiempoTrascurrido += 1;
 			arrowTimer += 1;
 			
+			//Condicion de derrota general (quedarse sin vidas)
+			if (numVidas == 0)
+			{
+				this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+			}
+			
+			//MODOS DE JUEGO
+			if (victoryType == "time")
+			{
+				//Temporizador inverso
+				min = (datosNivel.TiempoVictoria - int(tiempoTrascurrido / 60)) / 60;
+				sec = (datosNivel.TiempoVictoria - int(tiempoTrascurrido / 60)) - min * 60;
+				if (sec < 10)
+					tiempoTxt.text = min + ":0" + sec;
+				else
+					tiempoTxt.text = min + ":" + sec;
+				
+				//Condicion de victoria
+				if (int(tiempoTrascurrido / 60) == datosNivel.TiempoVictoria)
+				{
+					this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+					this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: 3, type: levelType, vic: victoryType, status: 1 }, true));
+				}
+			}
+			else
+			{
+				//Tiempo normal
+				min = int(tiempoTrascurrido / 60) / 60;
+				sec = int(tiempoTrascurrido / 60) - min * 60;
+				if (sec < 10)
+					tiempoTxt.text = min + ":0" + sec;
+				else
+					tiempoTxt.text = min + ":" + sec;
+			}
+			
+			//Lógica general para todos los modos de juego
 			if (arrowTimer / 60 > nextArrowDelay)
 			{
 				spawnArrow();
 				arrowTimer = 0;
 			}
-			
-			//trace(int(tiempoTrascurrido / 60));
 			
 			//Mover flechas y comprobar sus estados (romper con el dedo, colisiones con plataformas, etc)
 			for (var a:int = 0; a < arrowArray.length; ++a)
@@ -196,7 +252,6 @@ package screens
 				{
 					trace("Flecha de tipo " + arrowArray[a].Tipo + " destruida.");
 					a = deleteArrow(a);
-					
 				}
 				else
 				{
@@ -260,6 +315,7 @@ package screens
 			soldierArray[soldierArray.length - 1] = aux;
 			
 			soldierArray.pop();
+			--numVidas;
 		}
 	}
 }

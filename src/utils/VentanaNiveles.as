@@ -8,70 +8,48 @@ package utils
 	import starling.text.TextField;
 	import events.NavigationEvent;
 	
-	public class VentanaNiveles extends Sprite 
+	public class VentanaNiveles extends Ventana
 	{
-		private var numeroNivel:TextField;
 		private var descrip:TextField;
 		
-		private var selector:Image;
 		private var stars:Image;
-		private var negro:Image;
-		
 		private var closeBtn:Button;
 		private var playBtn:Button;
 		
-		private var numLvl:int;
-		private var type:String;
-		private var victory:String;
-		
 		public function VentanaNiveles(numLvl:int, starsCount:int, type:String, victory:String, stage:Stage)
 		{
-			this.numLvl = numLvl;
-			this.type = type;
-			this.victory = victory;
-			
-			negro = new Image(Assets.getAtlas("levelSelectSprite").getTexture("negro"));
+			super(numLvl, starsCount, type, victory, stage);
 			
 			closeBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Atras"));
 			playBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Start"));
-			selector = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Selector_" + type));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
-			numeroNivel = new TextField(250, 100, "NiVeL " + numLvl , Assets.getFont("Banderas").name, 60, 0xffffff);
 			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Banderas").name, 30, 0xffffff);
 			
+			mainTxt.text = "NiVeL " + numLvl;
+			
 			if(victory == "time")
-				descrip.text = "¡Aguanta hasta que el tiempo termine con la mayor cantidad de soldados!";
+				descrip.text = "¡Aguanta hasta que se acabe el tiempo! (Puntuacion, Vidas)";
+			else if(victory == "lives")
+				descrip.text = "¡Acaba con tu enemigo bajandole vida en el menor tiempo posible! (Puntuacion, Vidas)";
+			else if(victory == "combo")
+				descrip.text = "¡Realiza los combos en el menor tiempo posible! (Puntuacion, Vidas)";
 			
 			
 			//Posiciones
-			selector.x = stage.stageWidth / 2 - selector.width / 2;
-			selector.y = stage.stageHeight / 2 - selector.height / 2;
 			
 			closeBtn.x = playBtn.x = selector.x + selector.width / 2 - closeBtn.width / 2;
 			closeBtn.x -= 100;
 			playBtn.x += 100;
 			closeBtn.y = playBtn.y = selector.y + selector.height - closeBtn.height - 12;
 			
-			numeroNivel.x = selector.x + selector.width / 2 - numeroNivel.width / 2;
-			numeroNivel.y = selector.y + 40;
-			
 			stars.x = selector.x + selector.width / 2 - stars.width / 2;
-			stars.y = numeroNivel.y + numeroNivel.height - 20;
+			stars.y = mainTxt.y + mainTxt.height - 20;
 			
 			descrip.x = selector.x + selector.width / 2 - descrip.width / 2;
 			descrip.y = stars.y + stars.height + 20;
-			
-			negro.width = stage.stageWidth;
-			negro.height = stage.stageHeight;
-			negro.alpha = 0.5;
-			
-			this.addChild(negro);
-			
-			this.addChild(selector);
-			this.addChild(numeroNivel);
+
 			this.addChild(descrip);
-			
 			this.addChild(closeBtn);
 			this.addChild(playBtn);
 			this.addChild(stars);
@@ -84,11 +62,12 @@ package utils
 			var buttonClicked:Button = e.target as Button;
 			if((buttonClicked as Button) == playBtn)
 			{
+				//closeInWindowAnim();
 				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "level", lvl: numLvl, type: type, vic: victory }, true));
 			}
 			else if((buttonClicked as Button) == closeBtn)
 			{
-				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "lvlclose" }, true));
+				closeOutWindowAnim();
 			}
 		}
 	}
