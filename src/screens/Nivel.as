@@ -1,13 +1,10 @@
 package screens 
 {
-	import flash.events.TimerEvent;
 	import flash.geom.Point;
-	import flash.utils.Timer;
 	import objects.Arrow;
 	import objects.Plataforma;
 	import objects.Soldado;
 	import starling.display.Image;
-	import flash.utils.getTimer;
 	import starling.display.Sprite;
 	import starling.text.TextField;
 	import utils.DatosNivel;
@@ -30,24 +27,15 @@ package screens
 		
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
-		
 		private var soldierArray:Array = new Array();
-		
-		private var timerDelay:int = 1 * 1000;
-		private var timerRepeat:int = 4;
-		
-		private var timer:Timer;
-		
-		private var scale:Number;
-		
+
 		private var levelType:String;
 		private var victoryType:String;
-		
 		private var restanteInicio:TextField;
 		
-		
-		
-		private var unaPlataforma:Plataforma;
+		private var tiempoTrascurrido:int = 0;
+		private var nextArrowDelay:Number;
+		private var arrowTimer:Number = 0;
 		
 		
 		/*******************
@@ -102,45 +90,47 @@ package screens
 		{
 			this.visible = true;
 			
-			timer = new Timer(timerDelay, timerRepeat);
-			timer.addEventListener(TimerEvent.TIMER, timerListener);
-			timer.start();
+			this.addEventListener(Event.ENTER_FRAME, prepareGameTick);
 		}
 		
-		private function timerListener(e:TimerEvent):void
+		private function prepareGameTick(e:Event):void 
 		{
-			//Aquí falta por poner en pantalla los segundos restantes para que empieze el nivel
-			//Al llegar a 0, el número estaría un segundo en pantalla hasta desaparecer (por eso el timer cuenta 4 segundos)
+			tiempoTrascurrido += 1;
 			
-			if (timer.currentCount == 4)
+			//Al llegar a 0, el número estaría un segundo en pantalla hasta desaparecer (por eso el timer cuenta 4 segundos)
+			if (int(tiempoTrascurrido / 60) == 4)
 			{
 				this.removeChild(restanteInicio);
-				timer.removeEventListener(TimerEvent.TIMER, timerListener);
+				this.removeEventListener(Event.ENTER_FRAME, prepareGameTick);
 				empezar();
 			}
-			else if (timer.currentCount == 3)
+			else if (int(tiempoTrascurrido / 60) == 3)
 			{
 				restanteInicio.text = "GO!";
 			}
 			else
 			{
-				restanteInicio.text = String(3 - timer.currentCount);
+				restanteInicio.text = String(3 - int(tiempoTrascurrido / 60));
 			}
 		}
 		
 		private function empezar():void 
 		{
 			this.addEventListener(Event.ENTER_FRAME, onGameTick);
-			timer.addEventListener(TimerEvent.TIMER, spawnArrow);
 			
-			timer.delay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax - datosNivel.TimeSpawnMin + 1)) + datosNivel.TimeSpawnMin; // Random*(max-min+1)+min
-			timer.reset();
-			timer.start();
+			tiempoTrascurrido = 0;
+			
+			//Crear la primera flecha al empezar, sin esperas
+			spawnArrow();
+			
+			//Calcular tiempo random de spawn de la siguiente flecha
+			nextArrowDelay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax*10 - datosNivel.TimeSpawnMin*10 + 1)) + datosNivel.TimeSpawnMin*10;
+			nextArrowDelay /= 10
 		}
 		
 		//Crea una nueva flecha
 		//   Depende de la función nextArrowIndex
-		private function spawnArrow(e:TimerEvent):void 
+		private function spawnArrow():void 
 		{	
 			arrowIndex = nextArrowIndex();
 			
@@ -151,13 +141,13 @@ package screens
 			
 			arrowArray.push(newArrow);
 			
-			//Recalcular tiempo para el spawn de la siguiente flecha y reiniciar timer
-			timer.delay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax - datosNivel.TimeSpawnMin + 1)) + datosNivel.TimeSpawnMin; // Random*(max-min+1)+min
-			timer.reset();
-			timer.start();
+			//Recalcular tiempo para el spawn de la siguiente flecha
+			//Calcular tiempo random de spawn de la siguiente flecha
+			nextArrowDelay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax*10 - datosNivel.TimeSpawnMin*10 + 1)) + datosNivel.TimeSpawnMin*10;
+			nextArrowDelay /= 10
 		}
 		
-		//Calcula el índice de la príxima flecha, este índice determinará el tipo de flecha.
+		//Calcula el índice de la próxima flecha, este índice determinará el tipo de flecha.
 		private function nextArrowIndex():int
 		{
 			var prob:int = Math.floor(Math.random() * (100 - 0 + 1));
@@ -178,72 +168,98 @@ package screens
 		
 		private function onGameTick(e:Event):void 
 		{
-			//Toda la lógica aquí
-			
-			for (var i:int = 0; i < arrowArray.length; ++i)
+			//Condiciones de victoria
+			if (victoryType == "time")
 			{
-				if (arrowArray[i].Status == Arrow.DESTROY)
+				if (int(tiempoTrascurrido / 60) == datosNivel.TiempoVictoria || soldierArray.length == 0)
 				{
-					timer.removeEventListener(TimerEvent.TIMER, spawnArrow);
+					this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+				}
+			}
+			
+			//Toda la lógica aquí
+			tiempoTrascurrido += 1;
+			arrowTimer += 1;
+			
+			if (arrowTimer / 60 > nextArrowDelay)
+			{
+				spawnArrow();
+				arrowTimer = 0;
+			}
+			
+			//trace(int(tiempoTrascurrido / 60));
+			
+			//Mover flechas y comprobar sus estados (romper con el dedo, colisiones con plataformas, etc)
+			for (var a:int = 0; a < arrowArray.length; ++a)
+			{
+				if (arrowArray[a].Status == Arrow.DESTROY)
+				{
+					trace("Flecha de tipo " + arrowArray[a].Tipo + " destruida.");
+					a = deleteArrow(a);
 					
-					var aux:Arrow = arrowArray[i];
-					arrowArray[i] = arrowArray[arrowArray.length - 1];
-					arrowArray[arrowArray.length - 1] = aux;
-					
-					trace("Flecha de tipo " + aux.Tipo + " destruida.");
-					
-					aux.destroy();
-					
-					this.removeChild(arrowArray.pop());
-					--i;
-					
-					timer.addEventListener(TimerEvent.TIMER, spawnArrow);
 				}
 				else
 				{
-					arrowArray[i].y += arrowArray[i].Velocidad;
+					arrowArray[a].y += arrowArray[a].Velocidad;
 					
 					//Si está fuera del escenario, borrar
-					if (arrowArray[i].y > stage.stageHeight)
+					if (arrowArray[a].y > stage.stageHeight)
 					{
-						var aux:Arrow = arrowArray[i];
-						arrowArray[i] = arrowArray[arrowArray.length - 1];
-						arrowArray[arrowArray.length - 1] = aux;
-						
-						aux.destroy();
-						
-						this.removeChild(arrowArray.pop());
-						--i;
+						a = deleteArrow(a);
 					}
 					else //Si no, se comprueban las colisiones
 					{
 						//PLATAFORMAS
-						for each(var platf:Plataforma in soldierArray)
+						for (var s:int = 0; s < soldierArray.length; ++s)
 						{
-							var puntaFlecha:Point = new Point(arrowArray[i].x + arrowArray[i].width / 2, arrowArray[i].y + arrowArray[i].height);
-							var center:Point = new Point(platf.getSoldadoXGlobal + platf.soldado.width / 2, platf.getSoldadoYGlobal + platf.soldado.height / 2);
-							var rad:Number = platf.soldado.width / 2;
+							var puntaFlecha:Point = new Point(arrowArray[a].x + arrowArray[a].width / 2, arrowArray[a].y + arrowArray[a].height);
+							var center:Point = new Point(soldierArray[s].SoldierGlobalX + soldierArray[s].SoldierWidth / 2, soldierArray[s].SoldierGlobalY + soldierArray[s].SoldierHeight / 2);
+							var rad:Number = soldierArray[s].SoldierWidth / 2;
 							
 							var dist:Number = Point.distance(center, puntaFlecha);
 							
 							if (dist < rad)
 							{
-								platf.soldado.reduceArmor();
+								//Si el soldado tiene armadura de nivel 3 (contra el fuego) no se le reducirá.
+								if (!(soldierArray[s].SoldierArmor == 3 && arrowArray[a].Tipo == "fire"))
+								{
+									soldierArray[s].reduceSoldierArmor();
+									
+									if (soldierArray[s].SoldierArmor == 0)
+										deleteSoldier(s);
+								}
 								
-								var aux:Arrow = arrowArray[i]
-								arrowArray[i] = arrowArray[arrowArray.length - 1];
-								arrowArray[arrowArray.length - 1] = aux;
+								deleteArrow(a);
 								
-								aux.destroy();
-								
-								this.removeChild(arrowArray.pop());
-								--i;
+								//Dejar de comprobar los soldados (se ha borrado la flecha al colisionar)
 								break;
 							}
 						}
 					}
 				}
 			}
+		}
+		
+		private function deleteArrow(index:int):int
+		{
+			var aux:Arrow = arrowArray[index];
+			arrowArray[index] = arrowArray[arrowArray.length - 1];
+			arrowArray[arrowArray.length - 1] = aux;
+			
+			aux.destroy();
+			
+			this.removeChild(arrowArray.pop());
+			
+			return --index;
+		}
+		
+		private function deleteSoldier(index:int):void
+		{
+			var aux:Plataforma = soldierArray[index];
+			soldierArray[index] = soldierArray[soldierArray.length - 1];
+			soldierArray[soldierArray.length - 1] = aux;
+			
+			soldierArray.pop();
 		}
 	}
 }

@@ -52,7 +52,7 @@ package screens
 				
 				//lock temporal
 				var lock:Boolean = false;
-				if (attr[s] > 1) 
+				if (attr[s] > 2)
 				{
 					lock = true;
 				}

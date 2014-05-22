@@ -10,9 +10,9 @@ package utils
 	
 	public class VentanaNiveles extends Sprite 
 	{
-		
 		private var numeroNivel:TextField;
-
+		private var descrip:TextField;
+		
 		private var selector:Image;
 		private var stars:Image;
 		private var negro:Image;
@@ -35,10 +35,14 @@ package utils
 			closeBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Atras"));
 			playBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Start"));
 			selector = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Selector_" + type));
-			
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
-			numeroNivel = new TextField(250, 100,"NiVeL " + String(numLvl) , Assets.getFont("Banderas").name, 60, 0xffffff);
+			numeroNivel = new TextField(250, 100, "NiVeL " + numLvl , Assets.getFont("Banderas").name, 60, 0xffffff);
+			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Banderas").name, 30, 0xffffff);
+			
+			if(victory == "time")
+				descrip.text = "¡Aguanta hasta que el tiempo termine con la mayor cantidad de soldados!";
+			
 			
 			//Posiciones
 			selector.x = stage.stageWidth / 2 - selector.width / 2;
@@ -52,6 +56,12 @@ package utils
 			numeroNivel.x = selector.x + selector.width / 2 - numeroNivel.width / 2;
 			numeroNivel.y = selector.y + 40;
 			
+			stars.x = selector.x + selector.width / 2 - stars.width / 2;
+			stars.y = numeroNivel.y + numeroNivel.height - 20;
+			
+			descrip.x = selector.x + selector.width / 2 - descrip.width / 2;
+			descrip.y = stars.y + stars.height + 20;
+			
 			negro.width = stage.stageWidth;
 			negro.height = stage.stageHeight;
 			negro.alpha = 0.5;
@@ -59,11 +69,12 @@ package utils
 			this.addChild(negro);
 			
 			this.addChild(selector);
-			this.addChild(numeroNivel)
+			this.addChild(numeroNivel);
+			this.addChild(descrip);
 			
 			this.addChild(closeBtn);
 			this.addChild(playBtn);
-			//this.addChild(stars);
+			this.addChild(stars);
 			
 			this.addEventListener(Event.TRIGGERED, buttonClick);
 		}

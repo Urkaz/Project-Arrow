@@ -20,9 +20,6 @@ package utils
 		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
 		public static const nivel0:Class;
 		
-		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
-		public static const nivel1:Class;
-		
 		[Embed(source="../../assets/levels/LevelList.xml", mimeType="application/octet-stream")]
 		public static const levelList:Class;
 		

@@ -9,7 +9,7 @@ package objects
 	public class Soldado extends Sprite 
 	{
 		private var imgSoldier:Image;
-		private var armor:int;
+		public var armor:int;
 		
 		public function Soldado(x:Number, armorInit:int)
 		{

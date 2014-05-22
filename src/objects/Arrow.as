@@ -101,8 +101,8 @@ package objects
 				particles.stop();
 				
 				this.removeChild(particles);
-				this.removeChild(flecha);
 			}
+			this.removeChild(flecha);
 		}
 	}
 }

@@ -16,7 +16,7 @@ package objects
 		private var imgPlatIzq:Image;
 		private var imgPlatDer:Image;
 		private var imgPlatMedio:Image;
-		public var soldado:Soldado;
+		private var soldado:Soldado;
 		
 		public function Plataforma(x:Number, y:Number, ancho:int, soldierArmor:int) 
 		{
@@ -31,16 +31,38 @@ package objects
 			createPlatformArt();
 		}
 		
-		public function get getSoldadoXGlobal():int
+		//HELPERS/GETTERS/SETTERS
+		public function reduceSoldierArmor():void
+		{
+			soldado.reduceArmor();
+		}
+		
+		public function get SoldierGlobalX():int
 		{
 			return x + soldado.x;
 		}
 		
-		public function get getSoldadoYGlobal():int
+		public function get SoldierGlobalY():int
 		{
 			return y + soldado.y;
 		}
 		
+		public function get SoldierHeight():int
+		{
+			return soldado.height;
+		}
+		
+		public function get SoldierWidth():int
+		{
+			return soldado.width;
+		}
+		
+		public function get SoldierArmor():int
+		{
+			return soldado.armor;
+		}
+		
+		//FUNCIONES
 		private function onTouch(e:TouchEvent):void
 		{
 			var move:Touch = e.getTouch(this, TouchPhase.MOVED);

@@ -13,8 +13,9 @@ package utils
 		 *******************/
 		
 		private var numeroNivel:int = 0;
-		private var tiempo:int = 0; //Tiempo que hay que tardar
-		private var muertesMin:int = 0;
+		private var tiempo:int = 0;
+		private var vidas:int = 0;
+		private var salud:int = 0;
 		private var spawnMin:Number = 0;
 		private var spawnMax:Number = 0;
 		
@@ -47,19 +48,24 @@ package utils
 			return numeroNivel;
 		}
 		
-		public function get MuertesMin():int
+		public function get Vidas():int
 		{
-			return muertesMin;
+			return vidas;
+		}
+		
+		public function get TiempoVictoria():int
+		{
+			return tiempo;
 		}
 		
 		public function get TimeSpawnMin():int
 		{
-			return spawnMin*1000;
+			return spawnMin;
 		}
 		
 		public function get TimeSpawnMax():int
 		{
-			return spawnMax*1000;
+			return spawnMax;
 		}
 			
 		public function get Flechas():Array
@@ -121,10 +127,10 @@ package utils
 					readXML(new XML(new Assets.nivel0()));
 					break;
 				case 1:
-					readXML(new XML(new Assets.nivel1()));
+					readXML(new XML(new Assets.nivel0()));
 					break;
 				case 2:
-					//return new XML(new Assets.nivel2());
+					readXML(new XML(new Assets.nivel0()));
 					break;
 			}
 		}
@@ -140,7 +146,8 @@ package utils
 			//Leer las propiedades del nivel
 			numeroNivel = xmlLevel.caract.attribute("nivel");
 			tiempo = xmlLevel.caract.attribute("tiempo");
-			muertesMin = xmlLevel.caract.attribute("muertes");
+			vidas = xmlLevel.caract.attribute("vidas");
+			salud = xmlLevel.caract.attribute("health");
 			spawnMin = Number(xmlLevel.caract.attribute("spawnMin"));
 			spawnMax = Number(xmlLevel.caract.attribute("spawnMax"));
 			
