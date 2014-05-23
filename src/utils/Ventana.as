@@ -36,7 +36,7 @@ package utils
 			
 			//Posiciones
 			selector.x = stage.stageWidth / 2 - selector.width / 2;
-			selector.y = stage.stageHeight / 2 - selector.height / 2;
+			selector.y = stage.stageHeight / 2 - selector.height / 2 + 3;
 			
 			mainTxt.x = selector.x + selector.width / 2 - mainTxt.width / 2;
 			mainTxt.y = selector.y + 40;

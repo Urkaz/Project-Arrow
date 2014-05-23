@@ -36,6 +36,12 @@ package utils
 		[Embed(source="../../assets/fonts/banderas.fnt", mimeType="application/octet-stream")]
 		public static const BanderasXML:Class;
 		
+		[Embed(source="../../assets/fonts/textos.png")]
+		public static const Textos:Class;
+		
+		[Embed(source="../../assets/fonts/textos.fnt", mimeType="application/octet-stream")]
+		public static const TextosXML:Class;
+		
 		// IMAGENES //
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
 		public static const levelSelectXML:Class;
@@ -91,6 +97,10 @@ package utils
 					fontTexture = Texture.fromBitmap(new Banderas());
 					fontXML = XML(new BanderasXML());
 					break;
+				case "Textos":
+					fontTexture = Texture.fromBitmap(new Textos());
+					fontXML = XML(new TextosXML());
+					break;
 			}
 			
 			var font:BitmapFont = new BitmapFont(fontTexture, fontXML);
@@ -98,12 +108,6 @@ package utils
 			
 			return font;
 		}
-		
-		/*public static function getParticleSystem():PDParticleSystem
-		{
-			var ps:PDParticleSystem = new PDParticleSystem(XML(new ParticlePEX()), Texture.fromBitmap(new ParticleTexture()));
-			return ps;
-		}*/
 		
 		public static function getAtlas(name:String):TextureAtlas
 		{

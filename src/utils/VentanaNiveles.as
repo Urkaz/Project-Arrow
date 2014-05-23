@@ -24,7 +24,7 @@ package utils
 			playBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Start"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
-			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Banderas").name, 30, 0xffffff);
+			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Textos").name, 30, 0xffffff);
 			
 			mainTxt.text = "NiVeL " + numLvl;
 			

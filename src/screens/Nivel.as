@@ -43,11 +43,13 @@ package screens
 		private var datosNivel:DatosNivel;
 		
 		private var imgMuralla:Image;
+		private var barraImg:Image;
+		private var relojImg:Image;
+		private var vidasImg:Image;
 		
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
 		private var soldierArray:Array = new Array();
-
 		
 		private var levelNumber:int;
 		private var levelType:String;
@@ -67,6 +69,11 @@ package screens
 		
 		private var numPuntos:int = 0;
 		private var puntosTxt:TextField;
+		
+		private var combo:Array = new Array(Arrow.TYPE_NO_TYPE,Arrow.TYPE_NO_TYPE,Arrow.TYPE_NO_TYPE);
+		private var activeCombo:String;
+		private var indexC:int = 0;
+		
 		
 		/*******************
 		 * Constructor
@@ -97,10 +104,14 @@ package screens
 		{
 			restanteInicioTxt = new TextField(300, 300, String(3), Assets.getFont("FontLevel").name, 100, 0xffffff);
 			imgMuralla = new Image(Assets.getAtlas("gameSprite").getTexture("Muralla_" + levelType));
-			tiempoTxt = new TextField(50, 50, "0:00", Assets.getFont("Banderas").name, 20, 0xffffff);
-			vidasTxt = new TextField(50, 50, "Vidas: " + numVidas, Assets.getFont("Banderas").name, 20, 0xffffff);
 			
-			puntosTxt = new TextField(50, 50, "0000", Assets.getFont("Banderas").name, 20, 0xffffff);
+			barraImg = new Image(Assets.getAtlas("gameSprite").getTexture("Barra"));
+			vidasImg = new Image(Assets.getAtlas("gameSprite").getTexture("Corazon"));
+			relojImg = new Image(Assets.getAtlas("gameSprite").getTexture("Reloj"));
+			
+			tiempoTxt = new TextField(50, 20, "0:00", Assets.getFont("Textos").name, 20, 0x000000);
+			vidasTxt = new TextField(50, 20, String(numVidas), Assets.getFont("Textos").name, 20, 0x000000);
+			puntosTxt = new TextField(50, 20, "0000", Assets.getFont("Textos").name, 20, 0x000000);
 			
 			//El tiempo en el modo de timepo se cuenta de forma inversa
 			if (victoryType == "time")
@@ -115,8 +126,16 @@ package screens
 			}
 			
 			tiempoTxt.x = stage.stageWidth - tiempoTxt.width;
+			relojImg.x = tiempoTxt.x - relojImg.width/2;
+			
 			vidasTxt.x = stage.stageWidth - tiempoTxt.width - tiempoTxt.width;
+			vidasImg.x = vidasTxt.x
+			
 			puntosTxt.x = stage.x;
+			
+			barraImg.x = stage.x;
+			
+			tiempoTxt.y = puntosTxt.y = vidasTxt.y = stage.y - 3;
 			
 			this.addChild(imgMuralla);
 			
@@ -128,6 +147,10 @@ package screens
 				trace("\t x:"+datosNivel.Soldados[i][0] + ", y:" + datosNivel.Soldados[i][1] + ", a:" + datosNivel.Soldados[i][2] + ", p:" + datosNivel.Soldados[i][3]);
 				addChild(platf);
 			}
+			
+			this.addChild(barraImg);
+			this.addChild(vidasImg);
+			this.addChild(relojImg);
 			
 			this.addChild(vidasTxt);
 			this.addChild(tiempoTxt);
@@ -222,12 +245,12 @@ package screens
 		
 		private function onGameTick(e:Event):void 
 		{
-			vidasTxt.text = "Vidas: " + numVidas;
+			vidasTxt.text = String(numVidas);
 			
 			if (numPuntos < 10)
-				puntosTxt.text = min + "000" + numPuntos;
+				puntosTxt.text = "000" + numPuntos;
 			else if (numPuntos < 100)
-				puntosTxt.text = min + "00" + numPuntos;
+				puntosTxt.text = "00" + numPuntos;
 			
 			tiempoTrascurrido += 1;
 			arrowTimer += 1;
@@ -311,6 +334,14 @@ package screens
 					
 					a = deleteArrow(a);
 				}
+				else if (arrowArray[a].Status == Arrow.STATUS_GET)
+				{
+					checkCombos(arrowArray[a].Tipo);
+					
+					//trace(activeCombo);
+					
+					a = deleteArrow(a);
+				}
 				else
 				{
 					arrowArray[a].y += arrowArray[a].Velocidad;
@@ -382,6 +413,79 @@ package screens
 			Game.saveGame.setProperty(datosNivel.Numero + 1 + "_lock", false);
 			
 			Game.saveGame.flush();
+		}
+		
+		private function checkCombos(tipo:String):void
+		{
+			//Reiniciar si se ha hecho un combo
+			if(activeCombo != Arrow.TYPE_NO_TYPE)
+			{
+				activeCombo = Arrow.TYPE_NO_TYPE;
+				for (var k:int = 0; k < combo.length; k++)
+					combo[k] = Arrow.TYPE_NO_TYPE;
+			}
+			
+			//añadir flecha al array
+			combo[indexC] = tipo;
+			
+			//contadores
+			var normal:int = 0;
+			var fast:int = 0;
+			var fire:int = 0;
+			var elec:int = 0;
+			
+			//invertir array para definir el orden
+			var comboInv:Array = new Array();
+			for (var j:int = 0; j < combo.length; j++)
+				comboInv[j] = combo[2 - j];
+			
+			trace("--------------------------------");
+			
+			//Comprobar las 3 ultimas flechas recogidas
+			for (var i:int = 0; i < 3; i++)
+			{
+				trace((2 - indexC + i) % 3, comboInv[(2 - indexC + i) % 3]);
+				//Contar tipos de flechas
+				switch(comboInv[(2 - indexC + i) % 3])
+				{
+					case Arrow.TYPE_NORMAL:
+						++normal;
+						break;
+					case Arrow.TYPE_FIRE:
+						++fire;
+						break;
+					case Arrow.TYPE_FAST:
+						++fast;
+						break;
+					case Arrow.TYPE_ELECTRIC:
+						++elec;
+						break;
+				}
+				
+				//Combos
+				if (fire == 1 && elec == 1)
+				{
+					activeCombo = Arrow.TYPE_FIRE_ELEC;
+					break;
+				}
+				else if (fast == 1 && elec == 1)
+				{
+					activeCombo = Arrow.TYPE_ELECTRIC;
+					break;
+				}
+				else if (normal == 2 && fire == 1)
+				{
+					activeCombo = Arrow.TYPE_FIRE;
+				}
+				else if (normal == 2 && fast == 1)
+				{
+					activeCombo = Arrow.TYPE_FIRE;
+				}
+			}
+			trace("active:", activeCombo);
+			
+			//Cambiar al siguiente indice
+			indexC = ++indexC % 3;
 		}
 	}
 }

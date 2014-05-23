@@ -151,6 +151,17 @@
             <filename>Muralla_ground.png</filename>
             <filename>Muralla_normal.png</filename>
             <filename>Muralla_snow.png</filename>
+            <filename>Niebla.png</filename>
+            <filename>peligro.png</filename>
+            <filename>Reloj.png</filename>
+            <filename>Barra.png</filename>
+            <filename>Corazon.png</filename>
+            <filename>Flecha_Fuego.png</filename>
+            <filename>Flecha_Fuego_Rayo.png</filename>
+            <filename>Flecha_Hielo.png</filename>
+            <filename>Flecha_Rapida.png</filename>
+            <filename>Flecha_Rayo.png</filename>
+            <filename>Pausa.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

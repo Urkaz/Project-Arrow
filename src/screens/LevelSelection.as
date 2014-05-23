@@ -94,7 +94,7 @@ package screens
 				{
 					btnArray[i].Unlock();
 					btnArray[i].Update(int(Game.saveGame.data[i + "_stars"]));
-					trace(Game.saveGame.data[i + "_stars"]);
+					//trace(i+1, Game.saveGame.data[i + "_stars"]);
 				}
 				else
 					break;

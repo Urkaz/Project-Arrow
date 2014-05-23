@@ -32,7 +32,7 @@ package utils
 			 * 		si es nivel de victoria "time", el texto será "tiempo restante", si no "tiempo".
 			 */
 			
-			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Banderas").name, 30, 0xffffff);
+			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Textos").name, 30, 0xffffff);
 			
 			/*if(!gameOver)
 				mainTxt.text = "ViCtOrIa";

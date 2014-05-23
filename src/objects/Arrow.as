@@ -20,9 +20,12 @@ package objects
 		public static const TYPE_ELECTRIC:String = "elec";
 		public static const TYPE_ICE:String = "ice";
 		public static const TYPE_FAST:String = "fast";
+		public static const TYPE_FIRE_ELEC:String = "fireelec";
+		public static const TYPE_NO_TYPE:String = "notype";
 		
 		public static const STATUS_MOVING:String = "moving";
 		public static const STATUS_DESTROY:String = "destroy";
+		public static const STATUS_GET:String = "get";
 		
 		//Variables
 		private var tipoFlecha:String;
@@ -50,8 +53,10 @@ package objects
 			{
 				if (status == STATUS_MOVING)
 				{
-					var localPos:Point = touch.getLocation(this);
-					status = STATUS_DESTROY;
+					if (this.y+this.height < 530)
+						status = STATUS_DESTROY;
+					else
+						status = STATUS_GET;
 				}
 			}
 		}
