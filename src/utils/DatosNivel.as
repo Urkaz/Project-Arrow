@@ -63,6 +63,11 @@ package utils
 			return puntos;
 		}
 		
+		public function get SaludVictoria():int
+		{
+			return salud;
+		}
+		
 		public function get TimeSpawnMin():int
 		{
 			return spawnMin;

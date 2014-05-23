@@ -1,4 +1,4 @@
-package utils 
+package objects 
 {
 	import starling.display.Stage;
 	import starling.events.Event;
@@ -7,8 +7,11 @@ package utils
 	import starling.display.Button;
 	import starling.text.TextField;
 	import events.NavigationEvent;
+	import utils.Assets;
+	import utils.Textos;
+	import utils.VentanaBase;
 	
-	public class VentanaFinal extends Ventana
+	public class VentanaFinal extends VentanaBase
 	{
 		private var descrip:TextField;
 		
@@ -24,21 +27,27 @@ package utils
 			menuBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_menu"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
-			/* STATUS 1
-			 * Victoria por tiempo: No se muestra reloj
-			 * 
-			 * STATUS 2
-			 * Derrota por vidas perdidas
-			 * 		si es nivel de victoria "time", el texto será "tiempo restante", si no "tiempo".
-			 */
-			
 			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Textos").name, 30, 0xffffff);
 			
-			/*if(!gameOver)
-				mainTxt.text = "ViCtOrIa";
+			if(!gameOver)
+				mainTxt.text = Textos.FINAL_VICTORY;
 			else
-				mainTxt.text = "GaMe OvEr";*/
+				mainTxt.text = Textos.FINAL_GAMEOVER;
+			
+			/* si modo tiempo
+			 * 		no mostrar reloj
+			 * 		mostrar puntos
+			 * 		mostrar vidas
+			 *
+			 * si modo vidas
+			 * 		mostrar reloj
+			 * 		no mostrar vidas
+			 * 		mostrar puntos
+			 *
+			 */
 				
+			
+			
 			//Posiciones
 			
 			replayBtn.x = menuBtn.x = selector.x + selector.width / 2 - replayBtn.width / 2;

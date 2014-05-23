@@ -1,4 +1,4 @@
-package utils 
+package objects 
 {
 	import starling.display.Stage;
 	import starling.events.Event;
@@ -7,8 +7,11 @@ package utils
 	import starling.display.Button;
 	import starling.text.TextField;
 	import events.NavigationEvent;
+	import utils.Assets;
+	import utils.Textos;
+	import utils.VentanaBase;
 	
-	public class VentanaNiveles extends Ventana
+	public class VentanaNiveles extends VentanaBase
 	{
 		private var descrip:TextField;
 		
@@ -29,11 +32,11 @@ package utils
 			mainTxt.text = "NiVeL " + numLvl;
 			
 			if(victory == "time")
-				descrip.text = "¡Aguanta hasta que se acabe el tiempo! (Puntuacion, Vidas)";
+				descrip.text = Textos.STATS_TIME_DSECRIPTION;
 			else if(victory == "lives")
-				descrip.text = "¡Acaba con tu enemigo bajandole vida en el menor tiempo posible! (Puntuacion, Vidas)";
+				descrip.text = Textos.STATS_LIVES_DSECRIPTION;
 			else if(victory == "combo")
-				descrip.text = "¡Realiza los combos en el menor tiempo posible! (Puntuacion, Vidas)";
+				descrip.text = Textos.STATS_COMBO_DSECRIPTION;
 			
 			
 			//Posiciones

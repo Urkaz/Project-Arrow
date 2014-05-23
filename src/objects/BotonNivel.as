@@ -1,4 +1,4 @@
-package utils 
+package objects 
 {
 	import starling.display.Sprite;
 	import starling.display.MovieClip;

@@ -7,9 +7,10 @@ package
 	import starling.events.Event;
 	import screens.Home;
 	import screens.LevelSelection;
-	import utils.Ventana;
-	import utils.VentanaFinal;
-	import utils.VentanaNiveles;
+	import utils.Textos;
+	import utils.VentanaBase;
+	import objects.VentanaFinal;
+	import objects.VentanaNiveles;
 	import flash.net.SharedObject;
 	
 	public class Game extends Sprite 
@@ -18,7 +19,7 @@ package
 		private var HomeScreen:Home;
 		private var LevelsScreen:LevelSelection;
 		private var GameScreen:Nivel;
-		private var ventana:Ventana;
+		private var ventana:VentanaBase;
 		
 		public static var saveGame:SharedObject = SharedObject.getLocal("partida");
 		
@@ -43,6 +44,8 @@ package
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);
 			HomeScreen.initialize();
+			
+			Textos.selectLang("es");
 		}
 		
 		private function onChangeScreen(event:NavigationEvent):void

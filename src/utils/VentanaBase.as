@@ -10,7 +10,7 @@ package utils
 	import starling.text.TextField;
 	import events.NavigationEvent;
 	
-	public class Ventana extends Sprite 
+	public class VentanaBase extends Sprite 
 	{
 		protected var mainTxt:TextField;
 		
@@ -23,7 +23,7 @@ package utils
 		
 		private var tween:Tween;
 		
-		public function Ventana(numLvl:int, starsCount:int, type:String, victory:String, stage:Stage)
+		public function VentanaBase(numLvl:int, starsCount:int, type:String, victory:String, stage:Stage)
 		{
 			this.numLvl = numLvl;
 			this.type = type;

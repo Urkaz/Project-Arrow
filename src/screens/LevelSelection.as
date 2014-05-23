@@ -15,7 +15,7 @@ package screens
 	import feathers.layout.VerticalLayout;
 	import feathers.controls.ScrollBar;
 	import feathers.controls.Scroller;
-	import utils.BotonNivel;
+	import objects.BotonNivel;
 	
 	public class LevelSelection extends Sprite 
 	{

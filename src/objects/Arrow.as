@@ -20,7 +20,13 @@ package objects
 		public static const TYPE_ELECTRIC:String = "elec";
 		public static const TYPE_ICE:String = "ice";
 		public static const TYPE_FAST:String = "fast";
-		public static const TYPE_FIRE_ELEC:String = "fireelec";
+		
+		public static const TYPE_C_FIRE_ELEC:String = "c_fireelec";
+		public static const TYPE_C_FAST:String = "c_fast";
+		public static const TYPE_C_FIRE:String = "c_fire";
+		public static const TYPE_C_ELECTRIC:String = "c_elec";
+		public static const TYPE_C_FIRE_ICE:String = "c_fireice";
+		
 		public static const TYPE_NO_TYPE:String = "notype";
 		
 		public static const STATUS_MOVING:String = "moving";

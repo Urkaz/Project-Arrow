@@ -6,7 +6,7 @@
 	-->
 	<level num="0" type="normal" victory="time"/>
 	<level num="1" type="snow" victory="lives"/>
-	<level num="2" type="normal" victory="combo"/>
+	<level num="2" type="ground" victory="combo"/>
 	<level num="3" type="ground" victory="combo"/>
 	<level num="4" type="normal" victory="lives"/>
 	<level num="5" type="normal" victory="combo"/>
