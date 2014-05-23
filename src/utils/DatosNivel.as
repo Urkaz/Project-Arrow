@@ -83,7 +83,7 @@ package utils
 			return new Array(arrayFlechas, arrayFlechasProb, arrayFlechasVel);
 		}
 			
-		public function get Victoria():Array
+		public function get CombosVictoria():Array
 		{
 			return arrayVictoria;
 		}
@@ -185,6 +185,7 @@ package utils
 			attr = xmlLevel.victory.attributes();
 			for (var v:int = 0; v < attr.length(); v = v+2)
 			{
+				//tipo, num
 				var condicion:Array = new Array(attr[v], int(attr[v + 1]));
 				arrayVictoria.push(condicion);
 			}

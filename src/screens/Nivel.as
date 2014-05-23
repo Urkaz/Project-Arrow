@@ -13,22 +13,24 @@ package screens
 	import utils.Assets;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
+	import starling.utils.Color;
 	
 	/*
+	 * CONDICIONES DE VICTORIA
 	 * Tiempo
-	 * 1- pasarse el nivel
-	 * 2- puntuacion
-	 * 3- perfecto (vidas)
+	 * 1- Completar el nivel
+	 * 2- Puntuacion mínima
+	 * 3- Sin morir
 	 * 
 	 * Vida
-	 * 1- Pasarte el nivel
-	 * 2- Puntuación
-	 * 3- Tiempo min (x segundos)
+	 * 1- Completar el nivel
+	 * 2- Puntuacion mínima
+	 * 3- Tiempo mínimo para conseguir objetivo
 	 * 
 	 * Combos
-	 * 1- pasarlo
-	 * 2- sin morir
-	 * 3- tiempo y puntos
+	 * 1- Completar el nivel
+	 * 2- Sin morir
+	 * 3- Tiempo mínimo para conseguir objetivo y puntuacion mínima
 	 * 
 	
 	
@@ -78,7 +80,12 @@ package screens
 		private var activeCombo:String;
 		private var indexCombo:int = 0;
 		
+		private var comboVictory:Array;
+		private var comboInterfaz:Array = new Array();
+		
 		private var starEarned:int = 1;
+		
+		private var interfaz:Sprite = new Sprite();
 		
 		/*******************
 		 * Constructor
@@ -93,6 +100,9 @@ package screens
 			victoryType = victory;
 			numVidas = datosNivel.Vidas;
 			health = datosNivel.SaludVictoria;
+			
+			if (victoryType == "combo")
+				comboVictory = datosNivel.CombosVictoria;
 			
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
 		}
@@ -132,7 +142,7 @@ package screens
 			tiempoTxt.y = puntosTxt.y = vidasTxt.y = stage.y - 3;
 			
 			this.addChild(imgMuralla);
-			this.addChild(barraImg);
+			interfaz.addChild(barraImg);
 			
 			//El tiempo en el modo de timepo se cuenta de forma inversa
 			if (victoryType == "time")
@@ -147,7 +157,6 @@ package screens
 			}
 			else if (victoryType == "lives")
 			{
-				trace(victoryType);
 				healthTxt = new TextField(50, 20, String(health), Assets.getFont("Textos").name, 20, 0x000000);
 				healthImg = new Image(Assets.getAtlas("gameSprite").getTexture("Corazon"));
 				
@@ -155,8 +164,35 @@ package screens
 				healthImg.x = puntosTxt.x + puntosTxt.width + 30;
 				healthTxt.x = healthImg.x + healthImg.width - 10;
 				
-				this.addChild(healthImg);
-				this.addChild(healthTxt);
+				interfaz.addChild(healthImg);
+				interfaz.addChild(healthTxt);
+			}
+			else if (victoryType == "combo")
+			{
+				for (var j:int = 0; j < comboVictory.length; j++)
+				{
+					var miniIcon:Image = new Image(Assets.getAtlas("gameSprite").getTexture("Flecha_" + comboVictory[j][0]));
+					if (comboVictory[j][0] == Arrow.TYPE_C_FIRE)
+						miniIcon.color = Color.RED
+					else if (comboVictory[j][0] == Arrow.TYPE_C_ELECTRIC)
+						miniIcon.color = Color.YELLOW;
+					else if (comboVictory[j][0] == Arrow.TYPE_C_FAST)
+						miniIcon.color = Color.PURPLE;
+					else if (comboVictory[j][0] == Arrow.TYPE_C_FIRE_ICE)
+						miniIcon.color = Color.AQUA;
+					
+					var textCombo:TextField = new TextField(20, 20, comboVictory[j][1], Assets.getFont("Textos").name, 20, 0x000000);
+					
+					comboInterfaz.push(new Array(miniIcon,textCombo,comboVictory[j][1]));
+					
+					miniIcon.x = puntosTxt.x + puntosTxt.width + 30 + 40 * j;
+					textCombo.x = miniIcon.x + miniIcon.width - textCombo.width / 2 + 5;
+					
+					textCombo.y = tiempoTxt.y;
+					
+					interfaz.addChild(miniIcon);
+					interfaz.addChild(textCombo);
+				}
 			}
 			
 			//PLATAFORMAS
@@ -168,12 +204,14 @@ package screens
 				addChild(platf);
 			}
 			
-			this.addChild(vidasImg);
-			this.addChild(relojImg);
+			interfaz.addChild(vidasImg);
+			interfaz.addChild(relojImg);
 			
-			this.addChild(vidasTxt);
-			this.addChild(tiempoTxt);
-			this.addChild(puntosTxt);
+			interfaz.addChild(vidasTxt);
+			interfaz.addChild(tiempoTxt);
+			interfaz.addChild(puntosTxt);
+			
+			this.addChild(interfaz);
 			this.addChild(restanteInicioTxt);
 		}
 		
@@ -234,6 +272,8 @@ package screens
 			var newArrow:Arrow = new Arrow(datosNivel.Flechas[0][arrowIndex], true, datosNivel.Flechas[2][arrowIndex]);
 			
 			this.addChild(newArrow);
+			
+			this.swapChildren(newArrow, interfaz);
 			
 			arrowArray.push(newArrow);
 			
@@ -348,13 +388,46 @@ package screens
 						this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType, go: false }, true));
 					}
 				}
-				else if (victoryType == "combos")
+				//MODO combos
+				else if (victoryType == "combo")
 				{
+					//Restar y comprobar combos
+					var victoryCheck:int = 0;
+					for (var i:int = 0; i < comboVictory.length; i++)
+					{
+						//Restar combos
+						if (activeCombo == comboVictory[i][0])
+						{
+							if (comboInterfaz[i][2] > 0)
+							{
+								comboInterfaz[i][1].text = --comboInterfaz[i][2];
+							}
+						}
+						
+						if (comboInterfaz[i][2] == 0)
+								++victoryCheck;
+					}
 					
+					//Condicion de victoria
+					if (victoryCheck == comboVictory.length)
+					{
+						//Calcular estrellas conseguidas
+						if (numVidas == datosNivel.Vidas)
+							++starEarned;
+						if (numPuntos > datosNivel.PuntosVictoria && tiempoTrascurrido < datosNivel.TiempoVictoria * 60)
+							++starEarned;
+						
+						//Guardar partida
+						save(starEarned);
+						//Detener el juego y abrir ventana final
+						this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+						this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType, go: false }, true));
+					}
 				}
 			}
 			
 			//Lógica general para todos los modos de juego
+			resetCombos();
 			
 			//Spawn de flechas
 			if (arrowTimer / 60 > nextArrowDelay)
@@ -374,13 +447,14 @@ package screens
 					
 					a = deleteArrow(a);
 				}
-				//Socada en el panel
+				//Tocada en el panel
 				else if (arrowArray[a].Status == Arrow.STATUS_GET)
 				{
+					//Combos
 					checkCombos(arrowArray[a].Tipo);
 					
+					//Puntos
 					calcularPuntos(arrowArray[a].Tipo, 2);
-					
 					calcularPuntos(activeCombo);
 					
 					a = deleteArrow(a);
@@ -458,15 +532,20 @@ package screens
 			Game.saveGame.flush();
 		}
 		
-		private function checkCombos(tipo:String):void
+		private function resetCombos():void
 		{
-			//Reiniciar si se ha hecho un combo
 			if(activeCombo != Arrow.TYPE_NO_TYPE)
 			{
+				trace("resetCombos");
 				activeCombo = Arrow.TYPE_NO_TYPE;
 				for (var k:int = 0; k < combo.length; k++)
 					combo[k] = Arrow.TYPE_NO_TYPE;
 			}
+		}
+		
+		private function checkCombos(tipo:String):void
+		{
+			resetCombos();
 			
 			//añadir flecha al array
 			combo[indexCombo] = tipo;
@@ -531,7 +610,7 @@ package screens
 				}
 				else if (normal == 2 && fast == 1)
 				{
-					activeCombo = Arrow.TYPE_C_FIRE;
+					activeCombo = Arrow.TYPE_C_FAST;
 				}
 			}
 			trace("active:", activeCombo);
@@ -552,7 +631,6 @@ package screens
 				case Arrow.TYPE_ELECTRIC:
 				case Arrow.TYPE_FIRE:
 				case Arrow.TYPE_ICE:
-				case Arrow.TYPE_PLANT:
 					numPuntos += 5 * multip;
 					break;
 				case Arrow.TYPE_FAST:

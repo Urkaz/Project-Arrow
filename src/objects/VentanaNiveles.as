@@ -29,7 +29,7 @@ package objects
 			
 			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Textos").name, 30, 0xffffff);
 			
-			mainTxt.text = "NiVeL " + numLvl;
+			mainTxt.text = Textos.STATS_LEVEL + numLvl;
 			
 			if(victory == "time")
 				descrip.text = Textos.STATS_TIME_DSECRIPTION;

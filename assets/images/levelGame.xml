@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:fae11c1e269bd886889a0f5bb8a8fb6f$ -->
+<!-- $TexturePacker:SmartUpdate:9c0249439e44eba27c8424dd74cf0a96$ -->
 <TextureAtlas imagePath="levelGame.png">
     <SubTexture name="Barra" x="1" y="896" width="360" height="18"/>
     <SubTexture name="Corazon" x="72" y="783" width="21" height="18"/>
     <SubTexture name="Flecha" x="1" y="722" width="13" height="64"/>
-    <SubTexture name="Flecha_Fuego" x="66" y="820" width="21" height="18"/>
-    <SubTexture name="Flecha_Fuego_Rayo" x="44" y="877" width="21" height="18"/>
-    <SubTexture name="Flecha_Hielo" x="44" y="858" width="21" height="18"/>
-    <SubTexture name="Flecha_Rapida" x="44" y="839" width="21" height="18"/>
-    <SubTexture name="Flecha_Rayo" x="44" y="820" width="21" height="18"/>
+    <SubTexture name="Flecha_c_elec" x="66" y="820" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fast" x="44" y="877" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fire" x="44" y="858" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fireelec" x="44" y="839" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fireice" x="44" y="820" width="21" height="18"/>
     <SubTexture name="Muralla_ground" x="723" y="1" width="360" height="640"/>
     <SubTexture name="Muralla_normal" x="362" y="1" width="360" height="640"/>
     <SubTexture name="Muralla_snow" x="1" y="1" width="360" height="640"/>

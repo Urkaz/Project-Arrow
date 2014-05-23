@@ -82,7 +82,7 @@
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
-                <enum type="AlgorithmMaxRectsSettings::Heuristic">Best</enum>
+                <enum type="AlgorithmMaxRectsSettings::Heuristic">AreaFit</enum>
             </struct>
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
@@ -156,12 +156,12 @@
             <filename>Reloj.png</filename>
             <filename>Barra.png</filename>
             <filename>Corazon.png</filename>
-            <filename>Flecha_Fuego.png</filename>
-            <filename>Flecha_Fuego_Rayo.png</filename>
-            <filename>Flecha_Hielo.png</filename>
-            <filename>Flecha_Rapida.png</filename>
-            <filename>Flecha_Rayo.png</filename>
             <filename>Pausa.png</filename>
+            <filename>Flecha_c_elec.png</filename>
+            <filename>Flecha_c_fast.png</filename>
+            <filename>Flecha_c_fire.png</filename>
+            <filename>Flecha_c_fireelec.png</filename>
+            <filename>Flecha_c_fireice.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
