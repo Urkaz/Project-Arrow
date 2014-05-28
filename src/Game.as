@@ -25,10 +25,7 @@ package
 		
 		public function Game() 
 		{
-			//saveGame.clear();
-			
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
-			
 		}
 		
 		public function onAddedToStage(event:Event):void
@@ -71,12 +68,17 @@ package
 					this.addChild(GameScreen);
 					GameScreen.initialize();
 					break;
-				case "menu":
+				case "menu": //Del nivel al selector de niveles
 					GameScreen.exitDestroy();
 					this.removeChild(GameScreen);
 					GameScreen = null;
 					
 					LevelsScreen.initialize();
+					
+					break;
+				case "home": //Del selector de niveles al home
+					LevelsScreen.disposeTemporarily();
+					HomeScreen.initialize();
 					
 					break;
 			}

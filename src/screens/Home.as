@@ -12,8 +12,9 @@ package screens
 	{
 		
 		private var boton_playHome:Button;
-		private var fondo_home:Image;
+		private var boton_borrarPartida:Button;
 		
+		private var fondo_home:Image;
 		
 		public function Home() 
 		{
@@ -33,10 +34,17 @@ package screens
 			this.addChild(fondo_home)
 			
 			boton_playHome = new Button(Assets.getTexture("PlayInicialBtn"));
-			this.addChild(boton_playHome)
+			boton_borrarPartida = new Button(Assets.getTexture("PlayInicialBtn"));
 			
 			boton_playHome.x = stage.stageWidth / 2 - boton_playHome.width / 2;
 			boton_playHome.y = 350;
+			
+			boton_borrarPartida.height = 40;
+			boton_borrarPartida.x = boton_playHome.x;
+			boton_borrarPartida.y = stage.stageHeight - boton_borrarPartida.height;
+			
+			this.addChild(boton_playHome);
+			this.addChild(boton_borrarPartida);
 			
 			this.addEventListener(Event.TRIGGERED, onMainMenuClick);
 		}
@@ -47,6 +55,12 @@ package screens
 			if((buttonClicked as Button) == boton_playHome)
 			{
 				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "play"}, true));
+			}
+			if ((buttonClicked as Button) == boton_borrarPartida)
+			{
+				Game.saveGame.clear();
+				Game.saveGame.setProperty(0 + "_lock", false);
+				trace("Clase Home:", "CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
 			}
 		}
 		

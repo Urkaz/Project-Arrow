@@ -22,6 +22,7 @@ package screens
 		private var container:ScrollContainer;
 		private var layout:VerticalLayout;
 		private var btnArray:Array = new Array();
+		private var atrasBtn:Button;
 		
 		public function LevelSelection() 
 		{
@@ -43,9 +44,9 @@ package screens
 			//SCROLL
 			container = new ScrollContainer();
 			container.hasElasticEdges = false;
-			this.addChild(container);
 			
 			//Desbloquear primer nivel
+			trace("Clase LevelSelection:", "CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
 			Game.saveGame.setProperty(0 + "_lock", false);
 			
 			attr = levelList.level.attributes();
@@ -67,12 +68,31 @@ package screens
 			//container.scrollToPosition(0,1000);
 			container.padding = 0;
 			container.width = stage.stageWidth;
-			container.height = stage.stageHeight;
- 			
-			//Gap es la separación.
+			container.height = stage.stageHeight - 40;
+			
 			layout = new VerticalLayout();
-			//layout.gap = 0;
 			container.layout = layout;
+			
+			//Boton para volver al home
+			atrasBtn = new Button(Assets.getTexture("PlayInicialBtn"));
+			atrasBtn.height = 40;
+			atrasBtn.width = stage.stageWidth;
+			atrasBtn.x = stage.stageWidth / 2 - atrasBtn.width / 2;
+			atrasBtn.y = stage.stageHeight - atrasBtn.height;
+			
+			this.addChild(container);
+			this.addChild(atrasBtn);
+			
+			this.addEventListener(Event.TRIGGERED, buttonClick);
+		}
+		
+		private function buttonClick(e:Event):void 
+		{
+			var buttonClicked:Button = e.target as Button;
+			if((buttonClicked as Button) == atrasBtn)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "home"}, true));
+			}
 		}
 		
 		public function disposeTemporarily():void
@@ -97,7 +117,7 @@ package screens
 					//trace(i+1, Game.saveGame.data[i + "_stars"]);
 				}
 				else
-					break;
+					btnArray[i].Lock();
 			}
 		}
 	}

@@ -31,8 +31,7 @@ package objects
 			this.victoryType = victoryType;
 			this.starsCount = starsCount;
 			
-			bg = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Candado_"+lvlType));
-			this.addChild(bg);
+			Lock();
 		}
 		
 		private function onTouch(e:TouchEvent):void 
@@ -72,6 +71,20 @@ package objects
 			this.addChild(numNivel);
 			
 			this.addEventListener(TouchEvent.TOUCH, onTouch);
+		}
+		
+		public function Lock():void
+		{
+			this.removeChild(bg);
+			this.removeChild(victory);
+			this.removeChild(stars);
+			this.removeChild(numNivel);
+			
+			victory = stars = null;
+			numNivel = null;
+			
+			bg = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Candado_" + lvlType));
+			this.addChild(bg);
 		}
 		
 		public function Update(starsCount:int):void
