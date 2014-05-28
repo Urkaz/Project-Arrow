@@ -162,6 +162,7 @@
             <filename>Flecha_c_fire.png</filename>
             <filename>Flecha_c_fireelec.png</filename>
             <filename>Flecha_c_fireice.png</filename>
+            <filename>Salud_Muralla.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

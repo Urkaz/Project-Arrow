@@ -5,6 +5,7 @@ package screens
 	import objects.Arrow;
 	import objects.Plataforma;
 	import objects.Soldado;
+	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.text.TextField;
@@ -85,6 +86,8 @@ package screens
 		
 		private var starEarned:int = 1;
 		
+		private var pausaBtn:Button;
+		
 		private var interfaz:Sprite = new Sprite();
 		
 		/*******************
@@ -120,26 +123,30 @@ package screens
 		{
 			restanteInicioTxt = new TextField(300, 300, String(3), Assets.getFont("FontLevel").name, 100, 0xffffff);
 			imgMuralla = new Image(Assets.getAtlas("gameSprite").getTexture("Muralla_" + levelType));
+			pausaBtn = new Button(Assets.getAtlas("gameSprite").getTexture("Pausa"));
 			
 			barraImg = new Image(Assets.getAtlas("gameSprite").getTexture("Barra"));
 			vidasImg = new Image(Assets.getAtlas("gameSprite").getTexture("Corazon"));
 			relojImg = new Image(Assets.getAtlas("gameSprite").getTexture("Reloj"));
 			
-			tiempoTxt = new TextField(50, 20, "0:00", Assets.getFont("Textos").name, 20, 0x000000);
-			vidasTxt = new TextField(50, 20, String(numVidas), Assets.getFont("Textos").name, 20, 0x000000);
-			puntosTxt = new TextField(50, 20, "0000", Assets.getFont("Textos").name, 20, 0x000000);
+			tiempoTxt = new TextField(40, 20, "0:00", Assets.getFont("Textos").name, 20, 0x000000);
+			vidasTxt = new TextField(20, 20, String(numVidas), Assets.getFont("Textos").name, 20, 0x000000);
+			puntosTxt = new TextField(40, 20, "0000", Assets.getFont("Textos").name, 20, 0x000000);
 			
-			tiempoTxt.x = stage.stageWidth - tiempoTxt.width;
-			relojImg.x = tiempoTxt.x - relojImg.width/2;
+			pausaBtn.x = stage.stageWidth - pausaBtn.width + 2;
 			
-			vidasTxt.x = stage.stageWidth - tiempoTxt.width - tiempoTxt.width;
-			vidasImg.x = vidasTxt.x
+			tiempoTxt.x = pausaBtn.x - tiempoTxt.width;
+			relojImg.x = tiempoTxt.x - relojImg.width + 5;
+			
+			vidasTxt.x = relojImg.x - vidasTxt.width;
+			vidasImg.x = vidasTxt.x - vidasImg.width + 8;
 			
 			puntosTxt.x = stage.x;
 			
 			barraImg.x = stage.x;
 			
 			tiempoTxt.y = puntosTxt.y = vidasTxt.y = stage.y - 3;
+			pausaBtn.y = stage.y - 2;
 			
 			this.addChild(imgMuralla);
 			interfaz.addChild(barraImg);
@@ -158,7 +165,7 @@ package screens
 			else if (victoryType == "lives")
 			{
 				healthTxt = new TextField(50, 20, String(health), Assets.getFont("Textos").name, 20, 0x000000);
-				healthImg = new Image(Assets.getAtlas("gameSprite").getTexture("Corazon"));
+				healthImg = new Image(Assets.getAtlas("gameSprite").getTexture("Salud_Muralla"));
 				
 				healthTxt.y = tiempoTxt.y;
 				healthImg.x = puntosTxt.x + puntosTxt.width + 30;
@@ -185,7 +192,7 @@ package screens
 					
 					comboInterfaz.push(new Array(miniIcon,textCombo,comboVictory[j][1]));
 					
-					miniIcon.x = puntosTxt.x + puntosTxt.width + 30 + 40 * j;
+					miniIcon.x = puntosTxt.x + puntosTxt.width + 20 + 40 * j;
 					textCombo.x = miniIcon.x + miniIcon.width - textCombo.width / 2 + 5;
 					
 					textCombo.y = tiempoTxt.y;
@@ -203,6 +210,10 @@ package screens
 				trace("\t x:"+datosNivel.Soldados[i][0] + ", y:" + datosNivel.Soldados[i][1] + ", a:" + datosNivel.Soldados[i][2] + ", p:" + datosNivel.Soldados[i][3]);
 				addChild(platf);
 			}
+			
+			interfaz.addChild(pausaBtn);
+			
+			
 			
 			interfaz.addChild(vidasImg);
 			interfaz.addChild(relojImg);
@@ -304,6 +315,7 @@ package screens
 		
 		private function onGameTick(e:Event):void 
 		{
+			//Vidas y puntos
 			vidasTxt.text = String(numVidas);
 			
 			if (numPuntos < 10)
@@ -454,7 +466,8 @@ package screens
 					checkCombos(arrowArray[a].Tipo);
 					
 					//Puntos
-					calcularPuntos(arrowArray[a].Tipo, 2);
+					if(arrowArray[a].Tipo != Arrow.TYPE_PLANT)
+						calcularPuntos(arrowArray[a].Tipo, 2);
 					calcularPuntos(activeCombo);
 					
 					a = deleteArrow(a);
@@ -631,6 +644,7 @@ package screens
 				case Arrow.TYPE_ELECTRIC:
 				case Arrow.TYPE_FIRE:
 				case Arrow.TYPE_ICE:
+				case Arrow.TYPE_PLANT:
 					numPuntos += 5 * multip;
 					break;
 				case Arrow.TYPE_FAST:
