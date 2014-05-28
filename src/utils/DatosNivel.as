@@ -177,9 +177,9 @@ package utils
 				throw new Error("La suma de probabilidades de las flechas debe ser 100");
 			
 			//Leer las propiedades del panel
-			waterPanel = (xmlLevel.panel.(@type == "water").status == "true");
+			//waterPanel = (xmlLevel.panel.(@type == "water").status == "true");
 			fogPanel = (xmlLevel.panel.(@type == "fog").status == "true");
-			grassPanel = int(xmlLevel.panel.(@type == "grass").status);
+			//grassPanel = int(xmlLevel.panel.(@type == "grass").status);
 			
 			//Leer condiciones de victoria
 			attr = xmlLevel.victory.attributes();

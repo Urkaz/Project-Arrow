@@ -51,6 +51,8 @@ package screens
 		private var vidasImg:Image;
 		private var healthImg:Image;
 		
+		private var fogImg:Image;
+		
 		private var arrowIndex:int;
 		private var arrowArray:Array = new Array();
 		private var soldierArray:Array = new Array();
@@ -148,10 +150,23 @@ package screens
 			tiempoTxt.y = puntosTxt.y = vidasTxt.y = stage.y - 3;
 			pausaBtn.y = stage.y - 2;
 			
-			this.addChild(imgMuralla);
-			interfaz.addChild(barraImg);
 			
-			//El tiempo en el modo de timepo se cuenta de forma inversa
+			//Añadir la imagen de fondo
+			this.addChild(imgMuralla);
+			
+			//Niveles con niebla
+			if (datosNivel.isFogPanel)
+			{
+				fogImg = new Image(Assets.getAtlas("gameSprite").getTexture("Niebla"));
+				fogImg.y = barraImg.height;
+				fogImg.touchable = false;
+				this.addChild(fogImg);
+			}
+			
+			//INTERFAZ
+			interfaz.addChild(barraImg);
+
+			//El tiempo en el modo de tiempo se cuenta de forma inversa
 			if (victoryType == "time")
 			{
 				//Tiempo
@@ -200,6 +215,8 @@ package screens
 					interfaz.addChild(miniIcon);
 					interfaz.addChild(textCombo);
 				}
+				
+				
 			}
 			
 			//PLATAFORMAS
@@ -212,8 +229,6 @@ package screens
 			}
 			
 			interfaz.addChild(pausaBtn);
-			
-			
 			
 			interfaz.addChild(vidasImg);
 			interfaz.addChild(relojImg);
@@ -284,7 +299,10 @@ package screens
 			
 			this.addChild(newArrow);
 			
-			this.swapChildren(newArrow, interfaz);
+			this.swapChildren(newArrow, interfaz); //Poner la interfaz delante
+			if (datosNivel.isFogPanel) //Si hay niebla, ponerla delante
+				this.swapChildren(newArrow, fogImg);
+			
 			
 			arrowArray.push(newArrow);
 			

@@ -17,18 +17,18 @@
 	<arrow type="fast" prob="10" vel="3"/>
 	<arrow type="elec" prob="10" vel="1.5"/>
 	
-	<!--
-	grass y water no se usan
-	-->
 	<panel type="fog">
-		<status>false</status>
+		<status>true</status>
 	</panel>
+	<!--
+	NO SE USAN
 	<panel type="grass">
 		<status>2</status>
 	</panel>
 	<panel type="water">
 		<status>true</status>
 	</panel>
+	-->
 	
 	<!--
 	En el caso de que el nivel sea por combos, estos seran los tipos necesarios y la cantidad de cada uno

@@ -32,11 +32,11 @@ package objects
 			mainTxt.text = Textos.STATS_LEVEL + numLvl;
 			
 			if(victory == "time")
-				descrip.text = Textos.STATS_TIME_DSECRIPTION;
+				descrip.text = Textos.STATS_TIME_DESCRIPTION;
 			else if(victory == "lives")
-				descrip.text = Textos.STATS_LIVES_DSECRIPTION;
+				descrip.text = Textos.STATS_LIVES_DESCRIPTION;
 			else if(victory == "combo")
-				descrip.text = Textos.STATS_COMBO_DSECRIPTION;
+				descrip.text = Textos.STATS_COMBO_DESCRIPTION;
 			
 			
 			//Posiciones
