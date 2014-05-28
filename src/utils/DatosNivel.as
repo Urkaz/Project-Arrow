@@ -132,10 +132,10 @@ package utils
 					readXML(new XML(new Assets.nivel0()));
 					break;
 				case 1:
-					readXML(new XML(new Assets.nivel0()));
+					readXML(new XML(new Assets.nivel1()));
 					break;
 				case 2:
-					readXML(new XML(new Assets.nivel0()));
+					readXML(new XML(new Assets.nivel2()));
 					break;
 			}
 		}

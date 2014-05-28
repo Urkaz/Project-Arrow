@@ -25,7 +25,7 @@ package
 		
 		public function Game() 
 		{
-			saveGame.clear();
+			//saveGame.clear();
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage)
 			
@@ -37,13 +37,13 @@ package
 			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
 			this.addEventListener(events.NavigationEvent.POPUP_WINDOW, popUpWindow)
 			
-			LevelsScreen = new LevelSelection();
-			LevelsScreen.disposeTemporarily();
-			this.addChild(LevelsScreen);
-			
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);
 			HomeScreen.initialize();
+			
+			LevelsScreen = new LevelSelection();
+			LevelsScreen.disposeTemporarily();
+			this.addChild(LevelsScreen);
 			
 			Textos.selectLang("es");
 		}
@@ -61,6 +61,7 @@ package
 				case "level":
 					//Los params del evento CHANGE_SCREEN DE los niveles: { id: "level", lvl: x, type: lvlType, vic: victoryType }
 					this.removeChild(ventana);
+					if(GameScreen != null) GameScreen.exitDestroy(); //Destruir si ya habia un nivel creado
 					this.removeChild(GameScreen);
 					
 					LevelsScreen.disposeTemporarily();
@@ -71,8 +72,8 @@ package
 					GameScreen.initialize();
 					break;
 				case "menu":
+					GameScreen.exitDestroy();
 					this.removeChild(GameScreen);
-					
 					GameScreen = null;
 					
 					LevelsScreen.initialize();

@@ -80,7 +80,7 @@ package screens
 		private var healthTxt:TextField;
 		
 		private var combo:Array = new Array(Arrow.TYPE_NO_TYPE,Arrow.TYPE_NO_TYPE,Arrow.TYPE_NO_TYPE);
-		private var activeCombo:String;
+		private var activeCombo:String = Arrow.TYPE_NO_TYPE;
 		private var indexCombo:int = 0;
 		
 		private var comboVictory:Array;
@@ -224,7 +224,6 @@ package screens
 			{
 				var platf:Plataforma = new Plataforma(datosNivel.Soldados[i][0], datosNivel.Soldados[i][1], datosNivel.Soldados[i][3], datosNivel.Soldados[i][2]);
 				soldierArray.push(platf);
-				trace("\t x:"+datosNivel.Soldados[i][0] + ", y:" + datosNivel.Soldados[i][1] + ", a:" + datosNivel.Soldados[i][2] + ", p:" + datosNivel.Soldados[i][3]);
 				addChild(platf);
 			}
 			
@@ -680,6 +679,16 @@ package screens
 					numPuntos += 50;
 					health -= 40;
 					break;
+			}
+		}
+		
+		//Metodo a llamar cuando se vuelva al menú. Necesario para que se eliminen las partículas del juggler
+		public function exitDestroy():void
+		{
+			trace("exitDestroy");
+			for (var i:int = arrowArray.length-1; i > -1; i--)
+			{
+				deleteArrow(i);
 			}
 		}
 	}

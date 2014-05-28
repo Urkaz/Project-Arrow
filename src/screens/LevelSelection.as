@@ -47,8 +47,6 @@ package screens
 			
 			//Desbloquear primer nivel
 			Game.saveGame.setProperty(0 + "_lock", false);
-			Game.saveGame.setProperty(1 + "_lock", false);
-			Game.saveGame.setProperty(2 + "_lock", false);
 			
 			attr = levelList.level.attributes();
 			for (var s:int = 0; s < attr.length(); s = s+3)
@@ -84,6 +82,8 @@ package screens
 		
 		public function initialize():void
 		{
+			//No desbloquear el nivel 2 (no está disponible y logicamente da error)
+			Game.saveGame.setProperty(2 + "_lock", true);
 			
 			this.visible = true;
 			

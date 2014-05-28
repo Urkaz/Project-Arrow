@@ -17,11 +17,17 @@ package utils
 		private static var gameAtlas:Dictionary = new Dictionary();
 		
 		// NIVELES //
+		[Embed(source="../../assets/levels/LevelList.xml", mimeType="application/octet-stream")]
+		public static const levelList:Class;
+		
 		[Embed(source="../../assets/levels/TestLevel.xml", mimeType="application/octet-stream")]
 		public static const nivel0:Class;
 		
-		[Embed(source="../../assets/levels/LevelList.xml", mimeType="application/octet-stream")]
-		public static const levelList:Class;
+		[Embed(source="../../assets/levels/level1.xml", mimeType="application/octet-stream")]
+		public static const nivel1:Class;
+		
+		[Embed(source="../../assets/levels/level2.xml", mimeType="application/octet-stream")]
+		public static const nivel2:Class;
 		
 		// FUENTES //
 		[Embed(source="../../assets/fonts/font.png")]
