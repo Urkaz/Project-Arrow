@@ -64,6 +64,12 @@ package utils
 		[Embed(source="../../assets/images/PantallaInicial.png")]
 		public static const PantallaInicial:Class;
 		
+		[Embed(source="../../assets/images/volver_atras.png")]
+		public static const VolverAtras:Class;
+		
+		[Embed(source="../../assets/images/borrar.png")]
+		public static const Borrar:Class;
+		
 		[Embed(source="../../assets/images/PlayInicial.png")]
 		public static const PlayInicialBtn:Class;
 		

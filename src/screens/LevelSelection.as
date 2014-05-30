@@ -74,7 +74,7 @@ package screens
 			container.layout = layout;
 			
 			//Boton para volver al home
-			atrasBtn = new Button(Assets.getTexture("PlayInicialBtn"));
+			atrasBtn = new Button(Assets.getTexture("VolverAtras"));
 			atrasBtn.height = 40;
 			atrasBtn.width = stage.stageWidth;
 			atrasBtn.x = stage.stageWidth / 2 - atrasBtn.width / 2;

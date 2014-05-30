@@ -34,7 +34,7 @@ package screens
 			this.addChild(fondo_home)
 			
 			boton_playHome = new Button(Assets.getTexture("PlayInicialBtn"));
-			boton_borrarPartida = new Button(Assets.getTexture("PlayInicialBtn"));
+			boton_borrarPartida = new Button(Assets.getTexture("Borrar"));
 			
 			boton_playHome.x = stage.stageWidth / 2 - boton_playHome.width / 2;
 			boton_playHome.y = 350;
