@@ -2,9 +2,11 @@ package screens
 {
 	import events.NavigationEvent;
 	import flash.geom.Point;
+	import flash.ui.Keyboard;
 	import objects.Arrow;
 	import objects.Plataforma;
 	import objects.Soldado;
+	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -15,6 +17,8 @@ package screens
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.utils.Color;
+	import starling.events.KeyboardEvent;
+	
 	
 	/*
 	 * CONDICIONES DE VICTORIA
@@ -70,8 +74,12 @@ package screens
 		private var min:int
 		private var sec:int
 		
+		private var paused:Boolean = false;
+		
 		private var numVidas:int;
 		private var vidasTxt:TextField;
+		
+		private var pausaTxt:TextField;
 		
 		private var numPuntos:int = 0;
 		private var puntosTxt:TextField;
@@ -110,6 +118,7 @@ package screens
 				comboVictory = datosNivel.CombosVictoria;
 			
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
+			
 		}
 		
 		/*******************
@@ -150,6 +159,8 @@ package screens
 			tiempoTxt.y = puntosTxt.y = vidasTxt.y = stage.y - 3;
 			pausaBtn.y = stage.y - 2;
 			
+			//Pausar el juego
+			this.addEventListener(KeyboardEvent.KEY_DOWN, juegoPausado);
 			
 			//Añadir la imagen de fondo
 			this.addChild(imgMuralla);
@@ -560,6 +571,28 @@ package screens
 			Game.saveGame.setProperty(datosNivel.Numero + 1 + "_lock", false);
 			
 			Game.saveGame.flush();
+		}
+		
+		private function juegoPausado(event:KeyboardEvent):void 
+		{
+			
+			if (event.keyCode == Keyboard.P && !paused)
+			{
+				//Saca un cartel con "Pausa", pero no para el juego.
+				trace("PAUSA")
+				pausaTxt = new TextField(400, 200, "PAUSA", Assets.getFont("Textos").name, 70, 0x000000);
+				this.addChild(pausaTxt);
+				pausaTxt.x = stage.x / 2;
+				pausaTxt.y = stage.y / 2;
+				//Starling.current.stop(); -> Mala idea
+				paused = true;
+				
+			}
+			else
+			{
+				paused = false;
+			}
+			
 		}
 		
 		private function resetCombos():void
