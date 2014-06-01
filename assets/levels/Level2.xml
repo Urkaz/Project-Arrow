@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract tiempo="60" puntos="100" vidas="1" health="200" spawnMin="0.1" spawnMax="0.6" />
+	<caract tiempo="60" puntos="300" vidas="1" health="200" spawnMin="1" spawnMax="1.6" />
 	
 	<arrow type="fire" prob="50" vel="1.5"/>
 	<arrow type="ice" prob="50" vel="1.5"/>
@@ -9,7 +9,7 @@
 		<status>false</status>
 	</panel>
 	
-	<victory type="c_fireice" num="1"/>
+	<victory type="c_fireice" num="2"/>
 	
-	<soldier x="0" y="500" arm="3" platf="300" />
+	<soldier x="20" y="400" arm="2" platf="300" />
 </Level>
