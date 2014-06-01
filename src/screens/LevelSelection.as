@@ -107,7 +107,7 @@ package screens
 		public function initialize():void
 		{
 			//No desbloquear el nivel X (no está disponible y logicamente da error)
-			var lockLevel:int = 10;
+			var lockLevel:int = 16;
 			trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "LevelSelection: EL NIVEL", lockLevel, "ESTA BLOQUEADO Y NO SE DESBLOQUEARA NUNCA (EL", lockLevel - 1, "ES EL ULTIMO JUGABLE");
 			Game.saveGame.setProperty(lockLevel + "_lock", true);
 			

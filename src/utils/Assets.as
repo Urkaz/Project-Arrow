@@ -29,6 +29,45 @@ package utils
 		[Embed(source="../../assets/levels/level2.xml", mimeType="application/octet-stream")]
 		public static const nivel2:Class;
 		
+		[Embed(source="../../assets/levels/level3.xml", mimeType="application/octet-stream")]
+		public static const nivel3:Class;
+		
+		[Embed(source="../../assets/levels/level4.xml", mimeType="application/octet-stream")]
+		public static const nivel4:Class;
+		
+		[Embed(source="../../assets/levels/level5.xml", mimeType="application/octet-stream")]
+		public static const nivel5:Class;
+		
+		[Embed(source="../../assets/levels/level6.xml", mimeType="application/octet-stream")]
+		public static const nivel6:Class;
+		
+		[Embed(source="../../assets/levels/level7.xml", mimeType="application/octet-stream")]
+		public static const nivel7:Class;
+		
+		[Embed(source="../../assets/levels/level8.xml", mimeType="application/octet-stream")]
+		public static const nivel8:Class;
+		
+		[Embed(source="../../assets/levels/level9.xml", mimeType="application/octet-stream")]
+		public static const nivel9:Class;
+		
+		[Embed(source="../../assets/levels/level10.xml", mimeType="application/octet-stream")]
+		public static const nivel10:Class;
+		
+		[Embed(source="../../assets/levels/level11.xml", mimeType="application/octet-stream")]
+		public static const nivel11:Class;
+		
+		[Embed(source="../../assets/levels/level12.xml", mimeType="application/octet-stream")]
+		public static const nivel12:Class;
+		
+		[Embed(source="../../assets/levels/level13.xml", mimeType="application/octet-stream")]
+		public static const nivel13:Class;
+		
+		[Embed(source="../../assets/levels/level14.xml", mimeType="application/octet-stream")]
+		public static const nivel14:Class;
+		
+		[Embed(source="../../assets/levels/level15.xml", mimeType="application/octet-stream")]
+		public static const nivel15:Class;
+		
 		// FUENTES //
 		[Embed(source="../../assets/fonts/font.png")]
 		public static const FontLevel:Class;

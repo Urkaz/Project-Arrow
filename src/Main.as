@@ -23,7 +23,7 @@ package
 			
 			stats = new Stats();
 			stats.y = stage.stageHeight - 100;
-			this.addChild(stats);
+			//this.addChild(stats);
 			
 			myStarling = new Starling(Game, stage);
 			myStarling.antiAliasing = 1;

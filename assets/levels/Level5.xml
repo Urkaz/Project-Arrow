@@ -1,38 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<!--
-	El tiempo se pone en segundos
-	spawnMin y spawnMax es la frecuencia de spawn de flechas, sera un numero entre spawnMin y spawnMax segundos
-	-->
-	<caract nivel="5" tiempo="5" puntos="100" vidas="2" health="200" spawnMin="1" spawnMax="2.3" />
+	<caract tiempo="5" puntos="100" vidas="2" health="200" spawnMin="1" spawnMax="2.3" />
 	
-	<!--
-	La prob de una flecha especial no debe ser mayor de 20 en niveles normales
-	La suma de prob de todas las flechas debe ser 100
-	-->
 	<arrow type="normal" prob="30" vel="1"/>
 	<arrow type="fire" prob="20" vel="1.5"/>
 	<arrow type="ice" prob="15" vel="1.5"/>
 	<arrow type="plant" prob="10" vel="1.5"/>
-	<arrow type="fast" prob="5" vel="3"/>
-	<arrow type="elec" prob="20" vel="1.5"/>
+	<arrow type="fast" prob="15" vel="3"/>
+	<arrow type="elec" prob="10" vel="1.5"/>
 	
 	<panel type="fog">
 		<status>true</status>
 	</panel>
-	<!--
-	NO SE USAN
-	<panel type="grass">
-		<status>2</status>
-	</panel>
-	<panel type="water">
-		<status>true</status>
-	</panel>
-	-->
-	
-	<!--
-	En el caso de que el nivel sea por combos, estos seran los tipos necesarios y la cantidad de cada uno
-	-->
 	<victory type="c_fire" num="1"/>
 	<victory type="c_elec" num="1"/>
 	<victory type="c_fireice" num="1"/>

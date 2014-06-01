@@ -111,6 +111,45 @@ package utils
 				case 2:
 					readXML(new XML(new Assets.nivel2()));
 					break;
+				case 3:
+					readXML(new XML(new Assets.nivel3()));
+					break;
+				case 4:
+					readXML(new XML(new Assets.nivel4()));
+					break;
+				case 5:
+					readXML(new XML(new Assets.nivel5()));
+					break;
+				case 6:
+					readXML(new XML(new Assets.nivel6()));
+					break;
+				case 7:
+					readXML(new XML(new Assets.nivel7()));
+					break;
+				case 8:
+					readXML(new XML(new Assets.nivel8()));
+					break;
+				case 9:
+					readXML(new XML(new Assets.nivel9()));
+					break;
+				case 10:
+					readXML(new XML(new Assets.nivel10()));
+					break;
+				case 11:
+					readXML(new XML(new Assets.nivel11()));
+					break;
+				case 12:
+					readXML(new XML(new Assets.nivel12()));
+					break;
+				case 13:
+					readXML(new XML(new Assets.nivel13()));
+					break;
+				case 14:
+					readXML(new XML(new Assets.nivel14()));
+					break;
+				case 15:
+					readXML(new XML(new Assets.nivel15()));
+					break;
 			}
 		}
 		 
