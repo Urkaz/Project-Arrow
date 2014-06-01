@@ -85,6 +85,8 @@ package objects
 			
 			bg = new Image(Assets.getAtlas("levelSelectSprite").getTexture("Candado_" + lvlType));
 			this.addChild(bg);
+			
+			this.removeEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
 		public function Update(starsCount:int):void

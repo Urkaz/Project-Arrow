@@ -2,7 +2,6 @@ package objects
 {
 	import starling.display.Stage;
 	import starling.events.Event;
-	import starling.display.Sprite;
 	import starling.display.Image;
 	import starling.display.Button;
 	import starling.text.TextField;
@@ -65,7 +64,6 @@ package objects
 			var buttonClicked:Button = e.target as Button;
 			if((buttonClicked as Button) == playBtn)
 			{
-				//closeInWindowAnim();
 				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: "level", lvl: numLvl, type: type, vic: victory }, true));
 			}
 			else if((buttonClicked as Button) == closeBtn)

@@ -46,8 +46,12 @@ package screens
 			container.hasElasticEdges = false;
 			
 			//Desbloquear primer nivel
-			trace("Clase LevelSelection:", "CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
-			Game.saveGame.setProperty(0 + "_lock", false);
+			trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "LevelSelection: CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
+			if (Game.saveGame.data[0 + "_lock"] == undefined)
+			{
+				Game.saveGame.setProperty(0 + "_lock", false);
+				Game.saveGame.setProperty(0 + "_stars", 0);
+			}
 			
 			attr = levelList.level.attributes();
 			for (var s:int = 0; s < attr.length(); s = s+3)
@@ -102,8 +106,10 @@ package screens
 		
 		public function initialize():void
 		{
-			//No desbloquear el nivel 2 (no está disponible y logicamente da error)
-			Game.saveGame.setProperty(2 + "_lock", true);
+			//No desbloquear el nivel X (no está disponible y logicamente da error)
+			var lockLevel:int = 10;
+			trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "LevelSelection: EL NIVEL", lockLevel, "ESTA BLOQUEADO Y NO SE DESBLOQUEARA NUNCA (EL", lockLevel - 1, "ES EL ULTIMO JUGABLE");
+			Game.saveGame.setProperty(lockLevel + "_lock", true);
 			
 			this.visible = true;
 			
@@ -114,7 +120,6 @@ package screens
 				{
 					btnArray[i].Unlock();
 					btnArray[i].Update(int(Game.saveGame.data[i + "_stars"]));
-					//trace(i+1, Game.saveGame.data[i + "_stars"]);
 				}
 				else
 					btnArray[i].Lock();

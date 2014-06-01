@@ -151,7 +151,6 @@
             <filename>Muralla_ground.png</filename>
             <filename>Muralla_normal.png</filename>
             <filename>Muralla_snow.png</filename>
-            <filename>Niebla.png</filename>
             <filename>peligro.png</filename>
             <filename>Reloj.png</filename>
             <filename>Barra.png</filename>
@@ -163,6 +162,7 @@
             <filename>Flecha_c_fireelec.png</filename>
             <filename>Flecha_c_fireice.png</filename>
             <filename>Salud_Muralla.png</filename>
+            <filename>Niebla.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

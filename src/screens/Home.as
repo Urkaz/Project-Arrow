@@ -59,8 +59,13 @@ package screens
 			if ((buttonClicked as Button) == boton_borrarPartida)
 			{
 				Game.saveGame.clear();
-				Game.saveGame.setProperty(0 + "_lock", false);
-				trace("Clase Home:", "CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
+				
+				trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "Home: CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
+				if (Game.saveGame.data[0 + "_lock"] == undefined)
+				{
+					Game.saveGame.setProperty(0 + "_lock", false);
+					Game.saveGame.setProperty(0 + "_stars", 0);
+				}
 			}
 		}
 		

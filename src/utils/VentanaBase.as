@@ -81,19 +81,5 @@ package utils
 				dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "close", cs: false}, true));
 			};
 		}
-		
-		/*public function closeInWindowAnim():void 
-		{
-			//Animacion		
-			tween = new Tween(negro, 0.15);
-			tween.animate("alpha", 1);
-			Starling.juggler.add(tween);
-			//Al completar la animacion borrar
-			tween.onComplete = function():void
-			{
-				Starling.juggler.remove(tween);
-				//dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "close" }, true));
-			};
-		}*/
 	}
 }

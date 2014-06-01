@@ -4,7 +4,7 @@
 	El tiempo se pone en segundos
 	spawnMin y spawnMax es la frecuencia de spawn de flechas, sera un numero entre spawnMin y spawnMax segundos
 	-->
-	<caract nivel="1" tiempo="5" puntos="100" vidas="1" health="50" spawnMin="1" spawnMax="2.3" />
+	<caract nivel="1" tiempo="120" puntos="100" vidas="1" health="50" spawnMin="1" spawnMax="2.3" />
 	
 	<!--
 	La prob de una flecha especial no debe ser mayor de 20 en niveles normales

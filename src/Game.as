@@ -1,5 +1,6 @@
 package  
 {
+	import objects.VentanaPausa;
 	import screens.Nivel;
 	import starling.animation.Tween;
 	import starling.display.Sprite;
@@ -106,10 +107,23 @@ package
 					this.addChild(ventana);
 					break;
 					
+				case "pause":
+					this.removeChild(ventana);
+					
+					//Crear ventana
+					ventana = new VentanaPausa(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage);
+					
+					this.addChild(ventana);
+					break;
+					
 				case "close":
 					if (event.params.cs)
 					{
 						this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, { id: event.params.nav_ev}, true));
+					}
+					if (event.params.pause)
+					{
+						GameScreen.unPause();
 					}
 					removeChild(ventana);
 					break;

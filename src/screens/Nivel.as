@@ -6,7 +6,6 @@ package screens
 	import objects.Arrow;
 	import objects.Plataforma;
 	import objects.Soldado;
-	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -79,12 +78,10 @@ package screens
 		private var numVidas:int;
 		private var vidasTxt:TextField;
 		
-		private var pausaTxt:TextField;
-		
 		private var numPuntos:int = 0;
 		private var puntosTxt:TextField;
 		
-		private var health:int = 0;
+		private var numSaludMuralla:int = 0;
 		private var healthTxt:TextField;
 		
 		private var combo:Array = new Array(Arrow.TYPE_NO_TYPE,Arrow.TYPE_NO_TYPE,Arrow.TYPE_NO_TYPE);
@@ -112,13 +109,12 @@ package screens
 			levelType = type;
 			victoryType = victory;
 			numVidas = datosNivel.Vidas;
-			health = datosNivel.SaludVictoria;
+			numSaludMuralla = datosNivel.SaludVictoria;
 			
 			if (victoryType == "combo")
 				comboVictory = datosNivel.CombosVictoria;
 			
 			this.addEventListener(starling.events.Event.ADDED_TO_STAGE, onAddedToStage);
-			
 		}
 		
 		/*******************
@@ -126,8 +122,8 @@ package screens
 		 *******************/
 		private function onAddedToStage(event:Event):void
 		{
-			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			drawGame();
+			this.removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
 		private function drawGame():void
@@ -159,20 +155,8 @@ package screens
 			tiempoTxt.y = puntosTxt.y = vidasTxt.y = stage.y - 3;
 			pausaBtn.y = stage.y - 2;
 			
-			//Pausar el juego
-			this.addEventListener(KeyboardEvent.KEY_DOWN, juegoPausado);
-			
 			//Añadir la imagen de fondo
 			this.addChild(imgMuralla);
-			
-			//Niveles con niebla
-			if (datosNivel.isFogPanel)
-			{
-				fogImg = new Image(Assets.getAtlas("gameSprite").getTexture("Niebla"));
-				fogImg.y = barraImg.height;
-				fogImg.touchable = false;
-				this.addChild(fogImg);
-			}
 			
 			//INTERFAZ
 			interfaz.addChild(barraImg);
@@ -190,7 +174,7 @@ package screens
 			}
 			else if (victoryType == "lives")
 			{
-				healthTxt = new TextField(50, 20, String(health), Assets.getFont("Textos").name, 20, 0x000000);
+				healthTxt = new TextField(50, 20, String(numSaludMuralla), Assets.getFont("Textos").name, 20, 0x000000);
 				healthImg = new Image(Assets.getAtlas("gameSprite").getTexture("Salud_Muralla"));
 				
 				healthTxt.y = tiempoTxt.y;
@@ -226,16 +210,6 @@ package screens
 					interfaz.addChild(miniIcon);
 					interfaz.addChild(textCombo);
 				}
-				
-				
-			}
-			
-			//PLATAFORMAS
-			for (var i:int = 0; i < datosNivel.Soldados.length; i++)
-			{
-				var platf:Plataforma = new Plataforma(datosNivel.Soldados[i][0], datosNivel.Soldados[i][1], datosNivel.Soldados[i][3], datosNivel.Soldados[i][2]);
-				soldierArray.push(platf);
-				addChild(platf);
 			}
 			
 			interfaz.addChild(pausaBtn);
@@ -246,6 +220,23 @@ package screens
 			interfaz.addChild(vidasTxt);
 			interfaz.addChild(tiempoTxt);
 			interfaz.addChild(puntosTxt);
+			
+			//PLATAFORMAS
+			for (var i:int = 0; i < datosNivel.Soldados.length; i++)
+			{
+				var platf:Plataforma = new Plataforma(datosNivel.Soldados[i][0], datosNivel.Soldados[i][1], datosNivel.Soldados[i][3], datosNivel.Soldados[i][2]);
+				soldierArray.push(platf);
+				this.addChild(platf);
+			}
+			
+			//Niveles con niebla
+			if (datosNivel.isFogPanel)
+			{
+				fogImg = new Image(Assets.getAtlas("gameSprite").getTexture("Niebla"));
+				fogImg.y = barraImg.height - 1;
+				fogImg.touchable = false;
+				this.addChild(fogImg);
+			}
 			
 			this.addChild(interfaz);
 			this.addChild(restanteInicioTxt);
@@ -288,6 +279,10 @@ package screens
 		{
 			this.addEventListener(Event.ENTER_FRAME, onGameTick);
 			
+			//Eventos de pausar el juego
+			this.addEventListener(KeyboardEvent.KEY_DOWN, pausaTeclado);
+			this.addEventListener(Event.TRIGGERED, pausaClick);
+			
 			tiempoTrascurrido = 0;
 			
 			//Crear la primera flecha al empezar, sin esperas
@@ -312,7 +307,6 @@ package screens
 			this.swapChildren(newArrow, interfaz); //Poner la interfaz delante
 			if (datosNivel.isFogPanel) //Si hay niebla, ponerla delante
 				this.swapChildren(newArrow, fogImg);
-			
 			
 			arrowArray.push(newArrow);
 			
@@ -362,6 +356,8 @@ package screens
 			if (numVidas == 0)
 			{
 				this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+				this.removeEventListener(KeyboardEvent.KEY_DOWN, pausaTeclado);
+				this.removeEventListener(Event.TRIGGERED, pausaClick);
 				this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: 0, type: levelType, vic: victoryType, go: true }, true));
 			}
 			
@@ -383,7 +379,7 @@ package screens
 					//Calcular estrellas conseguidas
 					if (numVidas == datosNivel.Vidas)
 						++starEarned;
-					if (numPuntos > datosNivel.PuntosVictoria)
+					if (numPuntos >= datosNivel.PuntosVictoria)
 						++starEarned;
 					
 					//Guardar partida
@@ -391,6 +387,8 @@ package screens
 					
 					//Detener el juego y abrir ventana final
 					this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+					this.removeEventListener(KeyboardEvent.KEY_DOWN, pausaTeclado);
+					this.removeEventListener(Event.TRIGGERED, pausaClick);
 					this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType, go: false }, true));
 				}
 			}
@@ -407,24 +405,26 @@ package screens
 				//MODO Salud enemigo
 				if (victoryType == "lives")
 				{
-					if(health > 0)
-						healthTxt.text = String(health);
+					if(numSaludMuralla > 0)
+						healthTxt.text = String(numSaludMuralla);
 					else
 						healthTxt.text = String(0);
 						
 					//Condicion de victoria
-					if (health <= 0)
+					if (numSaludMuralla <= 0)
 					{
 						//Calcular estrellas conseguidas
-						if (tiempoTrascurrido < datosNivel.TiempoVictoria * 60)
+						if (tiempoTrascurrido <= datosNivel.TiempoVictoria * 60)
 							++starEarned;
-						if (numPuntos > datosNivel.PuntosVictoria)
+						if (numPuntos >= datosNivel.PuntosVictoria)
 							++starEarned;
 						
 						//Guardar partida
 						save(starEarned);
 						//Detener el juego y abrir ventana final
 						this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+						this.removeEventListener(KeyboardEvent.KEY_DOWN, pausaTeclado);
+						this.removeEventListener(Event.TRIGGERED, pausaClick);
 						this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType, go: false }, true));
 					}
 				}
@@ -454,13 +454,15 @@ package screens
 						//Calcular estrellas conseguidas
 						if (numVidas == datosNivel.Vidas)
 							++starEarned;
-						if (numPuntos > datosNivel.PuntosVictoria && tiempoTrascurrido < datosNivel.TiempoVictoria * 60)
+						if (numPuntos >= datosNivel.PuntosVictoria && tiempoTrascurrido <= datosNivel.TiempoVictoria * 60)
 							++starEarned;
 						
 						//Guardar partida
 						save(starEarned);
 						//Detener el juego y abrir ventana final
 						this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+						this.removeEventListener(KeyboardEvent.KEY_DOWN, pausaTeclado);
+						this.removeEventListener(Event.TRIGGERED, pausaClick);
 						this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "endlvl", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType, go: false }, true));
 					}
 				}
@@ -567,32 +569,54 @@ package screens
 		
 		private function save(stars:int):void
 		{
-			Game.saveGame.setProperty(datosNivel.Numero + "_stars", stars);
-			Game.saveGame.setProperty(datosNivel.Numero + 1 + "_lock", false);
+			if(starEarned > Game.saveGame.data[levelNumber + "_stars"])
+				Game.saveGame.setProperty(levelNumber + "_stars", stars);
+			
+			Game.saveGame.setProperty(levelNumber + "_puntos", numPuntos);
+			Game.saveGame.setProperty(levelNumber + "_vidas", numVidas);
+			Game.saveGame.setProperty(levelNumber + "_salud", numSaludMuralla);
+			Game.saveGame.setProperty(levelNumber + "_tiempo", tiempoTrascurrido);
+			
+			//Siguiente
+			Game.saveGame.setProperty((levelNumber + 1) + "_lock", false);
+			if(Game.saveGame.data[(levelNumber + 1) + "_stars"] == undefined)
+				Game.saveGame.setProperty((levelNumber + 1) + "_stars", 0);
 			
 			Game.saveGame.flush();
 		}
 		
-		private function juegoPausado(event:KeyboardEvent):void 
+		private function pausaTeclado(event:KeyboardEvent):void
 		{
-			
 			if (event.keyCode == Keyboard.P && !paused)
 			{
-				//Saca un cartel con "Pausa", pero no para el juego.
-				trace("PAUSA")
-				pausaTxt = new TextField(400, 200, "PAUSA", Assets.getFont("Textos").name, 70, 0x000000);
-				this.addChild(pausaTxt);
-				pausaTxt.x = stage.x / 2;
-				pausaTxt.y = stage.y / 2;
-				//Starling.current.stop(); -> Mala idea
 				paused = true;
-				
+				this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "pause", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType }, true));
+				//Enviar evento ventana pausa
 			}
-			else
+			else if(event.keyCode == Keyboard.P && paused)
 			{
-				paused = false;
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "close" }, true));
+				unPause();
+				//Enviar evento de cierre ventana pausa
 			}
-			
+		}
+		
+		private function pausaClick(e:Event):void
+		{
+			var buttonClicked:Button = e.target as Button;
+			if ((buttonClicked as Button) == pausaBtn && !paused)
+			{
+				paused = true;
+				this.removeEventListener(Event.ENTER_FRAME, onGameTick);
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.POPUP_WINDOW, { id: "pause", lvl: levelNumber, stars: starEarned, type: levelType, vic: victoryType }, true));
+			}
+		}
+		
+		public function unPause():void
+		{
+			paused = false;
+			this.addEventListener(Event.ENTER_FRAME, onGameTick);
 		}
 		
 		private function resetCombos():void
@@ -704,13 +728,13 @@ package screens
 				case Arrow.TYPE_C_FAST:
 				case Arrow.TYPE_C_FIRE:
 					numPuntos += 40;
-					health -= 20;
+					numSaludMuralla -= 20;
 					break;
 				case Arrow.TYPE_C_FIRE_ICE:
 				case Arrow.TYPE_C_FIRE_ELEC:
 				case Arrow.TYPE_C_ELECTRIC:
 					numPuntos += 50;
-					health -= 40;
+					numSaludMuralla -= 40;
 					break;
 			}
 		}

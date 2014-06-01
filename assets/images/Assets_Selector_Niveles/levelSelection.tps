@@ -82,7 +82,7 @@
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
-                <enum type="AlgorithmMaxRectsSettings::Heuristic">Best</enum>
+                <enum type="AlgorithmMaxRectsSettings::Heuristic">AreaFit</enum>
             </struct>
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
@@ -162,6 +162,7 @@
             <filename>Victoria_time.png</filename>
             <filename>Boton_menu.png</filename>
             <filename>Boton_repetir.png</filename>
+            <filename>Boton_Continuar.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
