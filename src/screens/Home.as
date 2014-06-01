@@ -39,9 +39,9 @@ package screens
 			boton_playHome.x = stage.stageWidth / 2 - boton_playHome.width / 2;
 			boton_playHome.y = 350;
 			
-			boton_borrarPartida.height = 40;
-			boton_borrarPartida.x = boton_playHome.x;
-			boton_borrarPartida.y = stage.stageHeight - boton_borrarPartida.height;
+			boton_borrarPartida.height = 70;
+			boton_borrarPartida.x = boton_playHome.x + 27;
+			boton_borrarPartida.y = stage.stageHeight - boton_borrarPartida.height - 7;
 			
 			this.addChild(boton_playHome);
 			this.addChild(boton_borrarPartida);
