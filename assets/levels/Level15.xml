@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract  tiempo="120" puntos="100" vidas="2" health="200" spawnMin="1" spawnMax="2.3" />
+	<caract  tiempo="120" puntos="10000" vidas="2" health="200" spawnMin="0.3" spawnMax="1" />
 	
-	<arrow type="normal" prob="20" vel="1"/>
-	<arrow type="fire" prob="20" vel="1.5"/>
-	<arrow type="ice" prob="10" vel="1.5"/>
-	<arrow type="fast" prob="40" vel="3"/>
-	<arrow type="elec" prob="10" vel="1.5"/>
+	<arrow type="normal" prob="20" vel="2"/>
+	<arrow type="fire" prob="20" vel="3"/>
+	<arrow type="ice" prob="10" vel="3"/>
+	<arrow type="fast" prob="40" vel="5"/>
+	<arrow type="elec" prob="10" vel="3"/>
 	
 	<panel type="fog">
 		<status>true</status>
 	</panel>
 	
-	<soldier x="0" y="500" arm="3" platf="300" />
-	<soldier x="20" y="300" arm="2" platf="300" />
+	<soldier x="220" y="230" arm="3" platf="120" />
+	<soldier x="10" y="400" arm="2" platf="200" />
+	<soldier x="25" y="300" arm="2" platf="300" />
 </Level>

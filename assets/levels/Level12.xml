@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract tiempo="45" puntos="100" vidas="1" health="200" spawnMin="1" spawnMax="2.3" />
+	<caract tiempo="45" puntos="1000" vidas="1" health="200" spawnMin="0.5" spawnMax="0.7" />
 	
 	<arrow type="fast" prob="100" vel="3"/>
 	
@@ -8,5 +8,7 @@
 		<status>true</status>
 	</panel>
 	
-	<soldier x="0" y="500" arm="3" platf="300" />
+	<soldier x="20" y="250" arm="1" platf="100" />
+	<soldier x="250" y="250" arm="1" platf="100" />
+	<soldier x="20" y="400" arm="3" platf="320" />
 </Level>

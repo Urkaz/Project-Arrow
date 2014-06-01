@@ -6,7 +6,7 @@
 	<arrow type="ice" prob="50" vel="1.5"/>
 	
 	<panel type="fog">
-		<status>true</status>
+		<status>false</status>
 	</panel>
 	
 	<victory type="c_fireice" num="1"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract tiempo="5" puntos="100" vidas="1" health="200" spawnMin="1" spawnMax="2.3" />
+	<caract tiempo="120" puntos="3000" vidas="1" health="200" spawnMin="1" spawnMax="2" />
 	
 	<arrow type="normal" prob="20" vel="1"/>
 	<arrow type="fire" prob="20" vel="1.5"/>
@@ -9,7 +9,7 @@
 	<arrow type="elec" prob="20" vel="1.5"/>
 	
 	<panel type="fog">
-		<status>true</status>
+		<status>false</status>
 	</panel>
 	
 	<victory type="c_fire" num="3"/>
@@ -17,5 +17,7 @@
 	<victory type="c_fast" num="1"/>
 	<victory type="c_fireice" num="2"/>
 	
-	<soldier x="0" y="500" arm="3" platf="300" />
+	<soldier x="20" y="215" arm="3" platf="275" />
+	<soldier x="10" y="320" arm="2" platf="300" />
+	<soldier x="60" y="435" arm="3" platf="250" />
 </Level>

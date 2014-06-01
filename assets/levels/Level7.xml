@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Level>
-	<caract tiempo="5" puntos="100" vidas="1" health="200" spawnMin="1" spawnMax="2.3" />
+	<caract tiempo="55" puntos="1200" vidas="1" health="200" spawnMin="1" spawnMax="1.5" />
 	
 	<arrow type="normal" prob="55" vel="1"/>
 	<arrow type="fast" prob="40" vel="3"/>
 	<arrow type="elec" prob="5" vel="1.5"/>
 	
 	<panel type="fog">
-		<status>true</status>
+		<status>false</status>
 	</panel>
 	
 	<victory type="c_fast" num="6"/>
 	
-	<soldier x="0" y="250" arm="1" platf="300" />
-	<soldier x="20" y="320" arm="1" platf="300" />
+	<soldier x="10" y="250" arm="1" platf="250" />
+	<soldier x="20" y="400" arm="1" platf="320" />
 </Level>
