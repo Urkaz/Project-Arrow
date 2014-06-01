@@ -12,7 +12,6 @@ package utils
 		 * Atributos
 		 *******************/
 		
-		private var numeroNivel:int = 0;
 		private var tiempo:int = 0;
 		private var puntos:int = 0;
 		private var vidas:int = 0;
@@ -24,9 +23,7 @@ package utils
 		private var arrayFlechasProb:Array = new Array(); //Array de int
 		private var arrayFlechasVel:Array = new Array(); //Array de Number
 		
-		private var waterPanel:Boolean = false;
 		private var fogPanel:Boolean = false;
-		private var grassPanel:int = 0;
 		
 		private var arrayVictoria:Array = new Array(); //Array de Array(String tipo_flecha, int cantidad)
 		
@@ -43,11 +40,6 @@ package utils
 		/*******************
 		 * GETTERS
 		 *******************/
-		public function get Numero():int
-		{
-			return numeroNivel;
-		}
-		
 		public function get Vidas():int
 		{
 			return vidas;
@@ -68,12 +60,12 @@ package utils
 			return salud;
 		}
 		
-		public function get TimeSpawnMin():int
+		public function get TimeSpawnMin():Number
 		{
 			return spawnMin;
 		}
 		
-		public function get TimeSpawnMax():int
+		public function get TimeSpawnMax():Number
 		{
 			return spawnMax;
 		}
@@ -93,27 +85,9 @@ package utils
 			return arraySoldados;
 		}
 		
-		public function get isWaterPanel():Boolean
-		{
-			return waterPanel;
-		}
-		
 		public function get isFogPanel():Boolean
 		{
 			return fogPanel;
-		}
-		
-		public function get isGrassPanel():Boolean
-		{
-			if (grassPanel == 0)
-				return false;
-			else
-				return true;
-		}
-		
-		public function get countGrass():int
-		{
-			return grassPanel;
 		}
 		
 		/*******************
@@ -149,7 +123,6 @@ package utils
 			var attr:XMLList;
 			
 			//Leer las propiedades del nivel
-			numeroNivel = xmlLevel.caract.attribute("nivel");
 			tiempo = xmlLevel.caract.attribute("tiempo");
 			puntos = xmlLevel.caract.attribute("puntos");
 			vidas = xmlLevel.caract.attribute("vidas");
@@ -177,9 +150,7 @@ package utils
 				throw new Error("La suma de probabilidades de las flechas debe ser 100");
 			
 			//Leer las propiedades del panel
-			//waterPanel = (xmlLevel.panel.(@type == "water").status == "true");
 			fogPanel = (xmlLevel.panel.(@type == "fog").status == "true");
-			//grassPanel = int(xmlLevel.panel.(@type == "grass").status);
 			
 			//Leer condiciones de victoria
 			attr = xmlLevel.victory.attributes();

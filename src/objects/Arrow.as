@@ -117,6 +117,7 @@ package objects
 			{
 				Starling.juggler.remove(particles);
 				particles.stop();
+				particles.dispose();
 				
 				this.removeChild(particles);
 			}
