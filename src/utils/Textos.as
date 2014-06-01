@@ -9,6 +9,7 @@ package utils
 		public static var FINAL_POINTS:String;
 		public static var FINAL_TIME:String;
 		public static var FINAL_LIVES:String;
+		public static var FINAL_GAMEOVER_DESCRIP:String;
 		
 		public static var STATS_LEVEL:String;
 		public static var STATS_TIME_DESCRIPTION:String;
@@ -32,6 +33,7 @@ package utils
 				FINAL_POINTS = "Points:";
 				FINAL_TIME = "Time:";
 				FINAL_LIVES = "Lives:";
+				FINAL_GAMEOVER_DESCRIP = "FINAL_GAMEOVER_DESCRIP";
 				
 				PAUSE_MAIN = "PaUsE";
 				PAUSE_DESCRIPTION = "PAUSE_DESCRIPTION";
@@ -49,6 +51,7 @@ package utils
 				FINAL_POINTS = "Puntos:";
 				FINAL_TIME = "Tiempo:";
 				FINAL_LIVES = "Vidas:";
+				FINAL_GAMEOVER_DESCRIP = "¡Fin del juego!";
 				
 				PAUSE_MAIN = "PaUsA";
 				PAUSE_DESCRIPTION = "¡Juego en pausa!";

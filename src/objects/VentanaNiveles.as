@@ -26,7 +26,7 @@ package objects
 			playBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Start"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
-			descrip = new TextField(250, 100, "Descripcion" , Assets.getFont("Textos").name, 30, 0xffffff);
+			descrip = new TextField(250, 100, "" , Assets.getFont("Textos").name, 30, 0xffffff);
 			
 			mainTxt.text = Textos.STATS_LEVEL + numLvl;
 			
@@ -50,7 +50,7 @@ package objects
 			
 			descrip.x = selector.x + selector.width / 2 - descrip.width / 2;
 			descrip.y = stars.y + stars.height + 20;
-
+			
 			this.addChild(descrip);
 			this.addChild(closeBtn);
 			this.addChild(playBtn);

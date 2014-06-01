@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:40fbd9dd2f679d8e8f212397add50060$ -->
+<!-- $TexturePacker:SmartUpdate:52a95381450ad09c0c389dfed51e2139$ -->
 <TextureAtlas imagePath="levelGame.png">
     <SubTexture name="Barra" x="1" y="793" width="360" height="18"/>
-    <SubTexture name="Corazon" x="23" y="911" width="21" height="18"/>
-    <SubTexture name="Flecha" x="87" y="849" width="13" height="64"/>
-    <SubTexture name="Flecha_c_elec" x="1" y="911" width="21" height="18"/>
-    <SubTexture name="Flecha_c_fast" x="45" y="892" width="21" height="18"/>
-    <SubTexture name="Flecha_c_fire" x="23" y="892" width="21" height="18"/>
-    <SubTexture name="Flecha_c_fireelec" x="1" y="892" width="21" height="18"/>
-    <SubTexture name="Flecha_c_fireice" x="45" y="873" width="21" height="18"/>
+    <SubTexture name="Corazon" x="89" y="873" width="21" height="18"/>
+    <SubTexture name="Flecha" x="177" y="812" width="13" height="64"/>
+    <SubTexture name="Flecha_c_elec" x="67" y="868" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fast" x="45" y="851" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fire" x="23" y="851" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fireelec" x="1" y="851" width="21" height="18"/>
+    <SubTexture name="Flecha_c_fireice" x="143" y="856" width="21" height="18"/>
     <SubTexture name="Muralla_ground" x="723" y="1" width="360" height="640"/>
     <SubTexture name="Muralla_normal" x="362" y="1" width="360" height="640"/>
     <SubTexture name="Muralla_snow" x="1" y="1" width="360" height="640"/>
     <SubTexture name="Niebla" x="1" y="642" width="415" height="150"/>
     <SubTexture name="Pausa" x="87" y="812" width="42" height="36"/>
-    <SubTexture name="Reloj" x="23" y="873" width="21" height="18"/>
-    <SubTexture name="Salud_Muralla" x="1" y="873" width="21" height="18"/>
-    <SubTexture name="peligro" x="130" y="812" width="27" height="47"/>
-    <SubTexture name="platf_der" x="48" y="851" width="20" height="21"/>
-    <SubTexture name="platf_izq" x="101" y="849" width="20" height="21"/>
-    <SubTexture name="platf_med" x="1" y="851" width="46" height="21"/>
+    <SubTexture name="Reloj" x="121" y="856" width="21" height="18"/>
+    <SubTexture name="Salud_Muralla" x="87" y="849" width="21" height="18"/>
+    <SubTexture name="peligro" x="109" y="849" width="11" height="23"/>
+    <SubTexture name="platf_der" x="151" y="834" width="20" height="21"/>
+    <SubTexture name="platf_izq" x="130" y="834" width="20" height="21"/>
+    <SubTexture name="platf_med" x="130" y="812" width="46" height="21"/>
     <SubTexture name="soldado_1" x="44" y="812" width="42" height="38"/>
     <SubTexture name="soldado_2" x="1" y="812" width="42" height="38"/>
     <SubTexture name="soldado_3" x="362" y="793" width="42" height="38"/>

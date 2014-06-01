@@ -6,6 +6,7 @@ package screens
 	import objects.Arrow;
 	import objects.Plataforma;
 	import objects.Soldado;
+	import objects.Warning;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -300,7 +301,7 @@ package screens
 			arrowIndex = nextArrowIndex();
 			
 			//trace("SPAWN FLECHA " + datosNivel.Flechas[0][arrowIndex]);
-			var newArrow:Arrow = new Arrow(datosNivel.Flechas[0][arrowIndex], true, datosNivel.Flechas[2][arrowIndex]);
+			var newArrow:Arrow = new Arrow(datosNivel.Flechas[0][arrowIndex], datosNivel.Flechas[2][arrowIndex]);
 			
 			this.addChild(newArrow);
 			
@@ -308,12 +309,21 @@ package screens
 			if (datosNivel.isFogPanel) //Si hay niebla, ponerla delante
 				this.swapChildren(newArrow, fogImg);
 			
-			arrowArray.push(newArrow);
-			
 			//Recalcular tiempo para el spawn de la siguiente flecha
 			//Calcular tiempo random de spawn de la siguiente flecha
 			nextArrowDelay = Math.floor(Math.random() * (datosNivel.TimeSpawnMax*10 - datosNivel.TimeSpawnMin*10 + 1)) + datosNivel.TimeSpawnMin*10;
 			nextArrowDelay /= 10
+			
+			var alerta:Warning = new Warning();
+			if (datosNivel.Flechas[0][arrowIndex] != Arrow.TYPE_NORMAL)
+			{
+				alerta.x = newArrow.x + newArrow.width / 2 - alerta.width / 2;
+				alerta.y = barraImg.height;
+				
+				this.addChild(alerta);
+			}
+			
+			arrowArray.push(new Array(newArrow,alerta));
 		}
 		
 		//Calcula el índice de la próxima flecha, este índice determinará el tipo de flecha.
@@ -481,33 +491,41 @@ package screens
 			//Mover flechas y comprobar sus estados (romper con el dedo, colisiones con plataformas, etc)
 			for (var a:int = 0; a < arrowArray.length; ++a)
 			{
-				//Tocada durante la caida por la muralla
-				if (arrowArray[a].Status == Arrow.STATUS_DESTROY)
+				//Comprobar los objetos Warning de las flechas para eliminarlos de la escena
+				if (arrowArray[a][0].Tipo != Arrow.TYPE_NORMAL && arrowArray[a][0].y + arrowArray[a][0].height >= arrowArray[a][1].y)
 				{
-					trace("Flecha de tipo " + arrowArray[a].Tipo + " destruida.");
-					calcularPuntos(arrowArray[a].Tipo);
+					arrowArray[a][1].destroy();
+					this.removeChild(arrowArray[a][1]);
+				}
+				
+				
+				//Tocada durante la caida por la muralla
+				if (arrowArray[a][0].Status == Arrow.STATUS_DESTROY)
+				{
+					trace("Flecha de tipo " + arrowArray[a][0].Tipo + " destruida.");
+					calcularPuntos(arrowArray[a][0].Tipo);
 					
 					a = deleteArrow(a);
 				}
 				//Tocada en el panel
-				else if (arrowArray[a].Status == Arrow.STATUS_GET)
+				else if (arrowArray[a][0].Status == Arrow.STATUS_GET)
 				{
 					//Combos
-					checkCombos(arrowArray[a].Tipo);
+					checkCombos(arrowArray[a][0].Tipo);
 					
 					//Puntos
-					if(arrowArray[a].Tipo != Arrow.TYPE_PLANT)
-						calcularPuntos(arrowArray[a].Tipo, 2);
+					if(arrowArray[a][0].Tipo != Arrow.TYPE_PLANT)
+						calcularPuntos(arrowArray[a][0].Tipo, 2);
 					calcularPuntos(activeCombo);
 					
 					a = deleteArrow(a);
 				}
 				else
 				{
-					arrowArray[a].y += arrowArray[a].Velocidad;
+					arrowArray[a][0].y += arrowArray[a][0].Velocidad;
 					
 					//Si está fuera del escenario, borrar
-					if (arrowArray[a].y > stage.stageHeight)
+					if (arrowArray[a][0].y > stage.stageHeight)
 					{
 						a = deleteArrow(a);
 					}
@@ -516,7 +534,7 @@ package screens
 						//Recorrer plataformas (soldados)
 						for (var s:int = 0; s < soldierArray.length; ++s)
 						{
-							var puntaFlecha:Point = new Point(arrowArray[a].x + arrowArray[a].width / 2, arrowArray[a].y + arrowArray[a].height);
+							var puntaFlecha:Point = new Point(arrowArray[a][0].x + arrowArray[a][0].width / 2, arrowArray[a][0].y + arrowArray[a][0].height);
 							var center:Point = new Point(soldierArray[s].SoldierGlobalX + soldierArray[s].SoldierWidth / 2, soldierArray[s].SoldierGlobalY + soldierArray[s].SoldierHeight / 2);
 							var rad:Number = soldierArray[s].SoldierWidth / 2;
 							
@@ -525,7 +543,7 @@ package screens
 							if (dist < rad)
 							{
 								//Si el soldado tiene armadura de nivel 3 (contra el fuego) no se le reducirá.
-								if (!(soldierArray[s].SoldierArmor == 3 && arrowArray[a].Tipo == Arrow.TYPE_FIRE))
+								if (!(soldierArray[s].SoldierArmor == 3 && arrowArray[a][0].Tipo == Arrow.TYPE_FIRE))
 								{
 									soldierArray[s].reduceSoldierArmor();
 									
@@ -544,15 +562,17 @@ package screens
 			}
 		}
 		
+		//Cambiar el return?
 		private function deleteArrow(index:int):int
 		{
-			var aux:Arrow = arrowArray[index];
+			var aux:Array = arrowArray[index];
 			arrowArray[index] = arrowArray[arrowArray.length - 1];
 			arrowArray[arrowArray.length - 1] = aux;
 			
-			aux.destroy();
+			aux[0].destroy();
 			
-			this.removeChild(arrowArray.pop());
+			this.removeChild(aux[0]);
+			arrowArray.pop()
 			
 			return --index;
 		}

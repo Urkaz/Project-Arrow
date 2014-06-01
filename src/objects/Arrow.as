@@ -41,7 +41,7 @@ package objects
 		private var status:String; //Cayendo, pendiente de destruir, en el suelo, sleecionada, etc...
 		
 		
-		public function Arrow(tipoFlecha:String, visible:Boolean = true, velocidad:Number = 0)
+		public function Arrow(tipoFlecha:String, velocidad:Number = 0)
 		{
 			this.tipoFlecha = tipoFlecha;
 			this.velocidad = velocidad;
@@ -105,9 +105,8 @@ package objects
 				this.addChild(particles);
 			}
 			
-			//Cambiar si se cambia el ancho del escenario
 			this.x = Math.floor(Math.random() * (stage.stageWidth*0.9 - stage.stageWidth*0.1 + 1)) + stage.stageWidth*0.1;
-			this.y = -flecha.height;
+			this.y = -flecha.height*2;
 			
 			this.addChild(flecha);
 		}

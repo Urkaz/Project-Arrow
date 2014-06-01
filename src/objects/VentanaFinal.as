@@ -32,6 +32,8 @@ package objects
 		private var tiempoTxt:TextField;
 		private var tiempoRes:TextField;
 		
+		private var descrip:TextField;
+		
 		private var numPuntos:int = 0;
 		private var numTiempo:int = 0;
 		private var min:int = 0;
@@ -52,27 +54,6 @@ package objects
 			menuBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_menu"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
-			resultados = new TextField(250, 30, Textos.FINAL_RESULTS, Assets.getFont("Textos").name, 30, 0xffffff);
-			
-			puntosTxt = new TextField(100, 30, Textos.FINAL_POINTS, Assets.getFont("Textos").name, 30, 0xffffff);
-			puntosRes = new TextField(100, 30, "", Assets.getFont("Textos").name, 30, 0xffffff);
-			
-			puntosRes.hAlign = puntosTxt.hAlign = puntosRes.hAlign = HAlign.LEFT;
-			
-			if (numPuntos < 10)
-				puntosRes.text = "000" + numPuntos;
-			else if (numPuntos < 100)
-				puntosRes.text = "00" + numPuntos;
-			else if (numPuntos < 1000)
-				puntosRes.text = "0" + numPuntos;
-			else
-				puntosRes.text = String(numPuntos);
-			
-			if (!gameOver)
-				mainTxt.text = Textos.FINAL_VICTORY;
-			else
-				mainTxt.text = Textos.FINAL_GAMEOVER;
-			
 			//Posiciones
 			replayBtn.x = menuBtn.x = selector.x + selector.width / 2 - replayBtn.width / 2;
 			replayBtn.x -= 100;
@@ -82,121 +63,125 @@ package objects
 			stars.x = selector.x + selector.width / 2 - stars.width / 2;
 			stars.y = mainTxt.y + mainTxt.height - 20;
 			
-			resultados.x = selector.x + selector.width / 2 - resultados.width / 2;
-			resultados.y = stars.y + stars.height + 20 - resultados.height / 2;
+			if (!gameOver)
+			{
+				resultados = new TextField(250, 30, Textos.FINAL_RESULTS, Assets.getFont("Textos").name, 30, 0xffffff);
 			
-			puntosTxt.x = resultados.x + 25;
-			puntosRes.x = resultados.x + resultados.width - puntosRes.width - 25;
-			
-			puntosTxt.y = resultados.y + resultados.height;
-			puntosRes.y = puntosTxt.y;
-			
-			if (numPuntos >= datosNivel.PuntosVictoria)
-				puntosRes.color = Color.rgb(192, 255, 0);
+				puntosTxt = new TextField(100, 30, Textos.FINAL_POINTS, Assets.getFont("Textos").name, 30, 0xffffff);
+				puntosRes = new TextField(100, 30, "", Assets.getFont("Textos").name, 30, 0xffffff);
+				
+				puntosRes.hAlign = puntosTxt.hAlign = puntosRes.hAlign = HAlign.LEFT;
+				
+				if (numPuntos < 10)
+					puntosRes.text = "000" + numPuntos;
+				else if (numPuntos < 100)
+					puntosRes.text = "00" + numPuntos;
+				else if (numPuntos < 1000)
+					puntosRes.text = "0" + numPuntos;
+				else
+					puntosRes.text = String(numPuntos);
+				
+				
+				resultados.x = selector.x + selector.width / 2 - resultados.width / 2;
+				resultados.y = stars.y + stars.height + 20 - resultados.height / 2;
+				
+				puntosTxt.x = resultados.x + 25;
+				puntosRes.x = resultados.x + resultados.width - puntosRes.width - 25;
+				
+				puntosTxt.y = resultados.y + resultados.height;
+				puntosRes.y = puntosTxt.y;
+				
+				if (numPuntos >= datosNivel.PuntosVictoria)
+					puntosRes.color = Color.rgb(192, 255, 0);
+				else
+					puntosRes.color = Color.rgb(223, 89, 89);
+					
+				this.addChild(resultados);
+				this.addChild(puntosTxt);
+				this.addChild(puntosRes);
+				
+				mainTxt.text = Textos.FINAL_VICTORY;
+				
+				//MODOS DE JUEGO
+				if (victoryType == "time")
+				{
+					vidasTxt = new TextField(100, 30, Textos.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
+					vidasRes = new TextField(100, 30, String(numVidas), Assets.getFont("Textos").name, 30, 0xffffff);
+					
+					//Color
+					if (numVidas == datosNivel.Vidas)
+						vidasRes.color = Color.rgb(192, 255, 0);
+					else
+						vidasRes.color = Color.rgb(223, 89, 89);
+					
+					vidasTxt.x = puntosTxt.x;
+					vidasRes.x = resultados.x + resultados.width - puntosRes.width - 25;
+					
+					vidasTxt.y = puntosTxt.y + puntosTxt.height;
+					vidasRes.y = vidasTxt.y;
+					
+					vidasRes.hAlign = vidasTxt.hAlign = HAlign.LEFT;
+					
+					this.addChild(vidasTxt);
+					this.addChild(vidasRes);
+				}
+				else
+				{
+					tiempoTxt = new TextField(100, 30, Textos.FINAL_TIME, Assets.getFont("Textos").name, 30, 0xffffff);
+					tiempoRes = new TextField(100, 30, "", Assets.getFont("Textos").name, 30, 0xffffff);
+					
+					vidasTxt = new TextField(100, 30, Textos.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
+					vidasRes = new TextField(100, 30, String(numVidas), Assets.getFont("Textos").name, 30, 0xffffff);
+					
+					//Tiempo
+					min = int(numTiempo / 60) / 60;
+					sec = int(numTiempo / 60) - min * 60;
+					if (sec < 10)
+						tiempoRes.text = min + ":0" + sec;
+					else
+						tiempoRes.text = min + ":" + sec;
+					
+					//Color tiempo
+					if (numTiempo <= datosNivel.TiempoVictoria * 60)
+						tiempoRes.color = Color.rgb(192, 255, 0);
+					else
+						tiempoRes.color = Color.rgb(223, 89, 89);
+					
+					//Color vidas
+					if (numVidas == datosNivel.Vidas)
+						vidasRes.color = Color.rgb(192, 255, 0);
+					else
+						vidasRes.color = Color.rgb(223, 89, 89);
+					
+					vidasTxt.y = puntosTxt.y + puntosTxt.height;
+					vidasRes.y = vidasTxt.y;
+					
+					tiempoTxt.y = vidasTxt.y + vidasTxt.height
+					tiempoRes.y = tiempoTxt.y;
+					
+					vidasTxt.x = tiempoTxt.x = puntosTxt.x;
+					
+					vidasRes.x = tiempoRes.x = resultados.x + resultados.width - puntosRes.width - 25;
+					
+					tiempoRes.hAlign = tiempoTxt.hAlign = vidasRes.hAlign = vidasTxt.hAlign = HAlign.LEFT;
+					
+					this.addChild(tiempoTxt);
+					this.addChild(tiempoRes);
+					this.addChild(vidasTxt);
+					this.addChild(vidasRes);
+				}
+			}
 			else
-				puntosRes.color = Color.rgb(223, 89, 89);
-			
-			//MODOS DE JUEGO
-			if (victoryType == "time")
 			{
-				vidasTxt = new TextField(100, 30, Textos.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
-				vidasRes = new TextField(100, 30, String(numVidas), Assets.getFont("Textos").name, 30, 0xffffff);
+				descrip = new TextField(250, 100, Textos.FINAL_GAMEOVER_DESCRIP , Assets.getFont("Textos").name, 30, 0xffffff);
 				
-				//Color
-				if (numVidas == datosNivel.Vidas)
-					vidasRes.color = Color.rgb(192, 255, 0);
-				else
-					vidasRes.color = Color.rgb(223, 89, 89);
+				descrip.x = selector.x + selector.width / 2 - descrip.width / 2;
+				descrip.y = stars.y + stars.height + 20;
 				
-				vidasTxt.x = puntosTxt.x;
-				vidasRes.x = resultados.x + resultados.width - puntosRes.width - 25;
+				this.addChild(descrip);
 				
-				vidasTxt.y = puntosTxt.y + puntosTxt.height;
-				vidasRes.y = vidasTxt.y;
-				
-				vidasRes.hAlign = vidasTxt.hAlign = HAlign.LEFT;
-				
-				this.addChild(vidasTxt);
-				this.addChild(vidasRes);
+				mainTxt.text = Textos.FINAL_GAMEOVER;
 			}
-			else if (victoryType == "lives")
-			{
-				tiempoTxt = new TextField(100, 30, Textos.FINAL_TIME, Assets.getFont("Textos").name, 30, 0xffffff);
-				tiempoRes = new TextField(100, 30, "", Assets.getFont("Textos").name, 30, 0xffffff);
-				
-				min = int(numTiempo / 60) / 60;
-				sec = int(numTiempo / 60) - min * 60;
-				if (sec < 10)
-					tiempoRes.text = min + ":0" + sec;
-				else
-					tiempoRes.text = min + ":" + sec;
-				
-				//Color
-				if (numTiempo <= datosNivel.TiempoVictoria * 60)
-					tiempoRes.color = Color.rgb(192, 255, 0);
-				else
-					tiempoRes.color = Color.rgb(223, 89, 89);
-				
-				tiempoTxt.x = puntosTxt.x;
-				tiempoRes.x = resultados.x + resultados.width - puntosRes.width - 25;
-				
-				tiempoTxt.y = puntosTxt.y + puntosTxt.height;
-				tiempoRes.y = tiempoTxt.y;
-				
-				tiempoRes.hAlign = tiempoTxt.hAlign = HAlign.LEFT;
-				
-				this.addChild(tiempoTxt);
-				this.addChild(tiempoRes);
-			}
-			else if (victoryType == "combo")
-			{
-				tiempoTxt = new TextField(100, 30, Textos.FINAL_TIME, Assets.getFont("Textos").name, 30, 0xffffff);
-				tiempoRes = new TextField(100, 30, "", Assets.getFont("Textos").name, 30, 0xffffff);
-				
-				vidasTxt = new TextField(100, 30, Textos.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
-				vidasRes = new TextField(100, 30, String(numVidas), Assets.getFont("Textos").name, 30, 0xffffff);
-				
-				//Tiempo
-				min = int(numTiempo / 60) / 60;
-				sec = int(numTiempo / 60) - min * 60;
-				if (sec < 10)
-					tiempoRes.text = min + ":0" + sec;
-				else
-					tiempoRes.text = min + ":" + sec;
-				
-				//Color tiempo
-				if (numTiempo <= datosNivel.TiempoVictoria * 60)
-					tiempoRes.color = Color.rgb(192, 255, 0);
-				else
-					tiempoRes.color = Color.rgb(223, 89, 89);
-				
-				//Color vidas
-				if (numVidas == datosNivel.Vidas)
-					vidasRes.color = Color.rgb(192, 255, 0);
-				else
-					vidasRes.color = Color.rgb(223, 89, 89);
-				
-				vidasTxt.y = puntosTxt.y + puntosTxt.height;
-				vidasRes.y = vidasTxt.y;
-				
-				tiempoTxt.y = vidasTxt.y + vidasTxt.height
-				tiempoRes.y = tiempoTxt.y;
-				
-				vidasTxt.x = tiempoTxt.x = puntosTxt.x;
-				
-				vidasRes.x = tiempoRes.x = resultados.x + resultados.width - puntosRes.width - 25;
-				
-				tiempoRes.hAlign = tiempoTxt.hAlign = vidasRes.hAlign = vidasTxt.hAlign = HAlign.LEFT;
-				
-				this.addChild(tiempoTxt);
-				this.addChild(tiempoRes);
-				this.addChild(vidasTxt);
-				this.addChild(vidasRes);
-			}
-			
-			this.addChild(resultados);
-			this.addChild(puntosTxt);
-			this.addChild(puntosRes);
 			
 			this.addChild(replayBtn);
 			this.addChild(menuBtn);
