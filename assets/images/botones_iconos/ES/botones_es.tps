@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>reglas.png</filename>
+        <filename>botones_es.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -82,7 +82,7 @@
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
-                <enum type="AlgorithmMaxRectsSettings::Heuristic">LongSideFit</enum>
+                <enum type="AlgorithmMaxRectsSettings::Heuristic">Best</enum>
             </struct>
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>reglas.xml</filename>
+        <filename>botones_es.xml</filename>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>
@@ -141,16 +141,15 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>Boton_Salir.png</filename>
-            <filename>Flecha_Derecha.png</filename>
-            <filename>Flecha_Izquierda.png</filename>
-            <filename>instr_1.png</filename>
-            <filename>instr_2.png</filename>
-            <filename>instr_3.png</filename>
-            <filename>instr_4.png</filename>
-            <filename>instr_5.png</filename>
-            <filename>instr_6.png</filename>
-            <filename>instr_7.png</filename>
+            <filename>Boton_repetir.png</filename>
+            <filename>MenuPrinc.png</filename>
+            <filename>borrar.png</filename>
+            <filename>Boton_Atras.png</filename>
+            <filename>Boton_Continuar.png</filename>
+            <filename>../Boton_Start.png</filename>
+            <filename>../PlayInicial.png</filename>
+            <filename>../Boton_menu.png</filename>
+            <filename>Instr.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

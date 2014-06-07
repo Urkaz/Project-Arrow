@@ -2,6 +2,9 @@ package utils
 {
 	public class Textos 
 	{
+		public static const SPANISH:String = "es";
+		public static const ENGLISH:String = "en";
+		
 		public static var LANG:String;
 		
 		public static var FINAL_VICTORY:String;
@@ -24,6 +27,7 @@ package utils
 		{
 		}
 		
+		//Clase com la que se gestianarán los idiomas del juego
 		static public function selectLang(lang:String):void
         {
 			LANG = lang;
@@ -32,14 +36,14 @@ package utils
 			{
 				FINAL_VICTORY = "ViCtOrY";
 				FINAL_GAMEOVER = "GaMe OvEr";
-				FINAL_RESULTS = "FINAL_RESULTS";
+				FINAL_RESULTS = "Results";
 				FINAL_POINTS = "Points:";
 				FINAL_TIME = "Time:";
 				FINAL_LIVES = "Lives:";
-				FINAL_GAMEOVER_DESCRIP = "FINAL_GAMEOVER_DESCRIP";
+				FINAL_GAMEOVER_DESCRIP = "¡Game Over!";
 				
 				PAUSE_MAIN = "PaUsE";
-				PAUSE_DESCRIPTION = "PAUSE_DESCRIPTION";
+				PAUSE_DESCRIPTION = "¡Game Paused!";
 				
 				STATS_LEVEL = "LeVeL ";
 				STATS_TIME_DESCRIPTION = "STATS_TIME_DESCRIPTION";

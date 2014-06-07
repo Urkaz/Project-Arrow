@@ -50,8 +50,8 @@ package objects
 			numTiempo = Game.saveGame.data[numLvl + "_tiempo"];
 			numVidas = Game.saveGame.data[numLvl + "_vidas"];
 			
-			replayBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_repetir"));
-			menuBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_menu"));
+			replayBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_repetir"));
+			menuBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_menu"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
 			//Posiciones

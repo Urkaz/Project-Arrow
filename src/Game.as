@@ -45,6 +45,9 @@ package
 			this.addEventListener(events.NavigationEvent.CHANGE_SCREEN, onChangeScreen)
 			this.addEventListener(events.NavigationEvent.POPUP_WINDOW, popUpWindow)
 			
+			//Idioma
+			Textos.selectLang(Textos.SPANISH);
+			
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);
 			HomeScreen.initialize();
@@ -59,8 +62,6 @@ package
 			InstrucScreen = new Instruct();
 			InstrucScreen.disposeTemporarily();
 			this.addChild(InstrucScreen);
-			
-			Textos.selectLang("es");
 		}
 		
 		private function onChangeScreen(event:NavigationEvent):void

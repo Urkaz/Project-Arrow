@@ -22,8 +22,8 @@ package objects
 		{
 			super(numLvl, starsCount, type, victory, stage);
 			
-			closeBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Atras"));
-			playBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Start"));
+			closeBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_Atras"));
+			playBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_Start"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
 			descrip = new TextField(250, 100, "" , Assets.getFont("Textos").name, 30, 0xffffff);

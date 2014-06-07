@@ -7,6 +7,7 @@ package screens
 	import starling.display.MovieClip;
 	import starling.events.Event;
 	import utils.Assets;
+	import utils.Textos;
 	
 	public class Instruct extends Sprite 
 	{	
@@ -29,12 +30,12 @@ package screens
 		
 		private function drawScreen():void 
 		{
-			instr = new MovieClip(Assets.getAtlas("reglas").getTextures("instr_"), 1);
+			instr = new MovieClip(Assets.getAtlas("reglas_"+Textos.LANG).getTextures("instr_"), 1);
 			instr.loop = false;
 			
-			atr = new Button(Assets.getAtlas("reglas").getTexture("Flecha_Izquierda"));
-			adl = new Button(Assets.getAtlas("reglas").getTexture("Flecha_Derecha"));
-			salir = new Button(Assets.getAtlas("reglas").getTexture("Boton_Salir"));
+			atr = new Button(Assets.getAtlas("reglas_"+Textos.LANG).getTexture("Flecha_Izquierda"));
+			adl = new Button(Assets.getAtlas("reglas_"+Textos.LANG).getTexture("Flecha_Derecha"));
+			salir = new Button(Assets.getAtlas("reglas_"+Textos.LANG).getTexture("Boton_Salir"));
 			
 			atr.y = adl.y = stage.stageHeight - atr.height;
 			atr.x = stage.x;

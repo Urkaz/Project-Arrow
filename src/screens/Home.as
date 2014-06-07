@@ -7,6 +7,7 @@ package screens
 	import flash.system.Capabilities;
 	import utils.Assets;
 	import events.NavigationEvent;
+	import utils.Textos;
 	
 	public class Home extends Sprite 
 	{
@@ -33,9 +34,9 @@ package screens
 			fondo_home = new Image(Assets.getTexture("PantallaInicial"));
 			this.addChild(fondo_home)
 			
-			boton_playHome = new Button(Assets.getTexture("PlayInicialBtn"));
-			boton_borrarPartida = new Button(Assets.getTexture("Borrar"));
-			boton_instrucciones = new Button(Assets.getTexture("Borrar"));
+			boton_playHome = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("PlayInicial"));
+			boton_borrarPartida = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("borrar"));
+			boton_instrucciones = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Instr"));
 			
 			boton_playHome.x = stage.stageWidth / 2 - boton_playHome.width / 2;
 			boton_playHome.y = 350;

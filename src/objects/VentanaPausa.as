@@ -21,9 +21,9 @@ package objects
 		{
 			super(numLvl, starsCount, type, victoryType, stage);
 			
-			replayBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_repetir"));
-			menuBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_menu"));
-			contBtn = new Button(Assets.getAtlas("levelSelectSprite").getTexture("Boton_Continuar"));
+			replayBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_repetir"));
+			menuBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_menu"));
+			contBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_Continuar"));
 			
 			descrip = new TextField(250, 100, Textos.PAUSE_DESCRIPTION , Assets.getFont("Textos").name, 30, 0xffffff);
 			

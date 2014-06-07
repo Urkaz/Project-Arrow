@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>levelSelection.png</filename>
+        <filename>reglas_es.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -82,12 +82,12 @@
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
-                <enum type="AlgorithmMaxRectsSettings::Heuristic">AreaFit</enum>
+                <enum type="AlgorithmMaxRectsSettings::Heuristic">LongSideFit</enum>
             </struct>
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
                 <key>sortBy</key>
-                <enum type="AlgorithmBasicSettings::SortBy">Name</enum>
+                <enum type="AlgorithmBasicSettings::SortBy">Best</enum>
                 <key>order</key>
                 <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
             </struct>
@@ -99,7 +99,7 @@
             <key>packageName</key>
             <string>Texture</string>
             <key>javaFileName</key>
-            <filename>levelSelection.java</filename>
+            <filename>../Assets_Selector_Niveles/levelSelection.java</filename>
             <key>wrap</key>
             <struct type="AndEngineWrap">
                 <key>s</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>levelSelection.xml</filename>
+        <filename>reglas_es.xml</filename>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>
@@ -141,23 +141,16 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>Candado_ground.png</filename>
-            <filename>Candado_normal.png</filename>
-            <filename>Candado_snow.png</filename>
-            <filename>negro.png</filename>
-            <filename>Nivel_ground.png</filename>
-            <filename>Nivel_normal.png</filename>
-            <filename>Nivel_snow.png</filename>
-            <filename>Selector_ground.png</filename>
-            <filename>Selector_normal.png</filename>
-            <filename>Selector_snow.png</filename>
-            <filename>0_Estrellas.png</filename>
-            <filename>1_Estrellas.png</filename>
-            <filename>2_Estrellas.png</filename>
-            <filename>3_Estrellas.png</filename>
-            <filename>Victoria_combo.png</filename>
-            <filename>Victoria_lives.png</filename>
-            <filename>Victoria_time.png</filename>
+            <filename>Boton_Salir.png</filename>
+            <filename>instr_1.png</filename>
+            <filename>instr_2.png</filename>
+            <filename>instr_3.png</filename>
+            <filename>instr_4.png</filename>
+            <filename>instr_5.png</filename>
+            <filename>instr_6.png</filename>
+            <filename>instr_7.png</filename>
+            <filename>../Flecha_Derecha.png</filename>
+            <filename>../Flecha_Izquierda.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

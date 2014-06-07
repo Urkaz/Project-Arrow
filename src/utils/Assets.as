@@ -88,11 +88,17 @@ package utils
 		public static const TextosXML:Class;
 		
 		// IMAGENES //
-		[Embed(source="../../assets/images/reglas.xml", mimeType="application/octet-stream")]
-		public static const reglasXML:Class;
+		[Embed(source="../../assets/images/reglas_es.xml", mimeType="application/octet-stream")]
+		public static const reglas_esXML:Class;
 		
-		[Embed(source="../../assets/images/reglas.png")]
-		public static const reglas:Class;
+		[Embed(source="../../assets/images/reglas_es.png")]
+		public static const reglas_es:Class;
+		
+		[Embed(source="../../assets/images/botones_es.xml", mimeType="application/octet-stream")]
+		public static const botones_esXML:Class;
+		
+		[Embed(source="../../assets/images/botones_es.png")]
+		public static const botones_es:Class;
 		
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
 		public static const levelSelectXML:Class;
@@ -108,15 +114,6 @@ package utils
 		
 		[Embed(source="../../assets/images/PantallaInicial.png")]
 		public static const PantallaInicial:Class;
-		
-		[Embed(source="../../assets/images/volver_atras.png")]
-		public static const VolverAtras:Class;
-		
-		[Embed(source="../../assets/images/borrar.png")]
-		public static const Borrar:Class;
-		
-		[Embed(source="../../assets/images/PlayInicial.png")]
-		public static const PlayInicialBtn:Class;
 		
 		// PARTÍCULAS //
 		[Embed(source="../../assets/particles/particle_fuego.pex", mimeType="application/octet-stream")]
@@ -194,8 +191,11 @@ package utils
 				case "gameSprite":
 					xml = XML(new gameXML());
 					break;
-				case "reglas":
-					xml = XML(new reglasXML());
+				case "reglas_es":
+					xml = XML(new reglas_esXML());
+					break;
+				case "botones_es":
+					xml = XML(new botones_esXML());
 					break;
 				}
 				gameAtlas[name] = new TextureAtlas(texture, xml);

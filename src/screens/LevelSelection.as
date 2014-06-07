@@ -16,6 +16,7 @@ package screens
 	import feathers.controls.ScrollBar;
 	import feathers.controls.Scroller;
 	import objects.BotonNivel;
+	import utils.Textos;
 	
 	public class LevelSelection extends Sprite 
 	{
@@ -78,7 +79,7 @@ package screens
 			container.layout = layout;
 			
 			//Boton para volver al home
-			atrasBtn = new Button(Assets.getTexture("VolverAtras"));
+			atrasBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("MenuPrinc"));
 			atrasBtn.height = 40;
 			atrasBtn.width = stage.stageWidth;
 			atrasBtn.x = stage.stageWidth / 2 - atrasBtn.width / 2;

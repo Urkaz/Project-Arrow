@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:608379f609147b51e19a0523601a2a93$ -->
+<!-- $TexturePacker:SmartUpdate:ff976be7c71f4455a0831ed829d72e46$ -->
 <TextureAtlas imagePath="levelSelection.png">
-    <SubTexture name="0_Estrellas" x="681" y="483" width="111" height="47"/>
-    <SubTexture name="1_Estrellas" x="844" y="449" width="111" height="47"/>
-    <SubTexture name="2_Estrellas" x="732" y="435" width="111" height="47"/>
-    <SubTexture name="3_Estrellas" x="639" y="347" width="111" height="47"/>
-    <SubTexture name="Boton_Atras" x="853" y="361" width="101" height="87"/>
-    <SubTexture name="Boton_Continuar" x="751" y="347" width="101" height="87"/>
-    <SubTexture name="Boton_Start" x="843" y="259" width="101" height="87"/>
-    <SubTexture name="Boton_menu" x="741" y="259" width="101" height="87"/>
-    <SubTexture name="Boton_repetir" x="639" y="259" width="101" height="87"/>
+    <SubTexture name="0_Estrellas" x="751" y="259" width="111" height="47"/>
+    <SubTexture name="1_Estrellas" x="639" y="355" width="111" height="47"/>
+    <SubTexture name="2_Estrellas" x="639" y="307" width="111" height="47"/>
+    <SubTexture name="3_Estrellas" x="639" y="259" width="111" height="47"/>
     <SubTexture name="Candado_ground" x="639" y="173" width="360" height="85"/>
     <SubTexture name="Candado_normal" x="639" y="87" width="360" height="85"/>
     <SubTexture name="Candado_snow" x="639" y="1" width="360" height="85"/>
@@ -20,8 +15,8 @@
     <SubTexture name="Selector_ground" x="320" y="1" width="318" height="414"/>
     <SubTexture name="Selector_normal" x="1" y="416" width="318" height="414"/>
     <SubTexture name="Selector_snow" x="1" y="1" width="318" height="414"/>
-    <SubTexture name="Victoria_combo" x="681" y="395" width="50" height="50"/>
-    <SubTexture name="Victoria_lives" x="945" y="310" width="50" height="50"/>
-    <SubTexture name="Victoria_time" x="945" y="259" width="50" height="50"/>
+    <SubTexture name="Victoria_combo" x="802" y="307" width="50" height="50"/>
+    <SubTexture name="Victoria_lives" x="751" y="307" width="50" height="50"/>
+    <SubTexture name="Victoria_time" x="863" y="259" width="50" height="50"/>
     <SubTexture name="negro" x="1" y="1003" width="20" height="20"/>
 </TextureAtlas>
