@@ -140,6 +140,20 @@ package utils
 		[Embed(source="../../assets/particles/texture_planta.png")]
 		public static const Particle_plant:Class;
 		
+		//MUSICA//
+		
+		[Embed(source="../../assets/Music/TheHunter.mp3")]
+		public static const hunter:Class;
+		
+		[Embed(source="../../assets/Music/ThinkTank.mp3")]
+		public static const music_selection:Class;
+		
+		[Embed(source="../../assets/Music/BustinLooseWLead.mp3")]
+		public static const music_level1:Class;
+		
+		[Embed(source="../../assets/Music/PilotsOfStone.mp3")]
+		public static const music_level2:Class;
+		
 		public static function getFont(name:String):BitmapFont
 		{
 			var fontTexture:Texture;
