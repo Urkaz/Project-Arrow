@@ -1,6 +1,7 @@
 package  
 {
 	import objects.VentanaPausa;
+	import screens.Instruct;
 	import screens.Nivel;
 	import starling.animation.Tween;
 	import starling.display.Sprite;
@@ -20,6 +21,7 @@ package
 		private var HomeScreen:Home;
 		private var LevelsScreen:LevelSelection;
 		private var GameScreen:Nivel;
+		private var InstrucScreen:Instruct;
 		private var ventana:VentanaBase;
 		
 		public static var saveGame:SharedObject = SharedObject.getLocal("partida");
@@ -42,6 +44,10 @@ package
 			LevelsScreen = new LevelSelection();
 			LevelsScreen.disposeTemporarily();
 			this.addChild(LevelsScreen);
+			
+			InstrucScreen = new Instruct();
+			InstrucScreen.disposeTemporarily();
+			this.addChild(InstrucScreen);
 			
 			Textos.selectLang("es");
 		}
@@ -79,7 +85,13 @@ package
 					break;
 				case "home": //Del selector de niveles al home
 					LevelsScreen.disposeTemporarily();
+					InstrucScreen.disposeTemporarily();
 					HomeScreen.initialize();
+					
+					break;
+				case "instruc": //Del home a las instrucciones
+					HomeScreen.disposeTemporarily();
+					InstrucScreen.initialize();
 					
 					break;
 			}

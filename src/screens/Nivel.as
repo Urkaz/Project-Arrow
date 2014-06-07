@@ -143,8 +143,8 @@ package screens
 			
 			pausaBtn.x = stage.stageWidth - pausaBtn.width + 2;
 			
-			restanteInicioTxt.x = stage.x + 30;
-			restanteInicioTxt.y = stage.y + 180;
+			restanteInicioTxt.x = stage.stageWidth / 2 - restanteInicioTxt.width / 2;
+			restanteInicioTxt.y = stage.stageHeight / 2 - restanteInicioTxt.height / 2;
 		
 			
 			tiempoTxt.x = pausaBtn.x - tiempoTxt.width;

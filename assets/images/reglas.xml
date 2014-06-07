@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:a0dd72f212f5fc658ddf29c513f0d345$ -->
+<TextureAtlas imagePath="reglas.png">
+    <SubTexture name="Boton_Salir" x="723" y="752" width="106" height="36"/>
+    <SubTexture name="Flecha_Derecha" x="723" y="697" width="98" height="54"/>
+    <SubTexture name="Flecha_Izquierda" x="723" y="642" width="98" height="54"/>
+    <SubTexture name="instr_1" x="362" y="642" width="360" height="640"/>
+    <SubTexture name="instr_2" x="1" y="642" width="360" height="640"/>
+    <SubTexture name="instr_3" x="1445" y="1" width="360" height="640"/>
+    <SubTexture name="instr_4" x="1084" y="1" width="360" height="640"/>
+    <SubTexture name="instr_5" x="723" y="1" width="360" height="640"/>
+    <SubTexture name="instr_6" x="362" y="1" width="360" height="640"/>
+    <SubTexture name="instr_7" x="1" y="1" width="360" height="640"/>
+</TextureAtlas>

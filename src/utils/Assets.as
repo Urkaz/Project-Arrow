@@ -88,6 +88,12 @@ package utils
 		public static const TextosXML:Class;
 		
 		// IMAGENES //
+		[Embed(source="../../assets/images/reglas.xml", mimeType="application/octet-stream")]
+		public static const reglasXML:Class;
+		
+		[Embed(source="../../assets/images/reglas.png")]
+		public static const reglas:Class;
+		
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
 		public static const levelSelectXML:Class;
 		
@@ -173,6 +179,9 @@ package utils
 					break;
 				case "gameSprite":
 					xml = XML(new gameXML());
+					break;
+				case "reglas":
+					xml = XML(new reglasXML());
 					break;
 				}
 				gameAtlas[name] = new TextureAtlas(texture, xml);

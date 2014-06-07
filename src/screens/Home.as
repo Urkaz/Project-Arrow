@@ -13,12 +13,12 @@ package screens
 		
 		private var boton_playHome:Button;
 		private var boton_borrarPartida:Button;
+		private var boton_instrucciones:Button;
 		
 		private var fondo_home:Image;
 		
 		public function Home() 
 		{
-			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
@@ -35,16 +35,18 @@ package screens
 			
 			boton_playHome = new Button(Assets.getTexture("PlayInicialBtn"));
 			boton_borrarPartida = new Button(Assets.getTexture("Borrar"));
+			boton_instrucciones = new Button(Assets.getTexture("Borrar"));
 			
 			boton_playHome.x = stage.stageWidth / 2 - boton_playHome.width / 2;
 			boton_playHome.y = 350;
 			
-			boton_borrarPartida.height = 70;
-			boton_borrarPartida.x = boton_playHome.x + 27;
-			boton_borrarPartida.y = stage.stageHeight - boton_borrarPartida.height - 7;
+			boton_borrarPartida.x = stage.stageWidth / 2 + 5;
+			boton_instrucciones.x = stage.stageWidth / 2 - boton_instrucciones.width - 5;
+			boton_instrucciones.y = boton_borrarPartida.y = stage.stageHeight - boton_borrarPartida.height - 7;
 			
 			this.addChild(boton_playHome);
 			this.addChild(boton_borrarPartida);
+			this.addChild(boton_instrucciones);
 			
 			this.addEventListener(Event.TRIGGERED, onMainMenuClick);
 		}
@@ -56,7 +58,11 @@ package screens
 			{
 				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "play"}, true));
 			}
-			if ((buttonClicked as Button) == boton_borrarPartida)
+			else if((buttonClicked as Button) == boton_instrucciones)
+			{
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN, {id: "instruc"}, true));
+			}
+			else if ((buttonClicked as Button) == boton_borrarPartida)
 			{
 				Game.saveGame.clear();
 				

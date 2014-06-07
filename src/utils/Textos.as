@@ -2,7 +2,8 @@ package utils
 {
 	public class Textos 
 	{
-		//ESPAÑOL
+		public static var LANG:String;
+		
 		public static var FINAL_VICTORY:String;
 		public static var FINAL_GAMEOVER:String;
 		public static var FINAL_RESULTS:String;
@@ -25,6 +26,8 @@ package utils
 		
 		static public function selectLang(lang:String):void
         {
+			LANG = lang;
+			
 			if (lang == "en")
 			{
 				FINAL_VICTORY = "ViCtOrY";
