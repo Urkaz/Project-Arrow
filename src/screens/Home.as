@@ -99,7 +99,6 @@ package screens
 			}
 			else if((buttonClicked as Button) == boton_idioma_es)
 			{
-				trace(Game.saveGame.data["lang"]);
 				Game.saveGame.setProperty("lang", Textos.ENGLISH);
 				texto.text = Textos.LANG_CHANGE_ES;
 				this.removeChild(boton_idioma_es)
@@ -107,7 +106,6 @@ package screens
 			}
 			else if((buttonClicked as Button) == boton_idioma_en)
 			{
-				trace(Game.saveGame.data["lang"]);
 				Game.saveGame.setProperty("lang", Textos.SPANISH);
 				texto.text = Textos.LANG_CHANGE_EN;
 				this.removeChild(boton_idioma_en)

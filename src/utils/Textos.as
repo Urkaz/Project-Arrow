@@ -49,9 +49,9 @@ package utils
 				PAUSE_DESCRIPTION = "¡Game Paused!";
 				
 				STATS_LEVEL = "LeVeL ";
-				STATS_TIME_DESCRIPTION = "STATS_TIME_DESCRIPTION";
-				STATS_LIVES_DESCRIPTION = "STATS_LIVES_DESCRIPTION";
-				STATS_COMBO_DESCRIPTION = "STATS_COMBO_DESCRIPTION";
+				STATS_TIME_DESCRIPTION = "Survive till the time runs out!";
+				STATS_LIVES_DESCRIPTION = "Finish your enemy as fast as you can!";
+				STATS_COMBO_DESCRIPTION = "Make the combos as fast as you can!";
 			}
 			else //español por defecto
 			{
