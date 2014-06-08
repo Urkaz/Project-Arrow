@@ -46,7 +46,20 @@ package
 			this.addEventListener(events.NavigationEvent.POPUP_WINDOW, popUpWindow)
 			
 			//Idioma
-			Textos.selectLang(Textos.SPANISH);
+			if (Game.saveGame.data["lang"] == undefined)
+			{
+				//Español por defecto la primera vez
+				Game.saveGame.setProperty("lang", Textos.SPANISH);
+				Textos.selectLang(Textos.SPANISH);
+			}
+			else if (Game.saveGame.data["lang"] == Textos.ENGLISH)
+			{
+				Textos.selectLang(Textos.ENGLISH);
+			}
+			else if (Game.saveGame.data["lang"] == Textos.SPANISH)
+			{
+				Textos.selectLang(Textos.SPANISH);
+			}
 			
 			HomeScreen = new Home();
 			this.addChild(HomeScreen);

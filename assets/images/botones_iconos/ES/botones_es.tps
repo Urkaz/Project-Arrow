@@ -150,6 +150,8 @@
             <filename>../PlayInicial.png</filename>
             <filename>../Boton_menu.png</filename>
             <filename>Instr.png</filename>
+            <filename>lang_en.png</filename>
+            <filename>lang_es.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -23,6 +23,9 @@ package utils
 		public static var PAUSE_MAIN:String;
 		public static var PAUSE_DESCRIPTION:String;
 		
+		public static var LANG_CHANGE_ES:String = "Reinicia el juego para cambiar el idioma a Español";
+		public static var LANG_CHANGE_EN:String = "Restart the game to change the language to English";
+		
 		public function Textos()
 		{
 		}

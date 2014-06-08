@@ -88,6 +88,7 @@ package utils
 		public static const TextosXML:Class;
 		
 		// IMAGENES //
+		//Español
 		[Embed(source="../../assets/images/reglas_es.xml", mimeType="application/octet-stream")]
 		public static const reglas_esXML:Class;
 		
@@ -100,9 +101,23 @@ package utils
 		[Embed(source="../../assets/images/botones_es.png")]
 		public static const botones_es:Class;
 		
+		//Inglés
+		[Embed(source="../../assets/images/reglas_en.xml", mimeType="application/octet-stream")]
+		public static const reglas_enXML:Class;
+		
+		[Embed(source="../../assets/images/reglas_en.png")]
+		public static const reglas_en:Class;
+		
+		[Embed(source="../../assets/images/botones_en.xml", mimeType="application/octet-stream")]
+		public static const botones_enXML:Class;
+		
+		[Embed(source="../../assets/images/botones_en.png")]
+		public static const botones_en:Class;
+		
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
 		public static const levelSelectXML:Class;
 		
+		//General
 		[Embed(source="../../assets/images/levelSelection.png")]
 		public static const levelSelectSprite:Class;
 		
@@ -196,6 +211,12 @@ package utils
 					break;
 				case "botones_es":
 					xml = XML(new botones_esXML());
+					break;
+				case "reglas_en":
+					xml = XML(new reglas_enXML());
+					break;
+				case "botones_en":
+					xml = XML(new botones_enXML());
 					break;
 				}
 				gameAtlas[name] = new TextureAtlas(texture, xml);

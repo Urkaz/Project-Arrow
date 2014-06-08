@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:dabced97385ec30246b449f3044171d0$ -->
-<TextureAtlas imagePath="botones_es.png">
+<!-- $TexturePacker:SmartUpdate:1bdb5dfc84e8ba8450fef4250703fc04$ -->
+<TextureAtlas imagePath="botones_en.png">
     <SubTexture name="Boton_Atras" x="277" y="1" width="101" height="87"/>
     <SubTexture name="Boton_Continuar" x="205" y="89" width="101" height="87"/>
     <SubTexture name="Boton_Start" x="175" y="1" width="101" height="87"/>
