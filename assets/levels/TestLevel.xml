@@ -35,5 +35,5 @@
 	<!--
 	platf es el ancho total de la plataforma
 	-->
-	<soldier x="0" y="500" arm="3" platf="300" />
+	<soldier x="10" y="400" arm="3" platf="300" />
 </Level>
