@@ -166,6 +166,8 @@ package utils
 		[Embed(source="../../assets/Music/PilotsOfStone.mp3")]
 		public static const music_level2:Class;
 		
+		
+		//Funciones
 		public static function getFont(name:String):BitmapFont
 		{
 			var fontTexture:Texture;
