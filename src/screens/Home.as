@@ -98,14 +98,14 @@ package screens
 			}
 			else if((buttonClicked as Button) == boton_idioma_es)
 			{
-				Game.saveGame.setProperty("lang", Texts.ENGLISH);
+				Game.saveGame.setProperty("lang", Texts.SPANISH);
 				texto.text = Texts.LANG_CHANGE_ES;
 				this.removeChild(boton_idioma_es)
 				this.addChild(boton_idioma_en);
 			}
 			else if((buttonClicked as Button) == boton_idioma_en)
 			{
-				Game.saveGame.setProperty("lang", Texts.SPANISH);
+				Game.saveGame.setProperty("lang", Texts.ENGLISH);
 				texto.text = Texts.LANG_CHANGE_EN;
 				this.removeChild(boton_idioma_en)
 				this.addChild(boton_idioma_es);
@@ -122,5 +122,4 @@ package screens
 			this.visible = true;
 		}
 	}
-
 }
