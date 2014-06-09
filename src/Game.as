@@ -1,19 +1,19 @@
 package  
 {
-	import objects.VentanaPausa;
+	import objects.WindowPause;
 	import screens.Instruct;
-	import screens.Nivel;
+	import screens.GameLevel;
 	import starling.animation.Tween;
 	import starling.display.Sprite;
 	import events.NavigationEvent;
 	import starling.events.Event;
 	import screens.Home;
 	import screens.LevelSelection;
-	import utils.Textos;
+	import utils.Texts;
 	import utils.Assets;
-	import utils.VentanaBase;
-	import objects.VentanaFinal;
-	import objects.VentanaNiveles;
+	import utils.WindowBase;
+	import objects.WindowFinal;
+	import objects.WindowLevel;
 	import flash.net.SharedObject;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
@@ -23,9 +23,9 @@ package
 		
 		private var HomeScreen:Home;
 		private var LevelsScreen:LevelSelection;
-		private var GameScreen:Nivel;
+		private var GameScreen:GameLevel;
 		private var InstrucScreen:Instruct;
-		private var ventana:VentanaBase;
+		private var ventana:WindowBase;
 		private var sound_channel:SoundChannel;
 		private var hunter:Sound;
 		private var music_selection:Sound;
@@ -49,16 +49,16 @@ package
 			if (Game.saveGame.data["lang"] == undefined)
 			{
 				//Español por defecto la primera vez
-				Game.saveGame.setProperty("lang", Textos.SPANISH);
-				Textos.selectLang(Textos.SPANISH);
+				Game.saveGame.setProperty("lang", Texts.SPANISH);
+				Texts.selectLang(Texts.SPANISH);
 			}
-			else if (Game.saveGame.data["lang"] == Textos.ENGLISH)
+			else if (Game.saveGame.data["lang"] == Texts.ENGLISH)
 			{
-				Textos.selectLang(Textos.ENGLISH);
+				Texts.selectLang(Texts.ENGLISH);
 			}
-			else if (Game.saveGame.data["lang"] == Textos.SPANISH)
+			else if (Game.saveGame.data["lang"] == Texts.SPANISH)
 			{
-				Textos.selectLang(Textos.SPANISH);
+				Texts.selectLang(Texts.SPANISH);
 			}
 			
 			HomeScreen = new Home();
@@ -100,7 +100,7 @@ package
 					LevelsScreen.disposeTemporarily();
 					
 					//Crear el nivel, no se tiene cargado ya como los demás
-					GameScreen = new Nivel(event.params.lvl, event.params.type, event.params.vic);
+					GameScreen = new GameLevel(event.params.lvl, event.params.type, event.params.vic);
 					this.addChild(GameScreen);
 					GameScreen.initialize();
 					
@@ -155,7 +155,7 @@ package
 					this.removeChild(ventana);
 					
 					//Crear ventana
-					ventana = new VentanaNiveles(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage);
+					ventana = new WindowLevel(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage);
 					
 					this.addChild(ventana);
 					break;
@@ -164,7 +164,7 @@ package
 					this.removeChild(ventana);
 					
 					//Crear ventana
-					ventana = new VentanaFinal(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage, event.params.go);
+					ventana = new WindowFinal(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage, event.params.go);
 					
 					this.addChild(ventana);
 					break;
@@ -173,7 +173,7 @@ package
 					this.removeChild(ventana);
 					
 					//Crear ventana
-					ventana = new VentanaPausa(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage);
+					ventana = new WindowPause(event.params.lvl, event.params.stars, event.params.type, event.params.vic, stage);
 					
 					this.addChild(ventana);
 					break;

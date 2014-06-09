@@ -7,7 +7,7 @@ package screens
 	import starling.text.TextField;
 	import utils.Assets;
 	import events.NavigationEvent;
-	import utils.Textos;
+	import utils.Texts;
 	
 	public class Home extends Sprite 
 	{
@@ -38,18 +38,18 @@ package screens
 			fondo_home = new Image(Assets.getTexture("PantallaInicial"));
 			this.addChild(fondo_home)
 			
-			boton_playHome = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("PlayInicial"));
-			boton_borrarPartida = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("borrar"));
-			boton_instrucciones = new Button(Assets.getAtlas("botones_" + Textos.LANG).getTexture("Instr"));
+			boton_playHome = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("PlayInicial"));
+			boton_borrarPartida = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("borrar"));
+			boton_instrucciones = new Button(Assets.getAtlas("botones_" + Texts.LANG).getTexture("Instr"));
 			
-			boton_idioma_en = new Button(Assets.getAtlas("botones_" + Textos.LANG).getTexture("lang_" + Textos.ENGLISH));
-			boton_idioma_es = new Button(Assets.getAtlas("botones_" + Textos.LANG).getTexture("lang_" + Textos.SPANISH));
+			boton_idioma_en = new Button(Assets.getAtlas("botones_" + Texts.LANG).getTexture("lang_" + Texts.ENGLISH));
+			boton_idioma_es = new Button(Assets.getAtlas("botones_" + Texts.LANG).getTexture("lang_" + Texts.SPANISH));
 			
 			texto = new TextField(boton_idioma_es.width, 100, "" , Assets.getFont("Textos").name, 20, 0xffffff);
 			
-			if(Textos.LANG == Textos.SPANISH)
+			if(Texts.LANG == Texts.SPANISH)
 				this.addChild(boton_idioma_en);
-			else if(Textos.LANG == Textos.ENGLISH)
+			else if(Texts.LANG == Texts.ENGLISH)
 				this.addChild(boton_idioma_es);
 			
 			boton_playHome.x = stage.stageWidth / 2 - boton_playHome.width / 2;
@@ -89,7 +89,6 @@ package screens
 				
 				Game.saveGame.clear();
 				
-				trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "Home: CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
 				if (Game.saveGame.data[0 + "_lock"] == undefined)
 				{
 					Game.saveGame.setProperty(0 + "_lock", false);
@@ -99,15 +98,15 @@ package screens
 			}
 			else if((buttonClicked as Button) == boton_idioma_es)
 			{
-				Game.saveGame.setProperty("lang", Textos.ENGLISH);
-				texto.text = Textos.LANG_CHANGE_ES;
+				Game.saveGame.setProperty("lang", Texts.ENGLISH);
+				texto.text = Texts.LANG_CHANGE_ES;
 				this.removeChild(boton_idioma_es)
 				this.addChild(boton_idioma_en);
 			}
 			else if((buttonClicked as Button) == boton_idioma_en)
 			{
-				Game.saveGame.setProperty("lang", Textos.SPANISH);
-				texto.text = Textos.LANG_CHANGE_EN;
+				Game.saveGame.setProperty("lang", Texts.SPANISH);
+				texto.text = Texts.LANG_CHANGE_EN;
 				this.removeChild(boton_idioma_en)
 				this.addChild(boton_idioma_es);
 			}

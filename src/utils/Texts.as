@@ -1,6 +1,6 @@
 package utils 
 {
-	public class Textos 
+	public class Texts 
 	{
 		public static const SPANISH:String = "es";
 		public static const ENGLISH:String = "en";
@@ -26,7 +26,7 @@ package utils
 		public static var LANG_CHANGE_ES:String = "Reinicia el juego para cambiar el idioma a Español";
 		public static var LANG_CHANGE_EN:String = "Restart the game to change the language to English";
 		
-		public function Textos()
+		public function Texts()
 		{
 		}
 		

@@ -12,7 +12,7 @@ package objects
 	import starling.events.TouchPhase;
 	import events.NavigationEvent;
 	
-	public class BotonNivel extends Sprite 
+	public class LevelButton extends Sprite 
 	{
 		private var bg:Image;
 		private var victory:Image;
@@ -24,7 +24,7 @@ package objects
 		private var numNivel:TextField;
 		private var starsCount:int;
 		
-		public function BotonNivel(lvlType:String, victoryType:String, level:int, starsCount:int)
+		public function LevelButton(lvlType:String, victoryType:String, level:int, starsCount:int)
 		{
 			this.level = level;
 			this.lvlType = lvlType;

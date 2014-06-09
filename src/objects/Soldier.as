@@ -6,12 +6,12 @@ package objects
 	import starling.events.TouchEvent;
 	import utils.Assets;
 	
-	public class Soldado extends Sprite 
+	public class Soldier extends Sprite 
 	{
 		private var imgSoldier:Image;
 		public var armor:int;
 		
-		public function Soldado(x:Number, armorInit:int)
+		public function Soldier(x:Number, armorInit:int)
 		{
 			armor = armorInit;
 			

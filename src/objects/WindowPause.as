@@ -4,12 +4,12 @@ package objects
 	import starling.display.Stage;
 	import starling.text.TextField;
 	import utils.Assets;
-	import utils.Textos;
-	import utils.VentanaBase;
+	import utils.Texts;
+	import utils.WindowBase;
 	import starling.events.Event;
 	import events.NavigationEvent;
 	
-	public class VentanaPausa extends VentanaBase
+	public class WindowPause extends WindowBase
 	{
 		private var descrip:TextField;
 		
@@ -17,17 +17,17 @@ package objects
 		private var menuBtn:Button;
 		private var contBtn:Button;
 		
-		public function VentanaPausa(numLvl:int, starsCount:int, type:String, victoryType:String, stage:Stage)
+		public function WindowPause(numLvl:int, starsCount:int, type:String, victoryType:String, stage:Stage)
 		{
 			super(numLvl, starsCount, type, victoryType, stage);
 			
-			replayBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_repetir"));
-			menuBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_menu"));
-			contBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_Continuar"));
+			replayBtn = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("Boton_repetir"));
+			menuBtn = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("Boton_menu"));
+			contBtn = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("Boton_Continuar"));
 			
-			descrip = new TextField(250, 100, Textos.PAUSE_DESCRIPTION , Assets.getFont("Textos").name, 30, 0xffffff);
+			descrip = new TextField(250, 100, Texts.PAUSE_DESCRIPTION , Assets.getFont("Textos").name, 30, 0xffffff);
 			
-			mainTxt.text = Textos.PAUSE_MAIN;
+			mainTxt.text = Texts.PAUSE_MAIN;
 			
 			replayBtn.x = contBtn.x = menuBtn.x = selector.x + selector.width / 2 - replayBtn.width / 2;
 			

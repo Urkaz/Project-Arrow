@@ -10,21 +10,21 @@ package objects
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	
-	public class Plataforma extends Sprite 
+	public class Platform extends Sprite 
 	{
 		private var anchoPlatMedio:int;
 		private var imgPlatIzq:Image;
 		private var imgPlatDer:Image;
 		private var imgPlatMedio:Image;
-		private var soldado:Soldado;
+		private var soldado:Soldier;
 		
-		public function Plataforma(x:Number, y:Number, ancho:int, soldierArmor:int) 
+		public function Platform(x:Number, y:Number, ancho:int, soldierArmor:int) 
 		{
 			anchoPlatMedio = ancho;
 			this.x = x;
 			this.y = y;
 			
-			soldado = new Soldado(anchoPlatMedio / 2, soldierArmor);
+			soldado = new Soldier(anchoPlatMedio / 2, soldierArmor);
 			addChild(soldado);
 			soldado.addEventListener(TouchEvent.TOUCH, onTouch);
 			

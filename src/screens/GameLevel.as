@@ -4,14 +4,14 @@ package screens
 	import flash.geom.Point;
 	import flash.ui.Keyboard;
 	import objects.Arrow;
-	import objects.Plataforma;
-	import objects.Soldado;
+	import objects.Platform;
+	import objects.Soldier;
 	import objects.Warning;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.text.TextField;
-	import utils.DatosNivel;
+	import utils.LevelData;
 	import starling.events.Event;
 	import utils.Assets;
 	import starling.events.Touch;
@@ -42,12 +42,12 @@ package screens
 	/**
 	 * Esta clase será la que ponga en pantalla todos los elementos de los niveles (InGame)
 	 */
-	public class Nivel extends Sprite 
+	public class GameLevel extends Sprite 
 	{
 		/*******************
 		 * Atributos
 		 *******************/
-		private var datosNivel:DatosNivel;
+		private var datosNivel:LevelData;
 		
 		private var imgMuralla:Image;
 		private var barraImg:Image;
@@ -101,10 +101,10 @@ package screens
 		/*******************
 		 * Constructor
 		 *******************/
-		public function Nivel(level:int, type:String, victory:String) 
+		public function GameLevel(level:int, type:String, victory:String) 
 		{
 			trace("Nivel " + level + " cargado, de tipo: " + type);
-			datosNivel = new DatosNivel(level);
+			datosNivel = new LevelData(level);
 			
 			levelNumber = level;
 			levelType = type;
@@ -229,7 +229,7 @@ package screens
 			//PLATAFORMAS
 			for (var i:int = 0; i < datosNivel.Soldados.length; i++)
 			{
-				var platf:Plataforma = new Plataforma(datosNivel.Soldados[i][0], datosNivel.Soldados[i][1], datosNivel.Soldados[i][3], datosNivel.Soldados[i][2]);
+				var platf:Platform = new Platform(datosNivel.Soldados[i][0], datosNivel.Soldados[i][1], datosNivel.Soldados[i][3], datosNivel.Soldados[i][2]);
 				soldierArray.push(platf);
 				this.addChild(platf);
 			}
@@ -566,7 +566,6 @@ package screens
 			}
 		}
 		
-		//Cambiar el return?
 		private function deleteArrow(index:int):int
 		{
 			var aux:Array = arrowArray[index];
@@ -583,7 +582,7 @@ package screens
 		
 		private function deleteSoldier(index:int):void
 		{
-			var aux:Plataforma = soldierArray[index];
+			var aux:Platform = soldierArray[index];
 			soldierArray[index] = soldierArray[soldierArray.length - 1];
 			soldierArray[soldierArray.length - 1] = aux;
 			

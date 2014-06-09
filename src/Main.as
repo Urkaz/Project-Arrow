@@ -21,8 +21,8 @@ package
 			stage.scaleMode = StageScaleMode.EXACT_FIT;
 			stage.align = StageAlign.TOP_LEFT;
 			
-			stats = new Stats();
-			stats.y = stage.stageHeight - 100;
+			//stats = new Stats();
+			//stats.y = stage.stageHeight - 100;
 			//this.addChild(stats);
 			
 			myStarling = new Starling(Game, stage);

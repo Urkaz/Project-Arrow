@@ -9,11 +9,11 @@ package objects
 	import starling.utils.Color;
 	import starling.utils.HAlign;
 	import utils.Assets;
-	import utils.DatosNivel;
-	import utils.Textos;
-	import utils.VentanaBase;
+	import utils.LevelData;
+	import utils.Texts;
+	import utils.WindowBase;
 	
-	public class VentanaFinal extends VentanaBase
+	public class WindowFinal extends WindowBase
 	{
 		//private var descrip:TextField;
 		
@@ -21,7 +21,7 @@ package objects
 		private var replayBtn:Button;
 		private var menuBtn:Button;
 		
-		private var datosNivel:DatosNivel;
+		private var datosNivel:LevelData;
 		
 		private var resultados:TextField;
 		private var puntosTxt:TextField;
@@ -40,9 +40,9 @@ package objects
 		private var sec:int = 0;
 		private var numVidas:int = 0;
 		
-		public function VentanaFinal(numLvl:int, starsCount:int, type:String, victoryType:String, stage:Stage, gameOver:Boolean)
+		public function WindowFinal(numLvl:int, starsCount:int, type:String, victoryType:String, stage:Stage, gameOver:Boolean)
 		{
-			datosNivel = new DatosNivel(numLvl);
+			datosNivel = new LevelData(numLvl);
 			
 			super(numLvl, starsCount, type, victoryType, stage);
 			
@@ -50,8 +50,8 @@ package objects
 			numTiempo = Game.saveGame.data[numLvl + "_tiempo"];
 			numVidas = Game.saveGame.data[numLvl + "_vidas"];
 			
-			replayBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_repetir"));
-			menuBtn = new Button(Assets.getAtlas("botones_"+Textos.LANG).getTexture("Boton_menu"));
+			replayBtn = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("Boton_repetir"));
+			menuBtn = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("Boton_menu"));
 			stars = new Image(Assets.getAtlas("levelSelectSprite").getTexture(starsCount+"_Estrellas"));
 			
 			//Posiciones
@@ -65,9 +65,9 @@ package objects
 			
 			if (!gameOver)
 			{
-				resultados = new TextField(250, 30, Textos.FINAL_RESULTS, Assets.getFont("Textos").name, 30, 0xffffff);
+				resultados = new TextField(250, 30, Texts.FINAL_RESULTS, Assets.getFont("Textos").name, 30, 0xffffff);
 			
-				puntosTxt = new TextField(100, 30, Textos.FINAL_POINTS, Assets.getFont("Textos").name, 30, 0xffffff);
+				puntosTxt = new TextField(100, 30, Texts.FINAL_POINTS, Assets.getFont("Textos").name, 30, 0xffffff);
 				puntosRes = new TextField(100, 30, "", Assets.getFont("Textos").name, 30, 0xffffff);
 				
 				puntosRes.hAlign = puntosTxt.hAlign = puntosRes.hAlign = HAlign.LEFT;
@@ -100,12 +100,12 @@ package objects
 				this.addChild(puntosTxt);
 				this.addChild(puntosRes);
 				
-				mainTxt.text = Textos.FINAL_VICTORY;
+				mainTxt.text = Texts.FINAL_VICTORY;
 				
 				//MODOS DE JUEGO
 				if (victoryType == "time")
 				{
-					vidasTxt = new TextField(100, 30, Textos.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
+					vidasTxt = new TextField(100, 30, Texts.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
 					vidasRes = new TextField(100, 30, String(numVidas), Assets.getFont("Textos").name, 30, 0xffffff);
 					
 					//Color
@@ -127,10 +127,10 @@ package objects
 				}
 				else
 				{
-					tiempoTxt = new TextField(100, 30, Textos.FINAL_TIME, Assets.getFont("Textos").name, 30, 0xffffff);
+					tiempoTxt = new TextField(100, 30, Texts.FINAL_TIME, Assets.getFont("Textos").name, 30, 0xffffff);
 					tiempoRes = new TextField(100, 30, "", Assets.getFont("Textos").name, 30, 0xffffff);
 					
-					vidasTxt = new TextField(100, 30, Textos.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
+					vidasTxt = new TextField(100, 30, Texts.FINAL_LIVES, Assets.getFont("Textos").name, 30, 0xffffff);
 					vidasRes = new TextField(100, 30, String(numVidas), Assets.getFont("Textos").name, 30, 0xffffff);
 					
 					//Tiempo
@@ -173,14 +173,14 @@ package objects
 			}
 			else
 			{
-				descrip = new TextField(250, 100, Textos.FINAL_GAMEOVER_DESCRIP , Assets.getFont("Textos").name, 30, 0xffffff);
+				descrip = new TextField(250, 100, Texts.FINAL_GAMEOVER_DESCRIP , Assets.getFont("Textos").name, 30, 0xffffff);
 				
 				descrip.x = selector.x + selector.width / 2 - descrip.width / 2;
 				descrip.y = stars.y + stars.height + 20;
 				
 				this.addChild(descrip);
 				
-				mainTxt.text = Textos.FINAL_GAMEOVER;
+				mainTxt.text = Texts.FINAL_GAMEOVER;
 			}
 			
 			this.addChild(replayBtn);

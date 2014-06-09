@@ -6,7 +6,7 @@ package utils
 	 * Esta clase cargará el XML del nivel y almacenará todos sus datos.
 	 * Mediante funciones se leerán desde otros sitios estos datos.
 	 */
-	public class DatosNivel 
+	public class LevelData 
 	{
 		/*******************
 		 * Atributos
@@ -32,7 +32,7 @@ package utils
 		/*******************
 		 * Constructor
 		 *******************/
-		public function DatosNivel(level:int = 0)
+		public function LevelData(level:int = 0)
 		{
 			loadLevel(level);
 		}
