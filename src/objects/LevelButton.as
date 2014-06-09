@@ -61,7 +61,7 @@ package objects
 			stars.x = bg.width - stars.width - 10;
 			stars.y = bg.height / 2 - stars.height / 2 - 10;
 			
-			numNivel = new TextField(200, bg.height-10, String(level), Assets.getFont("FontLevel").name, 40, 0xffffff);
+			numNivel = new TextField(200, bg.height-10, String(level+1), Assets.getFont("FontLevel").name, 40, 0xffffff);
 			numNivel.x = bg.width / 2 - numNivel.width / 2;
 			numNivel.y = bg.height / 2 - numNivel.height / 2;
 			

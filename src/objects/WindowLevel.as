@@ -28,7 +28,7 @@ package objects
 			
 			descrip = new TextField(250, 100, "" , Assets.getFont("Textos").name, 30, 0xffffff);
 			
-			mainTxt.text = Texts.STATS_LEVEL + numLvl;
+			mainTxt.text = Texts.STATS_LEVEL + (numLvl+1);
 			
 			if(victory == "time")
 				descrip.text = Texts.STATS_TIME_DESCRIPTION;
