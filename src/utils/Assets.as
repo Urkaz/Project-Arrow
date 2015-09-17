@@ -88,9 +88,36 @@ package utils
 		public static const TextosXML:Class;
 		
 		// IMAGENES //
+		//Español
+		[Embed(source="../../assets/images/reglas_es.xml", mimeType="application/octet-stream")]
+		public static const reglas_esXML:Class;
+		
+		[Embed(source="../../assets/images/reglas_es.png")]
+		public static const reglas_es:Class;
+		
+		[Embed(source="../../assets/images/botones_es.xml", mimeType="application/octet-stream")]
+		public static const botones_esXML:Class;
+		
+		[Embed(source="../../assets/images/botones_es.png")]
+		public static const botones_es:Class;
+		
+		//Inglés
+		[Embed(source="../../assets/images/reglas_en.xml", mimeType="application/octet-stream")]
+		public static const reglas_enXML:Class;
+		
+		[Embed(source="../../assets/images/reglas_en.png")]
+		public static const reglas_en:Class;
+		
+		[Embed(source="../../assets/images/botones_en.xml", mimeType="application/octet-stream")]
+		public static const botones_enXML:Class;
+		
+		[Embed(source="../../assets/images/botones_en.png")]
+		public static const botones_en:Class;
+		
 		[Embed(source="../../assets/images/levelSelection.xml", mimeType="application/octet-stream")]
 		public static const levelSelectXML:Class;
 		
+		//General
 		[Embed(source="../../assets/images/levelSelection.png")]
 		public static const levelSelectSprite:Class;
 		
@@ -102,15 +129,6 @@ package utils
 		
 		[Embed(source="../../assets/images/PantallaInicial.png")]
 		public static const PantallaInicial:Class;
-		
-		[Embed(source="../../assets/images/volver_atras.png")]
-		public static const VolverAtras:Class;
-		
-		[Embed(source="../../assets/images/borrar.png")]
-		public static const Borrar:Class;
-		
-		[Embed(source="../../assets/images/PlayInicial.png")]
-		public static const PlayInicialBtn:Class;
 		
 		// PARTÍCULAS //
 		[Embed(source="../../assets/particles/particle_fuego.pex", mimeType="application/octet-stream")]
@@ -134,6 +152,22 @@ package utils
 		[Embed(source="../../assets/particles/texture_planta.png")]
 		public static const Particle_plant:Class;
 		
+		//MUSICA//
+		
+		[Embed(source="../../assets/Music/TheHunter.mp3")]
+		public static const hunter:Class;
+		
+		[Embed(source="../../assets/Music/ThinkTank.mp3")]
+		public static const music_selection:Class;
+		
+		[Embed(source="../../assets/Music/BustinLooseWLead.mp3")]
+		public static const music_level1:Class;
+		
+		[Embed(source="../../assets/Music/PilotsOfStone.mp3")]
+		public static const music_level2:Class;
+		
+		
+		//Funciones
 		public static function getFont(name:String):BitmapFont
 		{
 			var fontTexture:Texture;
@@ -173,6 +207,18 @@ package utils
 					break;
 				case "gameSprite":
 					xml = XML(new gameXML());
+					break;
+				case "reglas_es":
+					xml = XML(new reglas_esXML());
+					break;
+				case "botones_es":
+					xml = XML(new botones_esXML());
+					break;
+				case "reglas_en":
+					xml = XML(new reglas_enXML());
+					break;
+				case "botones_en":
+					xml = XML(new botones_enXML());
 					break;
 				}
 				gameAtlas[name] = new TextureAtlas(texture, xml);

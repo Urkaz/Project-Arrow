@@ -15,7 +15,8 @@ package screens
 	import feathers.layout.VerticalLayout;
 	import feathers.controls.ScrollBar;
 	import feathers.controls.Scroller;
-	import objects.BotonNivel;
+	import objects.LevelButton;
+	import utils.Texts;
 	
 	public class LevelSelection extends Sprite 
 	{
@@ -46,7 +47,6 @@ package screens
 			container.hasElasticEdges = false;
 			
 			//Desbloquear primer nivel
-			trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "LevelSelection: CAMBIAR NIVEL INICIAL AL QUE SE EMPEIZA LA PARTIDA AL NUM 1, EL 0 ES EL DE PRUEBA!!!!");
 			if (Game.saveGame.data[0 + "_lock"] == undefined)
 			{
 				Game.saveGame.setProperty(0 + "_lock", false);
@@ -56,12 +56,12 @@ package screens
 			attr = levelList.level.attributes();
 			for (var s:int = 0; s < attr.length(); s = s+3)
 			{
-				var boton:BotonNivel;
+				var boton:LevelButton;
 				
 				//Leer partida guardada y poner puntuacion, estrellas y lock
 				var stars:int = int(Game.saveGame.data[attr[s] + "_stars"]);
 				
-				boton = new BotonNivel(attr[s + 1], attr[s + 2], attr[s], stars);
+				boton = new LevelButton(attr[s + 1], attr[s + 2], attr[s], stars);
 				if(!(Game.saveGame.data[attr[s] + "_lock"] == undefined || Game.saveGame.data[attr[s] + "_lock"]))
 					boton.Unlock();
 				
@@ -78,7 +78,7 @@ package screens
 			container.layout = layout;
 			
 			//Boton para volver al home
-			atrasBtn = new Button(Assets.getTexture("VolverAtras"));
+			atrasBtn = new Button(Assets.getAtlas("botones_"+Texts.LANG).getTexture("MenuPrinc"));
 			atrasBtn.height = 40;
 			atrasBtn.width = stage.stageWidth;
 			atrasBtn.x = stage.stageWidth / 2 - atrasBtn.width / 2;
@@ -108,7 +108,7 @@ package screens
 		{
 			//No desbloquear el nivel X (no está disponible y logicamente da error)
 			var lockLevel:int = 16;
-			trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "LevelSelection: EL NIVEL", lockLevel, "ESTA BLOQUEADO Y NO SE DESBLOQUEARA NUNCA (EL", lockLevel - 1, "ES EL ULTIMO JUGABLE");
+			//trace("2:>" + new Error().getStackTrace().match(/(?<=:)[0-9]*(?=])/g)[0], "LevelSelection: EL NIVEL", lockLevel, "ESTA BLOQUEADO Y NO SE DESBLOQUEARA NUNCA (EL", lockLevel - 1, "ES EL ULTIMO JUGABLE");
 			Game.saveGame.setProperty(lockLevel + "_lock", true);
 			
 			this.visible = true;

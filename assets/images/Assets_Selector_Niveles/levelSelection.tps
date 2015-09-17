@@ -155,14 +155,9 @@
             <filename>1_Estrellas.png</filename>
             <filename>2_Estrellas.png</filename>
             <filename>3_Estrellas.png</filename>
-            <filename>Boton_Atras.png</filename>
-            <filename>Boton_Start.png</filename>
             <filename>Victoria_combo.png</filename>
             <filename>Victoria_lives.png</filename>
             <filename>Victoria_time.png</filename>
-            <filename>Boton_menu.png</filename>
-            <filename>Boton_repetir.png</filename>
-            <filename>Boton_Continuar.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

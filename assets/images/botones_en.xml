@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:1bdb5dfc84e8ba8450fef4250703fc04$ -->
+<TextureAtlas imagePath="botones_en.png">
+    <SubTexture name="Boton_Atras" x="277" y="1" width="101" height="87"/>
+    <SubTexture name="Boton_Continuar" x="205" y="89" width="101" height="87"/>
+    <SubTexture name="Boton_Start" x="175" y="1" width="101" height="87"/>
+    <SubTexture name="Boton_menu" x="103" y="118" width="101" height="87"/>
+    <SubTexture name="Boton_repetir" x="1" y="118" width="101" height="87"/>
+    <SubTexture name="Instr" x="362" y="190" width="116" height="62"/>
+    <SubTexture name="MenuPrinc" x="1" y="206" width="360" height="40"/>
+    <SubTexture name="PlayInicial" x="1" y="1" width="173" height="116"/>
+    <SubTexture name="borrar" x="307" y="127" width="116" height="62"/>
+    <SubTexture name="lang_en" x="379" y="64" width="116" height="62"/>
+    <SubTexture name="lang_es" x="379" y="1" width="116" height="62"/>
+</TextureAtlas>

@@ -31,8 +31,7 @@ package
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
 			// Codigo a partir de aqui
-			stats = new Stats();
-			//this.addChild(stats);
+			//addChild (new Stats());
 			
 			var viewPort:Rectangle = RectangleUtil.fit(
 				new Rectangle(0, 0, stage.stageWidth, stage.stageHeight),
